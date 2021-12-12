@@ -130,9 +130,7 @@ public class ManagerList extends javax.swing.JFrame {
         txtPassword.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jPanel6.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 260, 40));
 
-        btnAdd.setBackground(new java.awt.Color(0, 0, 255));
         btnAdd.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnAdd.setForeground(new java.awt.Color(255, 255, 255));
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,9 +155,7 @@ public class ManagerList extends javax.swing.JFrame {
         jLabel12.setText("Username");
         jPanel7.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 140, 40));
 
-        btnSearch.setBackground(new java.awt.Color(0, 0, 255));
         btnSearch.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnSearch.setForeground(new java.awt.Color(255, 255, 255));
         btnSearch.setText("Search");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
