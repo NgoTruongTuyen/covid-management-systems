@@ -31,9 +31,40 @@ public class Statistics extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        btnViewManagerList = new javax.swing.JButton();
-        btnViewManagerList1 = new javax.swing.JButton();
-        btnViewManagerList2 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtTotalNecessities = new javax.swing.JTextField();
+        btnRefreshStatisticOfNecessities = new javax.swing.JButton();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txtF0 = new javax.swing.JTextField();
+        txtF1 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txtF2 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        txtF3 = new javax.swing.JTextField();
+        txtRecovered = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        txtTotalPatients = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        txtTotalF0 = new javax.swing.JTextField();
+        btnRefreshStatisticOfPatient = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txtTotalDebit = new javax.swing.JTextField();
+        btnRefreshStatisticOfDebits = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -51,35 +82,170 @@ public class Statistics extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1520, 90));
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnViewManagerList.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnViewManagerList.setText("Debit");
-        btnViewManagerList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewManagerListActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnViewManagerList, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 230, 380, 130));
+        jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnViewManagerList1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnViewManagerList1.setText("Consumption on necessities");
-        btnViewManagerList1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewManagerList1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnViewManagerList1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 230, 380, 130));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setText("Necessities");
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        btnViewManagerList2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnViewManagerList2.setText("Related people");
-        btnViewManagerList2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewManagerList2ActionPerformed(evt);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Name", "Amount/person", "Limit date", "Price"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
             }
         });
-        jPanel3.add(btnViewManagerList2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 380, 130));
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 490, 340));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setText("Total:");
+        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, -1, 30));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setText("packages");
+        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 400, -1, 30));
+
+        txtTotalNecessities.setEditable(false);
+        txtTotalNecessities.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel5.add(txtTotalNecessities, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 400, 100, 30));
+
+        btnRefreshStatisticOfNecessities.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnRefreshStatisticOfNecessities.setText("Refresh");
+        jPanel5.add(btnRefreshStatisticOfNecessities, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 460, 130, 40));
+
+        jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 510, 510));
+
+        jPanel9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setText("Patients");
+        jPanel9.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setText("F0:");
+        jPanel9.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, 30));
+
+        txtF0.setEditable(false);
+        txtF0.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel9.add(txtF0, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 140, 30));
+
+        txtF1.setEditable(false);
+        txtF1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel9.add(txtF1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 140, 30));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setText("F1:");
+        jPanel9.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, 30));
+
+        txtF2.setEditable(false);
+        txtF2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel9.add(txtF2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 140, 30));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setText("F2:");
+        jPanel9.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, 30));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel13.setText("F3:");
+        jPanel9.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, 30));
+
+        txtF3.setEditable(false);
+        txtF3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel9.add(txtF3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 140, 30));
+
+        txtRecovered.setEditable(false);
+        txtRecovered.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel9.add(txtRecovered, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 140, 30));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel14.setText("Recovered");
+        jPanel9.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, 30));
+
+        txtTotalPatients.setEditable(false);
+        txtTotalPatients.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel9.add(txtTotalPatients, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 140, 30));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel15.setText("Total patients:");
+        jPanel9.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, 30));
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel16.setText("Total F0:");
+        jPanel9.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, -1, 30));
+
+        txtTotalF0.setEditable(false);
+        txtTotalF0.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel9.add(txtTotalF0, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 140, 30));
+
+        btnRefreshStatisticOfPatient.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnRefreshStatisticOfPatient.setText("Refresh");
+        jPanel9.add(btnRefreshStatisticOfPatient, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 460, 130, 40));
+
+        jPanel3.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 400, 510));
+
+        jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel5.setText("Debit");
+        jPanel7.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "IdCard", "Name", "Debit"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTable2);
+
+        jPanel7.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 490, 340));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setText("VND");
+        jPanel7.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 410, -1, 30));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setText("Total:");
+        jPanel7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 410, -1, 30));
+
+        txtTotalDebit.setEditable(false);
+        txtTotalDebit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel7.add(txtTotalDebit, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, 100, 30));
+
+        btnRefreshStatisticOfDebits.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnRefreshStatisticOfDebits.setText("Refresh");
+        jPanel7.add(btnRefreshStatisticOfDebits, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 460, 130, 40));
+
+        jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(986, 20, 510, 510));
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton1.setText("Back");
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 550, 140, 50));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 1520, 610));
 
@@ -110,18 +276,6 @@ public class Statistics extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnViewManagerListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewManagerListActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnViewManagerListActionPerformed
-
-    private void btnViewManagerList1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewManagerList1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnViewManagerList1ActionPerformed
-
-    private void btnViewManagerList2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewManagerList2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnViewManagerList2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,14 +313,45 @@ public class Statistics extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnViewManagerList;
-    private javax.swing.JButton btnViewManagerList1;
-    private javax.swing.JButton btnViewManagerList2;
+    private javax.swing.JButton btnRefreshStatisticOfDebits;
+    private javax.swing.JButton btnRefreshStatisticOfNecessities;
+    private javax.swing.JButton btnRefreshStatisticOfPatient;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTextField txtF0;
+    private javax.swing.JTextField txtF1;
+    private javax.swing.JTextField txtF2;
+    private javax.swing.JTextField txtF3;
+    private javax.swing.JTextField txtRecovered;
+    private javax.swing.JTextField txtTotalDebit;
+    private javax.swing.JTextField txtTotalF0;
+    private javax.swing.JTextField txtTotalNecessities;
+    private javax.swing.JTextField txtTotalPatients;
     // End of variables declaration//GEN-END:variables
 }
