@@ -52,8 +52,9 @@ public class ManagerList extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         txtSearchingUsername = new javax.swing.JTextField();
         btnViewActivities = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
         btnUnblock = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -62,7 +63,7 @@ public class ManagerList extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 102), 3));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
@@ -71,21 +72,18 @@ public class ManagerList extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1520, 90));
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 102), 3));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnBlock.setBackground(new java.awt.Color(0, 0, 255));
         btnBlock.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnBlock.setForeground(new java.awt.Color(255, 255, 255));
         btnBlock.setText("Block");
         btnBlock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBlockActionPerformed(evt);
             }
         });
-        jPanel3.add(btnBlock, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 520, 210, 60));
+        jPanel3.add(btnBlock, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 520, 210, 60));
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(120, 195, 175), 4));
+        jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -110,7 +108,7 @@ public class ManagerList extends javax.swing.JFrame {
 
         jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 20, 870, 460));
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(120, 195, 175), 4));
+        jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -152,7 +150,7 @@ public class ManagerList extends javax.swing.JFrame {
 
         jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 590, 290));
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(120, 195, 175), 4));
+        jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -179,38 +177,41 @@ public class ManagerList extends javax.swing.JFrame {
 
         jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 590, 150));
 
-        btnViewActivities.setBackground(new java.awt.Color(0, 0, 255));
         btnViewActivities.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnViewActivities.setForeground(new java.awt.Color(255, 255, 255));
         btnViewActivities.setText("View activities");
         btnViewActivities.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewActivitiesActionPerformed(evt);
             }
         });
-        jPanel3.add(btnViewActivities, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 520, 210, 60));
+        jPanel3.add(btnViewActivities, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 520, 210, 60));
 
-        btnBack.setBackground(new java.awt.Color(0, 0, 255));
-        btnBack.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnBack.setForeground(new java.awt.Color(255, 255, 255));
-        btnBack.setText("Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
+        btnReset.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
+                btnResetActionPerformed(evt);
             }
         });
-        jPanel3.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 520, 210, 60));
+        jPanel3.add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 520, 210, 60));
 
-        btnUnblock.setBackground(new java.awt.Color(0, 0, 255));
         btnUnblock.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnUnblock.setForeground(new java.awt.Color(255, 255, 255));
         btnUnblock.setText("Unblock");
         btnUnblock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUnblockActionPerformed(evt);
             }
         });
-        jPanel3.add(btnUnblock, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 520, 210, 60));
+        jPanel3.add(btnUnblock, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 520, 210, 60));
+
+        btnBack.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 520, 210, 60));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 1520, 610));
 
@@ -254,9 +255,9 @@ public class ManagerList extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnViewActivitiesActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnBackActionPerformed
+    }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
@@ -265,6 +266,10 @@ public class ManagerList extends javax.swing.JFrame {
     private void btnUnblockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnblockActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnUnblockActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -305,6 +310,7 @@ public class ManagerList extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBlock;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUnblock;
     private javax.swing.JButton btnViewActivities;
