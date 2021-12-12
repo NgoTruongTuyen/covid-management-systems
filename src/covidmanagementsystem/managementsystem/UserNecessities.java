@@ -10,18 +10,19 @@ import javax.swing.DefaultComboBoxModel;
  *
  * @author MTBH
  */
-public class UserNeccessitites extends javax.swing.JFrame {
+public class UserNecessities extends javax.swing.JFrame {
 
     /**
-     * Creates new form UserNeccessitites
+     * Creates new form UserNecessities
      */
-    public UserNeccessitites() {
+    public UserNecessities() {
         initComponents();
-        loadComboSort();
+         loadComboSort();
         loadComboPrice();
         loadComboLimitDate();
+        
     }
-private void loadComboSort(){
+    private void loadComboSort(){
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         model.addElement("...");
         model.addElement("A to Z");
@@ -98,7 +99,7 @@ private void loadComboSort(){
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 102), 3));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
@@ -111,10 +112,9 @@ private void loadComboSort(){
         jLabel2.setText("User - Necessities");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 102), 3));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 102), 4));
+        jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel13.setText("Name");
@@ -151,7 +151,7 @@ private void loadComboSort(){
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                    .addContainerGap(178, Short.MAX_VALUE)
+                    .addContainerGap(181, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(155, 155, 155)))
         );
@@ -178,10 +178,10 @@ private void loadComboSort(){
 
         jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 630, 250));
 
-        jPanel7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 255, 0), 4, true));
+        jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel3.setText("Neccessities List");
+        jLabel3.setText("Necessities List");
 
         jtNeccessitiesList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -222,7 +222,7 @@ private void loadComboSort(){
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 801, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 805, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -272,12 +272,12 @@ private void loadComboSort(){
                         .addComponent(jcbSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, 850, 520));
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 0), 4));
+        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         jLabel7.setText("Cart");
@@ -295,7 +295,7 @@ private void loadComboSort(){
                 .addComponent(jScrollPane2)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(223, Short.MAX_VALUE)
+                .addContainerGap(227, Short.MAX_VALUE)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(109, 109, 109))
         );
@@ -305,26 +305,25 @@ private void loadComboSort(){
                 .addContainerGap()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 630, 260));
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 51), 4));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jbNeccessities.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jbNeccessities.setText("Information");
-        jPanel8.add(jbNeccessities, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 160, 40));
+        jPanel8.add(jbNeccessities, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, 160, 40));
 
         jbRefresh.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jbRefresh.setText("Refresh");
-        jPanel8.add(jbRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, 150, 40));
+        jPanel8.add(jbRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 10, 150, 40));
 
         jbPayDebit.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jbPayDebit.setText("Buy");
-        jPanel8.add(jbPayDebit, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 150, 40));
+        jPanel8.add(jbPayDebit, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 150, 40));
 
         jPanel3.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 540, 1490, 60));
 
@@ -342,6 +341,7 @@ private void loadComboSort(){
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtfProductNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfProductNameActionPerformed
@@ -369,20 +369,20 @@ private void loadComboSort(){
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UserNeccessitites.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserNecessities.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UserNeccessitites.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserNecessities.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UserNeccessitites.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserNecessities.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UserNeccessitites.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserNecessities.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UserNeccessitites().setVisible(true);
+                new UserNecessities().setVisible(true);
             }
         });
     }

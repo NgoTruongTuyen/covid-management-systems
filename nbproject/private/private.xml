@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Java%20Programming/Project/CovidManagementSystem/src/covidmanagementsystem/managementsystem/ManagerList.java</file>
-            <file>file:/D:/Java%20Programming/Project/CovidManagementSystem/src/covidmanagementsystem/managementsystem/Login.java</file>
-            <file>file:/D:/Java%20Programming/Project/CovidManagementSystem/src/covidmanagementsystem/managementsystem/UserNeccessitites.java</file>
-            <file>file:/D:/Java%20Programming/Project/CovidManagementSystem/src/covidmanagementsystem/managementsystem/Statistics.java</file>
-            <file>file:/D:/Java%20Programming/Project/CovidManagementSystem/src/covidmanagementsystem/managementsystem/Admin.java</file>
-            <file>file:/D:/Java%20Programming/Project/CovidManagementSystem/src/covidmanagementsystem/managementsystem/TreatmentSiteList.java</file>
-            <file>file:/D:/Java%20Programming/Project/CovidManagementSystem/src/covidmanagementsystem/managementsystem/ManagerActivities.java</file>
+            <file>file:/C:/Users/MTBH/Desktop/covid-management-systems/src/covidmanagementsystem/managementsystem/UserNecessities.java</file>
+            <file>file:/C:/Users/MTBH/Desktop/covid-management-systems/src/covidmanagementsystem/managementsystem/UserPay.java</file>
+            <file>file:/C:/Users/MTBH/Desktop/covid-management-systems/src/covidmanagementsystem/managementsystem/UserInfo.java</file>
+            <file>file:/C:/Users/MTBH/Desktop/covid-management-systems/src/covidmanagementsystem/managementsystem/UserStatusHistory.java</file>
         </group>
     </open-files>
 </project-private>
