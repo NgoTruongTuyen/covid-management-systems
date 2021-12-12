@@ -160,7 +160,7 @@ public class TreatmentSiteList extends javax.swing.JFrame {
         jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 590, 190));
 
         btnReset.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnReset.setText("Reset");
+        btnReset.setText("Refresh");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetActionPerformed(evt);

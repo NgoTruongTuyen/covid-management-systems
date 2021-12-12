@@ -214,7 +214,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
         jPanel11.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 220, 40));
 
         jButton13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton13.setText("Reset");
+        jButton13.setText("Refresh");
         jPanel11.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 220, 40));
 
         jButton15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N

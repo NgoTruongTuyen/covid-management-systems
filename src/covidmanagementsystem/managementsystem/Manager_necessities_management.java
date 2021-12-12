@@ -198,7 +198,7 @@ public class Manager_necessities_management extends javax.swing.JFrame {
         jPanel11.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 10, 220, 40));
 
         jButton14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton14.setText("Reset");
+        jButton14.setText("Refresh");
         jPanel11.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 220, 40));
 
         jButton17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N

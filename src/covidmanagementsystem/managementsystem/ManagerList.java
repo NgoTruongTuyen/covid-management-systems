@@ -52,7 +52,7 @@ public class ManagerList extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         txtSearchingUsername = new javax.swing.JTextField();
         btnViewActivities = new javax.swing.JButton();
-        btnReset = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
         btnUnblock = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -182,14 +182,14 @@ public class ManagerList extends javax.swing.JFrame {
         });
         jPanel3.add(btnViewActivities, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 520, 210, 60));
 
-        btnReset.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnReset.setText("Reset");
-        btnReset.addActionListener(new java.awt.event.ActionListener() {
+        btnRefresh.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnRefresh.setText("Refresh");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnResetActionPerformed(evt);
+                btnRefreshActionPerformed(evt);
             }
         });
-        jPanel3.add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 520, 210, 60));
+        jPanel3.add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 520, 210, 60));
 
         btnUnblock.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnUnblock.setText("Unblock");
@@ -251,9 +251,9 @@ public class ManagerList extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnViewActivitiesActionPerformed
 
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnResetActionPerformed
+    }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
@@ -306,7 +306,7 @@ public class ManagerList extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBlock;
-    private javax.swing.JButton btnReset;
+    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUnblock;
     private javax.swing.JButton btnViewActivities;
