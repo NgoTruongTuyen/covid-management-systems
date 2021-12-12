@@ -42,7 +42,7 @@ public class Statistics extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 102), 3));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
@@ -51,12 +51,10 @@ public class Statistics extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1520, 90));
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 102), 3));
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnViewManagerList.setBackground(new java.awt.Color(0, 0, 255));
         btnViewManagerList.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnViewManagerList.setForeground(new java.awt.Color(255, 255, 255));
         btnViewManagerList.setText("Debit");
         btnViewManagerList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,9 +63,7 @@ public class Statistics extends javax.swing.JFrame {
         });
         jPanel3.add(btnViewManagerList, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 230, 380, 130));
 
-        btnViewManagerList1.setBackground(new java.awt.Color(0, 0, 255));
         btnViewManagerList1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnViewManagerList1.setForeground(new java.awt.Color(255, 255, 255));
         btnViewManagerList1.setText("Consumption on necessities");
         btnViewManagerList1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,10 +72,8 @@ public class Statistics extends javax.swing.JFrame {
         });
         jPanel3.add(btnViewManagerList1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 230, 380, 130));
 
-        btnViewManagerList2.setBackground(new java.awt.Color(0, 0, 255));
         btnViewManagerList2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnViewManagerList2.setForeground(new java.awt.Color(255, 255, 255));
-        btnViewManagerList2.setText("Cases");
+        btnViewManagerList2.setText("Related people");
         btnViewManagerList2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewManagerList2ActionPerformed(evt);
