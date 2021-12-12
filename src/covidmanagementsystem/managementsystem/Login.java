@@ -67,15 +67,11 @@ public class Login extends javax.swing.JFrame {
         jPanel3.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 260, -1));
         jPanel3.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 260, -1));
 
-        btnLogin.setBackground(new java.awt.Color(0, 51, 255));
         btnLogin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("Login");
         jPanel3.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 120, 50));
 
-        btnCancel.setBackground(new java.awt.Color(0, 51, 255));
         btnCancel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnCancel.setForeground(new java.awt.Color(255, 255, 255));
         btnCancel.setText("Cancel");
         jPanel3.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, 120, 50));
 
