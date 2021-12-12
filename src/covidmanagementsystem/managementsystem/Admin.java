@@ -40,7 +40,7 @@ public class Admin extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 102), 3));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
@@ -49,18 +49,14 @@ public class Admin extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1520, 90));
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 102), 3));
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnViewTreatmentSiteList.setBackground(new java.awt.Color(0, 0, 255));
         btnViewTreatmentSiteList.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnViewTreatmentSiteList.setForeground(new java.awt.Color(255, 255, 255));
         btnViewTreatmentSiteList.setText("View Treatment Site List");
         jPanel3.add(btnViewTreatmentSiteList, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 210, 330, 130));
 
-        btnViewManagerList.setBackground(new java.awt.Color(0, 0, 255));
         btnViewManagerList.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnViewManagerList.setForeground(new java.awt.Color(255, 255, 255));
         btnViewManagerList.setText("View Manager List");
         btnViewManagerList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
