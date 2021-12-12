@@ -31,7 +31,7 @@ public class TreatmentSiteList extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        btnModify = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableTreatmentSiteList = new javax.swing.JTable();
@@ -39,7 +39,6 @@ public class TreatmentSiteList extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        btnAdd = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         txtCapacity = new javax.swing.JTextField();
@@ -51,6 +50,7 @@ public class TreatmentSiteList extends javax.swing.JFrame {
         txtSearchingUsername = new javax.swing.JTextField();
         btnReset = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -58,7 +58,7 @@ public class TreatmentSiteList extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 102), 3));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
@@ -67,21 +67,18 @@ public class TreatmentSiteList extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1520, 90));
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 102), 3));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnModify.setBackground(new java.awt.Color(0, 0, 255));
-        btnModify.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnModify.setForeground(new java.awt.Color(255, 255, 255));
-        btnModify.setText("Modify");
-        btnModify.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModifyActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
-        jPanel3.add(btnModify, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 520, 210, 60));
+        jPanel3.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 520, 210, 60));
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(120, 195, 175), 4));
+        jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tableTreatmentSiteList.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -107,95 +104,87 @@ public class TreatmentSiteList extends javax.swing.JFrame {
 
         jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 20, 870, 460));
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(120, 195, 175), 4));
+        jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Current number of cases");
-        jPanel6.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 230, 40));
+        jPanel6.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 230, 40));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("Capacity");
-        jPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 140, 40));
+        jPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 140, 40));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Name");
-        jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 140, 40));
-
-        btnAdd.setBackground(new java.awt.Color(0, 0, 255));
-        btnAdd.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnAdd.setForeground(new java.awt.Color(255, 255, 255));
-        btnAdd.setText("Add");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
-        jPanel6.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 150, 50));
+        jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 140, 40));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel13.setText("Add new treatment site");
-        jPanel6.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 220, 40));
+        jPanel6.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 220, 40));
 
         txtName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel6.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 260, 40));
+        jPanel6.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 260, 40));
 
         txtCapacity.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel6.add(txtCapacity, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 260, 40));
+        jPanel6.add(txtCapacity, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 260, 40));
 
         txtCurrentCases.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel6.add(txtCurrentCases, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 260, 40));
+        jPanel6.add(txtCurrentCases, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 260, 40));
 
-        jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 590, 300));
+        jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 590, 250));
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(120, 195, 175), 4));
+        jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel12.setText("Name");
-        jPanel7.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 140, 40));
+        jPanel7.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 140, 40));
 
-        btnSearch.setBackground(new java.awt.Color(0, 0, 255));
         btnSearch.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnSearch.setForeground(new java.awt.Color(255, 255, 255));
         btnSearch.setText("Search");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchActionPerformed(evt);
             }
         });
-        jPanel7.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 150, 50));
+        jPanel7.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 150, 50));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel14.setText("Search a treatment site");
-        jPanel7.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 230, 40));
+        jPanel7.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 230, 40));
 
         txtSearchingUsername.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel7.add(txtSearchingUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 260, 40));
+        jPanel7.add(txtSearchingUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 260, 40));
 
-        jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 590, 140));
+        jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 590, 190));
 
-        btnReset.setBackground(new java.awt.Color(0, 0, 255));
         btnReset.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnReset.setForeground(new java.awt.Color(255, 255, 255));
         btnReset.setText("Reset");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetActionPerformed(evt);
             }
         });
-        jPanel3.add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 520, 210, 60));
+        jPanel3.add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 520, 210, 60));
 
-        btnBack.setBackground(new java.awt.Color(0, 0, 255));
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
-        jPanel3.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 520, 210, 60));
+        jPanel3.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 520, 210, 60));
+
+        btnAdd.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 520, 210, 60));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 1520, 610));
 
@@ -246,13 +235,9 @@ public class TreatmentSiteList extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnModifyActionPerformed
-
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddActionPerformed
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
@@ -265,6 +250,10 @@ public class TreatmentSiteList extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddActionPerformed
 
     /**
      * @param args the command line arguments
@@ -304,9 +293,9 @@ public class TreatmentSiteList extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnModify;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
