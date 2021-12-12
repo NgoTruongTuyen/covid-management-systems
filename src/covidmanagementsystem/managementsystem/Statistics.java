@@ -96,11 +96,11 @@ public class Statistics extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Name", "Amount/person", "Limit date", "Price"
+                "Id", "Name", "Price", "Sold"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Double.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -113,15 +113,15 @@ public class Statistics extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Total:");
-        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, -1, 30));
+        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, -1, 30));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setText("packages");
-        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 400, -1, 30));
+        jLabel7.setText("sold");
+        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 400, -1, 30));
 
         txtTotalNecessities.setEditable(false);
         txtTotalNecessities.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel5.add(txtTotalNecessities, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 400, 100, 30));
+        jPanel5.add(txtTotalNecessities, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, 100, 30));
 
         btnRefreshStatisticOfNecessities.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnRefreshStatisticOfNecessities.setText("Refresh");
