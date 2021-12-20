@@ -15,9 +15,19 @@ public class UserInfo extends javax.swing.JFrame {
      */
     public UserInfo() {
         initComponents();
+        showUser();
         
     }
-
+    private void showUser(){
+        User a = UserModify.viewInformation("1029312");
+        jtfID.setText(a.getID());
+        jtfName.setText(a.getName());
+        jtfDob.setText(a.getDOB());
+        jtfAddress.setText(a.getAddress());
+        jtfDept.setText(String.valueOf(a.getDept()));
+        jtfState.setText(String.valueOf(a.getState()));
+        jtfRelatedPerson.setText(a.getRelated());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,11 +55,11 @@ public class UserInfo extends javax.swing.JFrame {
         jtfState = new javax.swing.JTextField();
         jtfRelatedPerson = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        jtfDebit = new javax.swing.JTextField();
+        jtfDept = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jtfID = new javax.swing.JTextField();
-        jbPayDebit = new javax.swing.JButton();
+        jbPayDept = new javax.swing.JButton();
         jbRefresh = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -82,6 +92,7 @@ public class UserInfo extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel13.setText("Name");
 
+        jtfName.setEditable(false);
         jtfName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfNameActionPerformed(evt);
@@ -103,12 +114,20 @@ public class UserInfo extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel19.setText("Related Person");
 
+        jtfDob.setEditable(false);
+
+        jtfAddress.setEditable(false);
+
+        jtfTreatmentSite.setEditable(false);
+
+        jtfState.setEditable(false);
         jtfState.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfStateActionPerformed(evt);
             }
         });
 
+        jtfRelatedPerson.setEditable(false);
         jtfRelatedPerson.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfRelatedPersonActionPerformed(evt);
@@ -116,11 +135,12 @@ public class UserInfo extends javax.swing.JFrame {
         });
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel20.setText("Debit");
+        jLabel20.setText("Dept");
 
-        jtfDebit.addActionListener(new java.awt.event.ActionListener() {
+        jtfDept.setEditable(false);
+        jtfDept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfDebitActionPerformed(evt);
+                jtfDeptActionPerformed(evt);
             }
         });
 
@@ -130,14 +150,15 @@ public class UserInfo extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel18.setText("ID");
 
+        jtfID.setEditable(false);
         jtfID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfIDActionPerformed(evt);
             }
         });
 
-        jbPayDebit.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jbPayDebit.setText("Pay Debit");
+        jbPayDept.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jbPayDept.setText("Pay Dept");
 
         jbRefresh.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jbRefresh.setText("View status history");
@@ -173,7 +194,7 @@ public class UserInfo extends javax.swing.JFrame {
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtfDebit, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jtfDept, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -185,7 +206,7 @@ public class UserInfo extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(jtfName, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addComponent(jbPayDebit, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbPayDept, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(jbRefresh)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
@@ -233,10 +254,10 @@ public class UserInfo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfDebit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfDept, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbPayDebit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbPayDept, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -406,9 +427,9 @@ public class UserInfo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfRelatedPersonActionPerformed
 
-    private void jtfDebitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDebitActionPerformed
+    private void jtfDeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDeptActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtfDebitActionPerformed
+    }//GEN-LAST:event_jtfDeptActionPerformed
 
     private void jtfIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfIDActionPerformed
         // TODO add your handling code here:
@@ -483,14 +504,14 @@ public class UserInfo extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbNeccessities;
-    private javax.swing.JButton jbPayDebit;
+    private javax.swing.JButton jbPayDept;
     private javax.swing.JButton jbRefresh;
     private javax.swing.JButton jbRefreshBill;
     private javax.swing.JButton jbRefreshPurchase;
     private javax.swing.JTable jtBill;
     private javax.swing.JTable jtPurchase;
     private javax.swing.JTextField jtfAddress;
-    private javax.swing.JTextField jtfDebit;
+    private javax.swing.JTextField jtfDept;
     private javax.swing.JTextField jtfDob;
     private javax.swing.JTextField jtfID;
     private javax.swing.JTextField jtfName;
