@@ -44,6 +44,12 @@ class TreatmentSite{
      int capacity;
      int currentNumber;
 
+    public TreatmentSite(String name, int capacity, int currentNumber) {
+        this.name = name;
+        this.capacity = capacity;
+        this.currentNumber = currentNumber;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -57,6 +63,8 @@ class TreatmentSite{
     }
     TreatmentSite(String name){
         this.name=name;
+        this.capacity=10000;
+        this.currentNumber=0;
     }
     public String getName() {
         return name;

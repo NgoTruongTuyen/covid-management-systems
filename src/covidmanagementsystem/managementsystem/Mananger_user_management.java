@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class Mananger_user_management extends javax.swing.JFrame {
      List<User> UserList = new ArrayList<>();
+     List<String> TreatmentSiteNameList = new ArrayList<>();
     /**
      * Creates new form Manager_user_management
      */
@@ -33,6 +34,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
         try{
            
             UserList=UserModify.findAll();
+            TreatmentSiteNameList=TreatmentSiteModify.findAllTreatmentSiteName();
 
             DefaultTableModel recordTable = (DefaultTableModel) TableModel.getModel();
             recordTable.setRowCount(0);
@@ -41,7 +43,13 @@ public class Mananger_user_management extends javax.swing.JFrame {
         
                 recordTable.addRow(new Object[] {user.getID(),user.getName(),user.getDOB(),user.getAddress(),"F"+user.getState(),user.getTreatmentSiteName()});
             });
-            
+          
+            jComboBoxTreatmentSiteInput.removeAllItems();
+            TreatmentSiteNameList.forEach((siteName)->{
+                jComboBoxTreatmentSiteInput.addItem(siteName);
+            });
+//            jComboBoxTreatmentSiteInput.setSelectedItem(TreatmentSiteNameList);
+           
         } catch(Exception ex){
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -68,7 +76,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBoxTreatmentSiteInput = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         txtID2 = new javax.swing.JTextField();
         jComboBox3 = new javax.swing.JComboBox<>();
@@ -78,15 +86,15 @@ public class Mananger_user_management extends javax.swing.JFrame {
         TableModel = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
-        jButton12 = new javax.swing.JButton();
+        searchButton = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jPanel11 = new javax.swing.JPanel();
-        jButton11 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
+        refreshButton = new javax.swing.JButton();
+        updateButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -141,7 +149,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("Status");
-        jPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, 30));
+        jPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Address");
@@ -149,11 +157,11 @@ public class Mananger_user_management extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setText("Treatment place");
-        jPanel6.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 150, 30));
+        jPanel6.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 160, 30));
 
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel6.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, -1, -1));
+        jComboBoxTreatmentSiteInput.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jComboBoxTreatmentSiteInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel6.add(jComboBoxTreatmentSiteInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 380, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("ID");
@@ -170,7 +178,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
         jComboBox3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F0", "F1", "F2" }));
         jComboBox3.setToolTipText("");
-        jPanel6.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, -1, -1));
+        jPanel6.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, -1, -1));
 
         jButton14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton14.setText("View contact list and history");
@@ -179,7 +187,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
                 jButton14ActionPerformed(evt);
             }
         });
-        jPanel6.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 310, 40));
+        jPanel6.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 310, 40));
 
         jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 410, 490));
 
@@ -211,14 +219,14 @@ public class Mananger_user_management extends javax.swing.JFrame {
         });
         jPanel10.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 180, -1));
 
-        jButton12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton12.setText("Search");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        searchButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        searchButton.setText("Search");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                searchButtonActionPerformed(evt);
             }
         });
-        jPanel10.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 110, 30));
+        jPanel10.add(searchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 110, 30));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel10.setText("Search by ID");
@@ -238,35 +246,40 @@ public class Mananger_user_management extends javax.swing.JFrame {
         jPanel11.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton11.setText("Add");
-        jPanel11.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 220, 40));
+        addButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        addButton.setText("Add");
+        jPanel11.add(addButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 220, 40));
 
-        jButton13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton13.setText("Refresh");
-        jPanel11.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 220, 40));
+        refreshButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        refreshButton.setText("Refresh");
+        jPanel11.add(refreshButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 220, 40));
 
-        jButton15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton15.setText("Update");
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
+        updateButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        updateButton.setText("Update");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
+                updateButtonActionPerformed(evt);
             }
         });
-        jPanel11.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, 220, 40));
+        jPanel11.add(updateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, 220, 40));
 
-        jButton16.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton16.setText("Delete");
-        jPanel11.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 10, 220, 40));
-
-        jButton17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton17.setText("Back");
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
+        deleteButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        deleteButton.setText("Delete");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
+                deleteButtonActionPerformed(evt);
             }
         });
-        jPanel11.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 10, 220, 40));
+        jPanel11.add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 10, 220, 40));
+
+        backButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+        jPanel11.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 10, 220, 40));
 
         jPanel3.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, 1510, 60));
 
@@ -307,21 +320,37 @@ public class Mananger_user_management extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton15ActionPerformed
+    }//GEN-LAST:event_updateButtonActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
+    }//GEN-LAST:event_searchButtonActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton14ActionPerformed
 
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton17ActionPerformed
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+      // TODO add your handling code here:
+        int selectedIndex = TableModel.getSelectedRow();
+        if(selectedIndex >= 0) {
+            User std = UserList.get(selectedIndex);
+            
+            int option = JOptionPane.showConfirmDialog(this, "Do you want to delete this item?");
+            System.out.println("option : " + option);
+            
+            if(option == 0) {
+                UserModify.delete(std.getID());
+                updateDB();
+            }
+        }
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -360,16 +389,13 @@ public class Mananger_user_management extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TableModel;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
+    private javax.swing.JButton addButton;
+    private javax.swing.JButton backButton;
+    private javax.swing.JButton deleteButton;
     private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBoxTreatmentSiteInput;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -387,10 +413,13 @@ public class Mananger_user_management extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton refreshButton;
+    private javax.swing.JButton searchButton;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtID1;
     private javax.swing.JTextField txtID2;
     private javax.swing.JTextField txtID3;
     private javax.swing.JTextField txtID4;
+    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }

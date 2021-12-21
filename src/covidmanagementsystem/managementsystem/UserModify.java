@@ -89,5 +89,81 @@ public class UserModify {
       } 
         return userList;
     }
+//     public static void insert(User std) {
+//        Connection connection = null;
+//        PreparedStatement statement = null;
+//        
+//        try {
+//            //lay tat ca danh sach sinh vien
+//            connection = DriverManager.getConnection(DB_URL,USER, PASS);
+//            
+//            //query
+//            String sql = "insert into User (fullname, gender, age, email, phone_number) values(?, ?, ?, ?, ?)";
+//            statement = connection.prepareCall(sql);
+//            
+//            statement.setString(1, std.getFullname());
+//            statement.setString(2, std.getGender());
+//            statement.setInt(3, std.getAge());
+//            statement.setString(4, std.getEmail());
+//            statement.setString(5, std.getPhoneNumber());
+//            
+//            statement.execute();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+//        } finally {
+//            if(statement != null) {
+//                try {
+//                    statement.close();
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//            
+//            if (connection != null) {
+//                try {
+//                    connection.close();
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        }
+//        //ket thuc.
+//    }
      
+    public static void delete(String id) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        
+        try {
+            //lay tat ca danh sach sinh vien
+             connection = DriverManager.getConnection(DB_URL,USER, PASS);
+            
+            //query
+            String sql = "delete from User where idCard = ?";
+            statement = connection.prepareCall(sql);
+            
+            statement.setString(1, id);
+            
+            statement.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if(statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        //ket thuc.
+    }
 }
