@@ -5,19 +5,48 @@
  */
 package covidmanagementsystem.managementsystem;
 
+import java.sql.DriverManager;
+import java.sql.ResultSetMetaData;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author 123
  */
-public class Mananger_user_management extends javax.swing.JFrame {
 
+
+public class Mananger_user_management extends javax.swing.JFrame {
+     List<User> UserList = new ArrayList<>();
     /**
-     * Creates new form Mananger_user_management
+     * Creates new form Manager_user_management
      */
     public Mananger_user_management() {
         initComponents();
+        updateDB();
     }
 
+     public void updateDB() {
+        try{
+           
+            UserList=UserModify.findAll();
+
+            DefaultTableModel recordTable = (DefaultTableModel) TableModel.getModel();
+            recordTable.setRowCount(0);
+            
+            UserList.forEach((user)->{
+        
+                recordTable.addRow(new Object[] {user.getID(),user.getName(),user.getDOB(),user.getAddress(),"F"+user.getState(),user.getTreatmentSiteName()});
+            });
+            
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,7 +75,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
         jButton14 = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TableModel = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         jButton12 = new javax.swing.JButton();
@@ -157,8 +186,8 @@ public class Mananger_user_management extends javax.swing.JFrame {
         jPanel10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TableModel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        TableModel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -166,7 +195,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
                 "User ID", "Full Name", "Date of birth", "Address", "Status", "Treatement place"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TableModel);
 
         jPanel10.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 63, 1050, 410));
 
@@ -330,6 +359,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TableModel;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
@@ -357,7 +387,6 @@ public class Mananger_user_management extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtID1;
     private javax.swing.JTextField txtID2;

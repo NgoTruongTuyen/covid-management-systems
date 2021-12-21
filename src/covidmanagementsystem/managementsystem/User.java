@@ -38,9 +38,37 @@ class Address{
 }
 
 class TreatmentSite{
-    private String name;
-    private int capacity;
-    private int currentNumber;
+
+    
+     String name;
+     int capacity;
+     int currentNumber;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public void setCurrentNumber(int currentNumber) {
+        this.currentNumber = currentNumber;
+    }
+    TreatmentSite(String name){
+        this.name=name;
+    }
+    public String getName() {
+        return name;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public int getCurrentNumber() {
+        return currentNumber;
+    }
 }
 class staHistory{
     private String content;
@@ -86,6 +114,19 @@ class User {
         this.dept = dept;
         this.billCodes = billCodes;
     }
+    
+    User(String idCard, String name, String dob, String address, int state, String treatmentSiteName){
+        this.idCard = idCard;
+        this.name = name;
+        this.dob = dob;
+        this.address = address;
+        this.state = state;
+        this.treatmentSite = new TreatmentSite(treatmentSiteName);
+        this.relatedPerson = null;
+        this.statusHistory = null;
+        this.dept = 0;
+        this.billCodes = null;
+    }
     String getID(){
         return idCard;
     }
@@ -115,6 +156,9 @@ class User {
     }
     TreatmentSite getTreatmentSite(){
         return treatmentSite;
+    }
+    String getTreatmentSiteName(){
+        return treatmentSite.getName();
     }
     
     void setID(String id){
