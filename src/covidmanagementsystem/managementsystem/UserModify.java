@@ -166,4 +166,49 @@ public class UserModify {
         }
         //ket thuc.
     }
+    
+     public static void insert(User newUser) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        
+        try {
+            //lay tat ca danh sach sinh vien
+          connection = DriverManager.getConnection(DB_URL,USER, PASS);
+            
+            //query
+            String sql = "insert into User(IdCard,username, dob, address,state,treatmentSite,related,dept,account) values(?, ?, ?, ?, ?,?,?,?,?)";
+            statement = connection.prepareCall(sql);
+            
+            statement.setString(1, newUser.getID());
+            statement.setString(2, newUser.getName());
+            statement.setString(3, newUser.getDOB());
+            statement.setString(4, newUser.getAddress());
+            statement.setInt(5, newUser.getState());
+            statement.setString(6, newUser.getTreatmentSiteName());
+            statement.setString(7, newUser.getRelated());
+            statement.setDouble(8, newUser.getDept());
+            statement.setString(9, "user"+newUser.getID());
+            
+            statement.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if(statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        //ket thuc.
+    }
 }
