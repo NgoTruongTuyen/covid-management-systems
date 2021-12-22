@@ -5,8 +5,11 @@
  */
 package covidmanagementsystem.managementsystem;
 
+import java.util.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSetMetaData;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -23,6 +26,9 @@ public class Mananger_user_management extends javax.swing.JFrame {
      List<User> UserList = new ArrayList<>();
      List<String> TreatmentSiteNameList = new ArrayList<>();
      List<String> CityList=new ArrayList<>();
+     String currentStatus="";
+     String currentTreatmentSite="";
+     String currentContactList="";
     /**
      * Creates new form Manager_user_management
      */
@@ -33,7 +39,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
 
      public void updateDB() {
         try{
-           
+            
             UserList=UserModify.findAll();
             TreatmentSiteNameList=TreatmentSiteModify.findAllTreatmentSiteName();
             CityList=AddressModify.findAllCity();
@@ -364,6 +370,29 @@ public class Mananger_user_management extends javax.swing.JFrame {
         String related=(String)contactInputTxt.getText();
         User newUser = new User(Id, fullname, dob, address, status,treatmentSite,related);
         
+         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+//        System.out.println(dateFormat.format(date));
+        if(!currentStatus.equals(strStatus))
+        {
+            ManagementHistory newRecord1=new ManagementHistory(Id,"Cập nhật : Từ"+currentStatus+"trở thành "+ strStatus,dateFormat.format(date));
+            ManagementHistoryModify.insert(newRecord1);
+        }
+        if(!currentTreatmentSite.equals(treatmentSite))
+        {
+           ManagementHistory newRecord2=new ManagementHistory(Id,"Chuyển từ khu cách ly "+currentTreatmentSite+" sang "+ treatmentSite,dateFormat.format(date));
+           ManagementHistoryModify.insert(newRecord2);
+
+        }
+        if(!currentContactList.equals(related))
+        {
+        ManagementHistory newRecord3=new ManagementHistory(Id,"Cập nhật danh sách tiếp xúc: "+ related,dateFormat.format(date));
+        ManagementHistoryModify.insert(newRecord3);
+        }
+        
+        
+       
+        
         UserModify.update(newUser);
         updateDB();
     }//GEN-LAST:event_updateButtonActionPerformed
@@ -446,14 +475,31 @@ public class Mananger_user_management extends javax.swing.JFrame {
         String related=(String)contactInputTxt.getText();
         User newUser = new User(Id, fullname, dob, address, status,treatmentSite,related);
         
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+//        System.out.println(dateFormat.format(date));
+
+        ManagementHistory newRecord1=new ManagementHistory(Id,"Trở thành "+ strStatus,dateFormat.format(date));
+        ManagementHistory newRecord2=new ManagementHistory(Id,"Được đưa vào khu cách ly "+ treatmentSite,dateFormat.format(date));
+        ManagementHistory newRecord3=new ManagementHistory(Id,"Danh sách tiếp xúc"+ related,dateFormat.format(date));
+        
+        ManagementHistoryModify.insert(newRecord1);
+        ManagementHistoryModify.insert(newRecord2);
+        ManagementHistoryModify.insert(newRecord3);
+       
         UserModify.insert(newUser);
         updateDB();
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void TableModelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableModelMouseClicked
-      DefaultTableModel recordTable = (DefaultTableModel)TableModel.getModel();
+       
+        
+        DefaultTableModel recordTable = (DefaultTableModel)TableModel.getModel();
         int selectedRows = TableModel.getSelectedRow();
         
+        currentStatus=new String(recordTable.getValueAt(selectedRows, 4).toString());
+        currentTreatmentSite=new String(recordTable.getValueAt(selectedRows, 5).toString());
+       
         idInputTxt.setText(recordTable.getValueAt(selectedRows, 0).toString());
         
         fullNameInputTxt.setText(recordTable.getValueAt(selectedRows, 1).toString());
@@ -468,6 +514,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
         jComboBoxTreatmentSiteInput.setSelectedItem(recordTable.getValueAt(selectedRows, 5).toString());
         if(recordTable.getValueAt(selectedRows, 6)!=null)
         {
+        currentContactList=new String(recordTable.getValueAt(selectedRows, 6).toString());
         contactInputTxt.setText(recordTable.getValueAt(selectedRows, 6).toString());
         }
         else{

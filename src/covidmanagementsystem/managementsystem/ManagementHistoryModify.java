@@ -65,5 +65,41 @@ public class ManagementHistoryModify {
       } 
         return ManagementList;
     }
-  
+  public static void insert(ManagementHistory newrecord) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        
+        try {
+            
+          connection = DriverManager.getConnection(DB_URL,USER, PASS);
+            
+          
+            String sql = "insert into StatusHistory(Id,Content,day) values(?, ?, ?)";
+            statement = connection.prepareCall(sql);
+            
+            statement.setString(1, newrecord.getId());
+            statement.setString(2, newrecord.getContent());
+            statement.setString(3, newrecord.getDate());
+
+            statement.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(ManagementHistoryModify.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if(statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ManagementHistoryModify.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ManagementHistoryModify.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
 }
