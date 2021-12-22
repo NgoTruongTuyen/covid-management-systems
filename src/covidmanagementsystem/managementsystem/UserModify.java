@@ -70,7 +70,8 @@ public class UserModify {
                 result.getString("dob"),
                 result.getString("address"),
                 result.getInt("state"),
-                result.getString("treatmentSite"));
+                result.getString("treatmentSite"),
+                result.getString("related"));
                 
              userList.add(newUser);   
                 
@@ -89,56 +90,16 @@ public class UserModify {
       } 
         return userList;
     }
-//     public static void insert(User std) {
-//        Connection connection = null;
-//        PreparedStatement statement = null;
-//        
-//        try {
-//            //lay tat ca danh sach sinh vien
-//            connection = DriverManager.getConnection(DB_URL,USER, PASS);
-//            
-//            //query
-//            String sql = "insert into User (fullname, gender, age, email, phone_number) values(?, ?, ?, ?, ?)";
-//            statement = connection.prepareCall(sql);
-//            
-//            statement.setString(1, std.getFullname());
-//            statement.setString(2, std.getGender());
-//            statement.setInt(3, std.getAge());
-//            statement.setString(4, std.getEmail());
-//            statement.setString(5, std.getPhoneNumber());
-//            
-//            statement.execute();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally {
-//            if(statement != null) {
-//                try {
-//                    statement.close();
-//                } catch (SQLException ex) {
-//                    Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//            
-//            if (connection != null) {
-//                try {
-//                    connection.close();
-//                } catch (SQLException ex) {
-//                    Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//        }
-//        //ket thuc.
-//    }
      
     public static void delete(String id) {
         Connection connection = null;
         PreparedStatement statement = null;
         
         try {
-            //lay tat ca danh sach sinh vien
+            
              connection = DriverManager.getConnection(DB_URL,USER, PASS);
             
-            //query
+         
             String sql = "delete from User where idCard = ?";
             statement = connection.prepareCall(sql);
             
@@ -164,7 +125,7 @@ public class UserModify {
                 }
             }
         }
-        //ket thuc.
+      
     }
     
      public static void insert(User newUser) {
@@ -172,10 +133,10 @@ public class UserModify {
         PreparedStatement statement = null;
         
         try {
-            //lay tat ca danh sach sinh vien
+            
           connection = DriverManager.getConnection(DB_URL,USER, PASS);
             
-            //query
+          
             String sql = "insert into User(IdCard,username, dob, address,state,treatmentSite,related,dept,account) values(?, ?, ?, ?, ?,?,?,?,?)";
             statement = connection.prepareCall(sql);
             
@@ -209,6 +170,47 @@ public class UserModify {
                 }
             }
         }
-        //ket thuc.
+    }
+      public static void update(User user) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        
+        try {
+            
+            connection = DriverManager.getConnection(DB_URL,USER, PASS);
+            
+       
+            String sql = "update User set username=?,dob=?,address=?,state=?,treatmentSite=?,related=? where idCard = ?";
+            statement = connection.prepareCall(sql);
+            
+            statement.setString(1, user.getName());
+            statement.setString(2, user.getDOB());
+            statement.setString(3, user.getAddress());
+            statement.setInt(4, user.getState());
+            statement.setString(5, user.getTreatmentSiteName());
+            statement.setString(6, user.getRelated());
+            statement.setString(7, user.getID());
+            
+            statement.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if(statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+       
     }
 }

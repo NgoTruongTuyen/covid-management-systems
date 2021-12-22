@@ -135,6 +135,19 @@ class User {
         this.dept = 0;
         this.billCodes = null;
     }
+    
+        User(String idCard, String name, String dob, String address, int state, String treatmentSiteName,String relatedPerson){
+        this.idCard = idCard;
+        this.name = name;
+        this.dob = dob;
+        this.address = address;
+        this.state = state;
+        this.treatmentSite = new TreatmentSite(treatmentSiteName);
+        this.relatedPerson = relatedPerson;
+        this.statusHistory = null;
+        this.dept = 0;
+        this.billCodes = null;
+    }
     String getID(){
         return idCard;
     }

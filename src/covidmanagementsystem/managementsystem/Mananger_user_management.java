@@ -43,7 +43,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
             
             UserList.forEach((user)->{
         
-                recordTable.addRow(new Object[] {user.getID(),user.getName(),user.getDOB(),user.getAddress(),"F"+user.getState(),user.getTreatmentSiteName()});
+                recordTable.addRow(new Object[] {user.getID(),user.getName(),user.getDOB(),user.getAddress(),"F"+user.getState(),user.getTreatmentSiteName(),user.getRelated()});
             });
           
             jComboBoxTreatmentSiteInput.removeAllItems();
@@ -58,6 +58,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
             
             jComboBoxDistrictInput.setEnabled(false);
             jComboBoxVillageInput.setEnabled(false);
+            idInputTxt.setEditable(false);
 //            jComboBoxTreatmentSiteInput.setSelectedItem(TreatmentSiteNameList);
            
         } catch(Exception ex){
@@ -81,7 +82,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         fullNameInputTxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        dobInputTxt = new javax.swing.JTextField();
+        contactInputTxt = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -89,21 +90,21 @@ public class Mananger_user_management extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         idInputTxt = new javax.swing.JTextField();
         jComboBoxVillageInput = new javax.swing.JComboBox<>();
-        jButton14 = new javax.swing.JButton();
         jComboBoxStatus = new javax.swing.JComboBox<>();
         jComboBoxCityInput = new javax.swing.JComboBox<>();
         jComboBoxDistrictInput = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        dobInputTxt1 = new javax.swing.JTextField();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TableModel = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
-        txtID = new javax.swing.JTextField();
+        searchIdtxt = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jButton14 = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         addButton = new javax.swing.JButton();
         refreshButton = new javax.swing.JButton();
@@ -132,7 +133,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Full name");
-        jPanel6.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, 30));
+        jPanel6.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 130, 30));
 
         fullNameInputTxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         fullNameInputTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -143,16 +144,16 @@ public class Mananger_user_management extends javax.swing.JFrame {
         jPanel6.add(fullNameInputTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 240, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel5.setText("Date of birth");
-        jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, 30));
+        jLabel5.setText("Covid contact");
+        jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, -1, 30));
 
-        dobInputTxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        dobInputTxt.addActionListener(new java.awt.event.ActionListener() {
+        contactInputTxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        contactInputTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dobInputTxtActionPerformed(evt);
+                contactInputTxtActionPerformed(evt);
             }
         });
-        jPanel6.add(dobInputTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 240, -1));
+        jPanel6.add(contactInputTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, 230, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("Status");
@@ -186,15 +187,6 @@ public class Mananger_user_management extends javax.swing.JFrame {
         jComboBoxVillageInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F0", "F1", "F2" }));
         jComboBoxVillageInput.setToolTipText("");
         jPanel6.add(jComboBoxVillageInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 230, -1));
-
-        jButton14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton14.setText("View contact list and history");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
-            }
-        });
-        jPanel6.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 310, 40));
 
         jComboBoxStatus.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jComboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F0", "F1", "F2" }));
@@ -233,6 +225,18 @@ public class Mananger_user_management extends javax.swing.JFrame {
         jLabel13.setText("District");
         jPanel6.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, 30));
 
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel14.setText("Date of birth");
+        jPanel6.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, 30));
+
+        dobInputTxt1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        dobInputTxt1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dobInputTxt1ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(dobInputTxt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 240, -1));
+
         jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 410, 490));
 
         jPanel10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -244,24 +248,25 @@ public class Mananger_user_management extends javax.swing.JFrame {
 
             },
             new String [] {
-                "User ID", "Full Name", "Date of birth", "Address", "Status", "Treatement place"
+                "User ID", "Full Name", "Date of birth", "Address", "Status", "Treatement place", "Contact"
             }
         ));
+        TableModel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableModelMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TableModel);
 
         jPanel10.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 63, 1050, 410));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("Sort by");
-        jPanel10.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, -1, 30));
-
-        txtID.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtID.addActionListener(new java.awt.event.ActionListener() {
+        searchIdtxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        searchIdtxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIDActionPerformed(evt);
+                searchIdtxtActionPerformed(evt);
             }
         });
-        jPanel10.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 180, -1));
+        jPanel10.add(searchIdtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 180, -1));
 
         searchButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         searchButton.setText("Search");
@@ -276,14 +281,14 @@ public class Mananger_user_management extends javax.swing.JFrame {
         jLabel10.setText("Search by ID");
         jPanel10.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 30));
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jButton14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton14.setText("View contact list and history");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                jButton14ActionPerformed(evt);
             }
         });
-        jPanel10.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, -1, -1));
+        jPanel10.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, 310, 30));
 
         jPanel3.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, 1070, 490));
 
@@ -301,6 +306,11 @@ public class Mananger_user_management extends javax.swing.JFrame {
 
         refreshButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         refreshButton.setText("Refresh");
+        refreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshButtonActionPerformed(evt);
+            }
+        });
         jPanel11.add(refreshButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 220, 40));
 
         updateButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -345,28 +355,35 @@ public class Mananger_user_management extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+    private void searchIdtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchIdtxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDActionPerformed
+    }//GEN-LAST:event_searchIdtxtActionPerformed
 
     private void fullNameInputTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullNameInputTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fullNameInputTxtActionPerformed
 
-    private void dobInputTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dobInputTxtActionPerformed
+    private void contactInputTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactInputTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_dobInputTxtActionPerformed
+    }//GEN-LAST:event_contactInputTxtActionPerformed
 
     private void idInputTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idInputTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_idInputTxtActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        // TODO add your handling code here:
+        String Id=idInputTxt.getText();
+        String fullname = fullNameInputTxt.getText();
+        String dob = dobInputTxt1.getText();
+        String address=(String)jComboBoxVillageInput.getSelectedItem()+","+(String)jComboBoxDistrictInput.getSelectedItem()+","+(String)jComboBoxCityInput.getSelectedItem();
+        String strStatus=(String)jComboBoxStatus.getSelectedItem();
+        int status = Integer.parseInt(strStatus.substring(strStatus.length() - 1));
+        String treatmentSite=(String)jComboBoxTreatmentSiteInput.getSelectedItem();
+        String related=(String)contactInputTxt.getText();
+        User newUser = new User(Id, fullname, dob, address, status,treatmentSite,related);
+        
+        UserModify.update(newUser);
+        updateDB();
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
@@ -410,13 +427,13 @@ public class Mananger_user_management extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxDistrictInputActionPerformed
 
     private void jComboBoxCityInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCityInputActionPerformed
-        System.out.println((String)jComboBoxCityInput.getSelectedItem());
+//        System.out.println((String)jComboBoxCityInput.getSelectedItem());
         jComboBoxDistrictInput.setEnabled(true);
        String cityName =(String)jComboBoxCityInput.getSelectedItem();
        
         List<String> districtList=new ArrayList<>();
            districtList=AddressModify.findAllDistrict(cityName);
-           System.out.println(districtList);
+//           System.out.println(districtList);
               jComboBoxDistrictInput.removeAllItems();
             districtList.forEach((districtName)->{
                 jComboBoxDistrictInput.addItem(districtName);
@@ -426,16 +443,63 @@ public class Mananger_user_management extends javax.swing.JFrame {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         String Id=idInputTxt.getText();
         String fullname = fullNameInputTxt.getText();
-        String dob = dobInputTxt.getText();
+        String dob = dobInputTxt1.getText();
         String address=(String)jComboBoxVillageInput.getSelectedItem()+","+(String)jComboBoxDistrictInput.getSelectedItem()+","+(String)jComboBoxCityInput.getSelectedItem();
         String strStatus=(String)jComboBoxStatus.getSelectedItem();
         int status = Integer.parseInt(strStatus.substring(strStatus.length() - 1));
         String treatmentSite=(String)jComboBoxTreatmentSiteInput.getSelectedItem();
-        User newUser = new User(Id, fullname, dob, address, status,treatmentSite);
+        String related=(String)contactInputTxt.getText();
+        User newUser = new User(Id, fullname, dob, address, status,treatmentSite,related);
         
         UserModify.insert(newUser);
         updateDB();
     }//GEN-LAST:event_addButtonActionPerformed
+
+    private void TableModelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableModelMouseClicked
+      DefaultTableModel recordTable = (DefaultTableModel)TableModel.getModel();
+        int selectedRows = TableModel.getSelectedRow();
+        
+        idInputTxt.setText(recordTable.getValueAt(selectedRows, 0).toString());
+        
+        fullNameInputTxt.setText(recordTable.getValueAt(selectedRows, 1).toString());
+        dobInputTxt1.setText(recordTable.getValueAt(selectedRows, 2).toString());
+        
+        String[] address = recordTable.getValueAt(selectedRows, 3).toString().split(",");
+        System.out.println(address);
+        jComboBoxCityInput.setSelectedItem(address[2]);
+        jComboBoxDistrictInput.setSelectedItem(address[1]);
+        jComboBoxVillageInput.setSelectedItem(address[0]);
+        jComboBoxStatus.setSelectedItem(recordTable.getValueAt(selectedRows, 4).toString());
+        jComboBoxTreatmentSiteInput.setSelectedItem(recordTable.getValueAt(selectedRows, 5).toString());
+        if(recordTable.getValueAt(selectedRows, 6)!=null)
+        {
+        contactInputTxt.setText(recordTable.getValueAt(selectedRows, 6).toString());
+        }
+        else{
+         contactInputTxt.setText("");
+        }
+        
+    }//GEN-LAST:event_TableModelMouseClicked
+
+    private void dobInputTxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dobInputTxt1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dobInputTxt1ActionPerformed
+
+    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+     
+        idInputTxt.setText("");
+        idInputTxt.setEditable(true);
+        fullNameInputTxt.setText("");
+        dobInputTxt1.setText("");
+      
+        searchIdtxt.setText("");
+        contactInputTxt.setText("");
+        
+//        DefaultTableModel RecordTable = (DefaultTableModel) TableModel.getModel();
+//        RecordTable.setRowCount(0);
+        
+
+    }//GEN-LAST:event_refreshButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -476,12 +540,12 @@ public class Mananger_user_management extends javax.swing.JFrame {
     private javax.swing.JTable TableModel;
     private javax.swing.JButton addButton;
     private javax.swing.JButton backButton;
+    private javax.swing.JTextField contactInputTxt;
     private javax.swing.JButton deleteButton;
-    private javax.swing.JTextField dobInputTxt;
+    private javax.swing.JTextField dobInputTxt1;
     private javax.swing.JTextField fullNameInputTxt;
     private javax.swing.JTextField idInputTxt;
     private javax.swing.JButton jButton14;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBoxCityInput;
     private javax.swing.JComboBox<String> jComboBoxDistrictInput;
     private javax.swing.JComboBox<String> jComboBoxStatus;
@@ -492,8 +556,8 @@ public class Mananger_user_management extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -509,7 +573,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton refreshButton;
     private javax.swing.JButton searchButton;
-    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField searchIdtxt;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }
