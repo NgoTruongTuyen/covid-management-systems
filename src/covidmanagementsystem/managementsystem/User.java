@@ -78,25 +78,40 @@ class TreatmentSite{
         return currentNumber;
     }
 }
-class staHistory{
+class ManagementHistory{
+
+    public String getId() {
+        return id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+    private String id;
     private String content;
     private String date;
-    staHistory(String content , String date){
+    ManagementHistory(String id,String content , String date){
+        this.id=id;
         this.content = content;
         this.date = date;
     }
-    String getContent(){
-        return content;
-    }
-    String getDate(){
-        return date;
-    }
-    void setContent(String con){
-        this.content = con;
-    }
-    void setDate(String date){
-        this.date = date;
-    }
+   
     
 }
 class User {
@@ -107,10 +122,10 @@ class User {
     private int state;
     private TreatmentSite treatmentSite;
     private String relatedPerson;
-    private List<staHistory> statusHistory;
+    private List<ManagementHistory> statusHistory;
     private double dept;
     private List<String> billCodes;
-    User(String idCard, String name, String dob, String address, int state, TreatmentSite treatmentSite, String relatedPerson, List<staHistory> statusHistory , double dept, List<String> billCodes ){
+    User(String idCard, String name, String dob, String address, int state, TreatmentSite treatmentSite, String relatedPerson, List<ManagementHistory> statusHistory , double dept, List<String> billCodes ){
         this.idCard = idCard;
         this.name = name;
         this.dob = dob;
@@ -172,7 +187,7 @@ class User {
     List<String> getBill(){
         return billCodes;
     }
-    List<staHistory> getStatusHistory(){
+    List<ManagementHistory> getStatusHistory(){
         return statusHistory;
     }
     TreatmentSite getTreatmentSite(){
@@ -206,7 +221,7 @@ class User {
     void setBill(List<String> Bill){
         this.billCodes = Bill;
     }
-    void setStatusHistory(List<staHistory> t){
+    void setStatusHistory(List<ManagementHistory> t){
         statusHistory = t;
     }
     void setTreatmentSite(TreatmentSite t){

@@ -264,4 +264,55 @@ public class UserModify {
         
         return userList;
     }
+      
+      
+      public static List<User> findContact(String id) {
+        List<User> userList = new ArrayList<>();
+        
+        Connection connection = null;
+        PreparedStatement statement = null;
+        
+        try {
+           
+              connection = DriverManager.getConnection(DB_URL,USER, PASS);
+            
+           
+            String sql = "select * from User where related like ?";
+            statement = connection.prepareCall(sql);
+            statement.setString(1, "%"+id+"%");
+            
+            ResultSet result = statement.executeQuery();
+            
+            while (result.next()) {                
+                User std = new User(result.getString("idCard"),
+                result.getString("userName"),
+                result.getString("dob"),
+                result.getString("address"),
+                result.getInt("state"),
+                result.getString("treatmentSite"));
+               userList.add(std);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if(statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+       
+        
+        return userList;
+    }
 }

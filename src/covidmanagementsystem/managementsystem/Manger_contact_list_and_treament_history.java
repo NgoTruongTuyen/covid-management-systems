@@ -5,14 +5,21 @@
  */
 package covidmanagementsystem.managementsystem;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author 123
  */
 public class Manger_contact_list_and_treament_history extends javax.swing.JFrame {
-
+    List<User> UserList = new ArrayList<>();
+    List<ManagementHistory> managemenList=new ArrayList<>();
+    
     /**
-     * Creates new form Manger_contact_list_and_treament_history
+     * Creates new form Manger_contact_list_and_treatment_history
      */
     public Manger_contact_list_and_treament_history() {
         initComponents();
@@ -32,15 +39,13 @@ public class Manger_contact_list_and_treament_history extends javax.swing.JFrame
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
-        txtID = new javax.swing.JTextField();
         jButton12 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel11 = new javax.swing.JLabel();
+        historyTable = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        ContactTable = new javax.swing.JTable();
         jButton16 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -65,14 +70,6 @@ public class Manger_contact_list_and_treament_history extends javax.swing.JFrame
         jPanel10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtID.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIDActionPerformed(evt);
-            }
-        });
-        jPanel10.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 180, -1));
-
         jButton12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton12.setText("Search");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
@@ -80,14 +77,14 @@ public class Manger_contact_list_and_treament_history extends javax.swing.JFrame
                 jButton12ActionPerformed(evt);
             }
         });
-        jPanel10.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 110, 30));
+        jPanel10.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 110, 30));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel10.setText("Treament history");
-        jPanel10.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 80, -1, 30));
+        jLabel10.setText("Managment history");
+        jPanel10.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 80, -1, 30));
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        historyTable.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        historyTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -95,20 +92,16 @@ public class Manger_contact_list_and_treament_history extends javax.swing.JFrame
                 "Date", "Treament place"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(historyTable);
 
         jPanel10.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 140, 730, 380));
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel11.setText("Search by ID");
-        jPanel10.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, 30));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel12.setText("Contact list");
         jPanel10.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, 30));
 
-        jTable3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        ContactTable.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        ContactTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -116,7 +109,7 @@ public class Manger_contact_list_and_treament_history extends javax.swing.JFrame
                 "User ID", "Full Name", "Date of birth", "Address", "Status", "Treatement place"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(ContactTable);
 
         jPanel10.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 650, 380));
 
@@ -144,12 +137,25 @@ public class Manger_contact_list_and_treament_history extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDActionPerformed
-
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
+      String input = JOptionPane.showInputDialog(this, "Enter ID to search");
+        if(input != null && input.length() > 0) {
+         UserList = UserModify.findContact(input);
+         managemenList=ManagementHistoryModify.findById(input);
+            
+            DefaultTableModel contactRecordTable = (DefaultTableModel) ContactTable.getModel();
+            contactRecordTable.setRowCount(0);
+            
+            DefaultTableModel historyRecordTable = (DefaultTableModel) historyTable.getModel();
+            historyRecordTable.setRowCount(0);
+        
+            UserList.forEach((user) -> {
+                contactRecordTable.addRow(new Object[] {user.getID(),user.getName(),user.getDOB(),user.getAddress(),"F"+user.getState(),user.getTreatmentSiteName()});
+            });
+             managemenList.forEach((history) -> {
+                historyRecordTable.addRow(new Object[] {history.getDate(),history.getContent()});
+            });
+        } 
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
@@ -192,11 +198,12 @@ public class Manger_contact_list_and_treament_history extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable ContactTable;
+    private javax.swing.JTable historyTable;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton16;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -206,8 +213,5 @@ public class Manger_contact_list_and_treament_history extends javax.swing.JFrame
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTextField txtID;
     // End of variables declaration//GEN-END:variables
 }

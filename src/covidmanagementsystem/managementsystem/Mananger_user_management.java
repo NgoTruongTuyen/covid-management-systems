@@ -102,7 +102,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TableModel = new javax.swing.JTable();
         searchButton = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
+        viewContactButton = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         addButton = new javax.swing.JButton();
         refreshButton = new javax.swing.JButton();
@@ -267,14 +267,14 @@ public class Mananger_user_management extends javax.swing.JFrame {
         });
         jPanel10.add(searchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 110, 30));
 
-        jButton14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton14.setText("View contact list and history");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
+        viewContactButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        viewContactButton.setText("View contact list and history");
+        viewContactButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
+                viewContactButtonActionPerformed(evt);
             }
         });
-        jPanel10.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 310, 30));
+        jPanel10.add(viewContactButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 310, 30));
 
         jPanel3.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, 1070, 490));
 
@@ -384,9 +384,10 @@ public class Mananger_user_management extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_searchButtonActionPerformed
 
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton14ActionPerformed
+    private void viewContactButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewContactButtonActionPerformed
+        Manger_contact_list_and_treament_history contectManagement=new Manger_contact_list_and_treament_history();
+        contectManagement.setVisible(true); 
+    }//GEN-LAST:event_viewContactButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
@@ -539,7 +540,6 @@ public class Mananger_user_management extends javax.swing.JFrame {
     private javax.swing.JTextField dobInputTxt1;
     private javax.swing.JTextField fullNameInputTxt;
     private javax.swing.JTextField idInputTxt;
-    private javax.swing.JButton jButton14;
     private javax.swing.JComboBox<String> jComboBoxCityInput;
     private javax.swing.JComboBox<String> jComboBoxDistrictInput;
     private javax.swing.JComboBox<String> jComboBoxStatus;
@@ -567,5 +567,6 @@ public class Mananger_user_management extends javax.swing.JFrame {
     private javax.swing.JButton refreshButton;
     private javax.swing.JButton searchButton;
     private javax.swing.JButton updateButton;
+    private javax.swing.JButton viewContactButton;
     // End of variables declaration//GEN-END:variables
 }
