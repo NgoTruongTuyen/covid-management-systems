@@ -101,9 +101,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TableModel = new javax.swing.JTable();
-        searchIdtxt = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
         jButton14 = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         addButton = new javax.swing.JButton();
@@ -260,14 +258,6 @@ public class Mananger_user_management extends javax.swing.JFrame {
 
         jPanel10.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 63, 1050, 410));
 
-        searchIdtxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        searchIdtxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchIdtxtActionPerformed(evt);
-            }
-        });
-        jPanel10.add(searchIdtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 180, -1));
-
         searchButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         searchButton.setText("Search");
         searchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -275,11 +265,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
                 searchButtonActionPerformed(evt);
             }
         });
-        jPanel10.add(searchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 110, 30));
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel10.setText("Search by ID");
-        jPanel10.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 30));
+        jPanel10.add(searchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 110, 30));
 
         jButton14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton14.setText("View contact list and history");
@@ -288,7 +274,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
                 jButton14ActionPerformed(evt);
             }
         });
-        jPanel10.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, 310, 30));
+        jPanel10.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 310, 30));
 
         jPanel3.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, 1070, 490));
 
@@ -355,16 +341,12 @@ public class Mananger_user_management extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void searchIdtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchIdtxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchIdtxtActionPerformed
-
     private void fullNameInputTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullNameInputTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fullNameInputTxtActionPerformed
 
     private void contactInputTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactInputTxtActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_contactInputTxtActionPerformed
 
     private void idInputTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idInputTxtActionPerformed
@@ -387,7 +369,19 @@ public class Mananger_user_management extends javax.swing.JFrame {
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        // TODO add your handling code here:
+       String input = JOptionPane.showInputDialog(this, "Enter full name to search");
+        if(input != null && input.length() > 0) {
+         UserList = UserModify.findByFullname(input);
+            
+            DefaultTableModel recordTable = (DefaultTableModel) TableModel.getModel();
+            recordTable.setRowCount(0);
+        
+            UserList.forEach((user) -> {
+                recordTable.addRow(new Object[] {user.getID(),user.getName(),user.getDOB(),user.getAddress(),"F"+user.getState(),user.getTreatmentSiteName(),user.getRelated()});
+            });
+        } else {
+            updateDB();
+        }
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
@@ -492,7 +486,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
         fullNameInputTxt.setText("");
         dobInputTxt1.setText("");
       
-        searchIdtxt.setText("");
+//        searchIdtxt.setText("");
         contactInputTxt.setText("");
         
 //        DefaultTableModel RecordTable = (DefaultTableModel) TableModel.getModel();
@@ -552,7 +546,6 @@ public class Mananger_user_management extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxTreatmentSiteInput;
     private javax.swing.JComboBox<String> jComboBoxVillageInput;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -573,7 +566,6 @@ public class Mananger_user_management extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton refreshButton;
     private javax.swing.JButton searchButton;
-    private javax.swing.JTextField searchIdtxt;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }
