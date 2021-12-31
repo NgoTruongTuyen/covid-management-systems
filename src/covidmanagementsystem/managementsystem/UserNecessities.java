@@ -15,7 +15,9 @@ public class UserNecessities extends javax.swing.JFrame {
     /**
      * Creates new form UserNecessities
      */
+    String username;
     public UserNecessities(String name) {
+        this.username = name;
         initComponents();
          loadComboSort();
         loadComboPrice();
@@ -367,7 +369,7 @@ public class UserNecessities extends javax.swing.JFrame {
     }//GEN-LAST:event_jbSearchActionPerformed
 
     private void jbNeccessitiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNeccessitiesActionPerformed
-        UserInfo connectInfo = new UserInfo();
+        UserInfo connectInfo = new UserInfo(username);
         connectInfo.setVisible(true); 
         this.dispose();
     }//GEN-LAST:event_jbNeccessitiesActionPerformed

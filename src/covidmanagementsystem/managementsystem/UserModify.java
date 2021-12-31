@@ -394,4 +394,40 @@ public class UserModify {
       } 
        return List;
     }
+    public static List<ManagementHistory>viewManagementHistory(String username){
+        List<ManagementHistory> List = new ArrayList<>();
+
+        Connection conn = null;
+        ResultSet rs = null;
+        
+       
+        try {
+            conn = DriverManager.getConnection(DB_URL,USER, PASS);
+            String temp = "'"+ username + "'";
+            String req = "select * from StatusHistory,User where User.account = " + temp +" and User.idCard = StatusHistory.id";
+            
+            Statement statement = conn.createStatement();
+            ResultSet result = statement.executeQuery(req);
+            while(result.next()){
+                ManagementHistory newStatusHistory=new ManagementHistory(result.getString("id"),
+                result.getString("content"),
+                result.getString("day"));
+                
+                List.add(newStatusHistory);
+                
+            }
+           
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      if(conn != null){
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+            }
+      } 
+       return List;
+    }
 }

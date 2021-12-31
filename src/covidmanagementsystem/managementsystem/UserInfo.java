@@ -15,12 +15,13 @@ import javax.swing.table.*;
  */
 public class UserInfo extends javax.swing.JFrame {
 
-    /**
-     * Creates new form UserInfo
-     */
-    public UserInfo() {
+    String username;
+    public UserInfo(String user) {
+        username = "user1";
         initComponents();
-        showUser("user1");
+        showUser(username);
+        showPurchaseHistory(username);
+        showPayHistory(username);
         
         
     }
@@ -34,8 +35,7 @@ public class UserInfo extends javax.swing.JFrame {
         jtfState.setText(String.valueOf(a.getState()));
         jtfRelatedPerson.setText(a.getRelated());
         jtfTreatmentSite.setText(a.getTreatmentSiteName());
-        showPurchaseHistory(username);
-        showPayHistory(username);
+        
         
     }
     private void showPurchaseHistory(String username){
@@ -465,14 +465,14 @@ public class UserInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfIDActionPerformed
 
     private void jbStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbStatusActionPerformed
-        UserStatusHistory connectStatusHistory = new UserStatusHistory();
+        UserStatusHistory connectStatusHistory = new UserStatusHistory(username);
         connectStatusHistory.setVisible(true); 
          this.dispose();
     }//GEN-LAST:event_jbStatusActionPerformed
 
     private void jbNeccessitiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNeccessitiesActionPerformed
-        
-        UserNecessities connectNecessities = new UserNecessities("user1");
+
+        UserNecessities connectNecessities = new UserNecessities(username);
         connectNecessities.setVisible(true); 
         this.dispose();
     }//GEN-LAST:event_jbNeccessitiesActionPerformed
@@ -513,7 +513,7 @@ public class UserInfo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UserInfo().setVisible(true);
+                new UserInfo("a").setVisible(true);
             }
         });
     }
