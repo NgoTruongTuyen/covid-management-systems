@@ -15,13 +15,24 @@ public class UserNecessities extends javax.swing.JFrame {
     /**
      * Creates new form UserNecessities
      */
-    public UserNecessities() {
+    public UserNecessities(String name) {
         initComponents();
          loadComboSort();
         loadComboPrice();
         loadComboLimitDate();
+        System.out.println(name);
         
     }
+    public UserNecessities() {
+        initComponents();
+        loadComboSort();
+        loadComboPrice();
+        loadComboLimitDate();
+        
+        
+    }
+
+    
     private void loadComboSort(){
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         model.addElement("...");
@@ -94,8 +105,6 @@ public class UserNecessities extends javax.swing.JFrame {
         jbNeccessities = new javax.swing.JButton();
         jbRefresh = new javax.swing.JButton();
         jbPayDebit = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -315,6 +324,11 @@ public class UserNecessities extends javax.swing.JFrame {
 
         jbNeccessities.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jbNeccessities.setText("Information");
+        jbNeccessities.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbNeccessitiesActionPerformed(evt);
+            }
+        });
         jPanel8.add(jbNeccessities, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, 160, 40));
 
         jbRefresh.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -352,6 +366,12 @@ public class UserNecessities extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbSearchActionPerformed
 
+    private void jbNeccessitiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNeccessitiesActionPerformed
+        UserInfo connectInfo = new UserInfo();
+        connectInfo.setVisible(true); 
+        this.dispose();
+    }//GEN-LAST:event_jbNeccessitiesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -382,7 +402,7 @@ public class UserNecessities extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UserNecessities().setVisible(true);
+               new UserNecessities().setVisible(true);
             }
         });
     }
