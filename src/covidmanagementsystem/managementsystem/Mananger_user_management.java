@@ -37,7 +37,8 @@ public class Mananger_user_management extends javax.swing.JFrame {
         updateDB();
     }
 
-     public void updateDB() {
+     public void updateDB() 
+     {
         try{
             
             UserList=UserModify.findAll();
