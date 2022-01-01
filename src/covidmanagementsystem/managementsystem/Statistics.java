@@ -7,7 +7,10 @@
  */
 package covidmanagementsystem.managementsystem;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,12 +32,51 @@ public class Statistics extends javax.swing.JFrame {
      {
         try{
             
-            HashMap<String,String> statistic=StatisticsModify.getCurrentStatistic();
+            HashMap<String,String> statistic=StatisticsModify.getUserStatistic();
             
+            txtF0.setText(statistic.get("0"));
+             txtF1.setText(statistic.get("1"));
+              txtF2.setText(statistic.get("2"));
+               txtF3.setText(statistic.get("3"));
             StatusChangeTxt.setText(statistic.get("statusChange"));
             treatmentChangeTxt.setText(statistic.get("treatmentChange"));
             recoveredTxt.setText(statistic.get("recovered"));
            
+            
+             try{
+            
+            HashMap<String,Integer> statistic2=StatisticsModify.getNeccessitiesStatistic();
+            DefaultTableModel recordTable = (DefaultTableModel) NecessitiesTable.getModel();
+            recordTable.setRowCount(0);
+            
+            for(Map.Entry<String, Integer> entry : statistic2.entrySet()) {
+            String name = entry.getKey();
+            if(name.equals("totalSold")||name.equals("totalCost") )
+                continue;
+            int amount = entry.getValue();
+            recordTable.addRow(new Object[] {name,amount});
+            }
+           
+           totalSoldTxt.setText(String.valueOf(statistic2.get("totalSold")));
+           totalCostTxt.setText(String.valueOf(statistic2.get("totalCost")));
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
+             
+         List<User> UserList = new ArrayList<>();
+       double totalDebit=0;
+        UserList=UserModify.findAll();
+        DefaultTableModel recordTable = (DefaultTableModel) debitTable.getModel();
+            recordTable.setRowCount(0);
+            
+            UserList.forEach((user)->{
+                recordTable.addRow(new Object[] {user.getID(),user.getName(),user.getDept()});
+            });
+           for(int i=0;i<UserList.size();i++)
+           {
+               totalDebit+=UserList.get(i).getDept();
+           }
+           txtTotalDebit.setText(String.valueOf(totalDebit));    
         } catch(Exception ex){
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -53,11 +95,14 @@ public class Statistics extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        txtTotalNecessities = new javax.swing.JTextField();
+        NecessitiesTable = new javax.swing.JTable();
+        jLabel21 = new javax.swing.JLabel();
+        jLabe56 = new javax.swing.JLabel();
+        totalCostTxt = new javax.swing.JTextField();
         btnRefreshStatisticOfNecessities = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        totalSoldTxt = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -78,7 +123,7 @@ public class Statistics extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        debitTable = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtTotalDebit = new javax.swing.JTextField();
@@ -110,41 +155,66 @@ public class Statistics extends javax.swing.JFrame {
         jLabel4.setText("Necessities");
         jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        NecessitiesTable.setAutoCreateRowSorter(true);
+        NecessitiesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Id", "Name", "Price", "Sold"
+                "Name", "Sold"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(NecessitiesTable);
 
         jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 490, 340));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setText("Total:");
-        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, -1, 30));
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel21.setText("Total:");
+        jPanel5.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, 30));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setText("sold");
-        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 400, -1, 30));
+        jLabe56.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabe56.setText("VND");
+        jPanel5.add(jLabe56, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, -1, 30));
 
-        txtTotalNecessities.setEditable(false);
-        txtTotalNecessities.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel5.add(txtTotalNecessities, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, 100, 30));
+        totalCostTxt.setEditable(false);
+        totalCostTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel5.add(totalCostTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, 100, 30));
 
         btnRefreshStatisticOfNecessities.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnRefreshStatisticOfNecessities.setText("Refresh");
+        btnRefreshStatisticOfNecessities.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshStatisticOfNecessitiesActionPerformed(evt);
+            }
+        });
         jPanel5.add(btnRefreshStatisticOfNecessities, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 460, 130, 40));
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel16.setText("Total:");
+        jPanel5.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, -1, 30));
+
+        totalSoldTxt.setEditable(false);
+        totalSoldTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel5.add(totalSoldTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, 100, 30));
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel17.setText("sold");
+        jPanel5.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 400, -1, 30));
 
         jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 510, 510));
 
@@ -224,23 +294,30 @@ public class Statistics extends javax.swing.JFrame {
         jLabel5.setText("Debit");
         jPanel7.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        debitTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Id", "IdCard", "Name", "Debit"
+                "IdCard", "Name", "Debit"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(debitTable);
 
         jPanel7.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 490, 340));
 
@@ -258,6 +335,11 @@ public class Statistics extends javax.swing.JFrame {
 
         btnRefreshStatisticOfDebits.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnRefreshStatisticOfDebits.setText("Refresh");
+        btnRefreshStatisticOfDebits.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshStatisticOfDebitsActionPerformed(evt);
+            }
+        });
         jPanel7.add(btnRefreshStatisticOfDebits, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 460, 130, 40));
 
         jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(986, 20, 510, 510));
@@ -296,6 +378,45 @@ public class Statistics extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnRefreshStatisticOfNecessitiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshStatisticOfNecessitiesActionPerformed
+        try{
+            
+            HashMap<String,Integer> statistic=StatisticsModify.getNeccessitiesStatistic();
+            DefaultTableModel recordTable = (DefaultTableModel) NecessitiesTable.getModel();
+            recordTable.setRowCount(0);
+            
+            for(Map.Entry<String, Integer> entry : statistic.entrySet()) {
+            String name = entry.getKey();
+            if(name.equals("totalSold")||name.equals("totalCost") )
+                continue;
+            int amount = entry.getValue();
+            recordTable.addRow(new Object[] {name,amount});
+            }
+           
+           totalSoldTxt.setText(String.valueOf(statistic.get("totalSold")));
+           totalCostTxt.setText(String.valueOf(statistic.get("totalCost")));
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_btnRefreshStatisticOfNecessitiesActionPerformed
+
+    private void btnRefreshStatisticOfDebitsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshStatisticOfDebitsActionPerformed
+       List<User> UserList = new ArrayList<>();
+       double totalDebit=0;
+        UserList=UserModify.findAll();
+        DefaultTableModel recordTable = (DefaultTableModel) debitTable.getModel();
+            recordTable.setRowCount(0);
+            
+            UserList.forEach((user)->{
+                recordTable.addRow(new Object[] {user.getID(),user.getName(),user.getDept()});
+            });
+           for(int i=0;i<UserList.size();i++)
+           {
+               totalDebit+=UserList.get(i).getDept();
+           }
+           txtTotalDebit.setText(String.valueOf(totalDebit));
+    }//GEN-LAST:event_btnRefreshStatisticOfDebitsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -332,11 +453,14 @@ public class Statistics extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable NecessitiesTable;
     private javax.swing.JTextField StatusChangeTxt;
     private javax.swing.JButton btnRefreshStatisticOfDebits;
     private javax.swing.JButton btnRefreshStatisticOfNecessities;
     private javax.swing.JButton btnRefreshStatisticOfPatient;
+    private javax.swing.JTable debitTable;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabe56;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -344,12 +468,13 @@ public class Statistics extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -361,16 +486,15 @@ public class Statistics extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JLabel recovered;
     private javax.swing.JTextField recoveredTxt;
+    private javax.swing.JTextField totalCostTxt;
+    private javax.swing.JTextField totalSoldTxt;
     private javax.swing.JTextField treatmentChangeTxt;
     private javax.swing.JTextField txtF0;
     private javax.swing.JTextField txtF1;
     private javax.swing.JTextField txtF2;
     private javax.swing.JTextField txtF3;
     private javax.swing.JTextField txtTotalDebit;
-    private javax.swing.JTextField txtTotalNecessities;
     // End of variables declaration//GEN-END:variables
 }

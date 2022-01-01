@@ -73,7 +73,8 @@ public class UserModify {
                 result.getString("address"),
                 result.getInt("state"),
                 result.getString("treatmentSite"),
-                result.getString("related"));
+                result.getString("related"), result.getDouble("dept"));
+                
                 
              userList.add(newUser);   
                 

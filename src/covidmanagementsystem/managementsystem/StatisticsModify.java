@@ -28,7 +28,7 @@ public class StatisticsModify {
    
   
     
-  public static HashMap<String, String> getCurrentStatistic() {
+  public static HashMap<String, String> getUserStatistic() {
        HashMap<String, String> statistic=new HashMap<String, String>();
         String keyword="";
       
@@ -80,6 +80,107 @@ public class StatisticsModify {
                 
                 
             }
+         
+            keyword="thành";
+            sql = "select state,count(*) as StatisticResult from User group by state";
+            Statement ts = conn.createStatement();
+            result = ts.executeQuery(sql);
+            
+            while(result.next()){
+               statistic.put(result.getString("state"),result.getString("StatisticResult"));
+                
+            };
+        } catch (SQLException ex) {
+            Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      if(conn != null){
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+            }
+      } 
+      return statistic;
+    }
+   public static HashMap<String, Integer> getNeccessitiesStatistic() {
+        HashMap<String, Integer> statistic=new HashMap<String, Integer>();
+        String keyword="";
+      
+        Connection conn = null;
+        ResultSet rs = null;
+        
+        User a = null;
+        try {
+            conn = DriverManager.getConnection(DB_URL,USER, PASS);
+            String sql = "select * from Bill";
+            Statement statement = conn.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            
+            statistic.put("totalCost",0);
+            statistic.put("totalSold",0);
+            while(result.next()){
+               String[] necessities=result.getString("necessities").split(",");
+               String[] amounts=result.getString("amount").split(",");
+               statistic.put("totalCost",statistic.get("totalCost")+Integer.parseInt(result.getString("totalCost")));
+             
+              
+               if(necessities.length==amounts.length)
+               {
+                   for(int i=0;i<necessities.length;i++)
+                   {
+                       necessities[i]=necessities[i].trim();
+                       statistic.put("totalSold",Integer.parseInt(amounts[i].replace(" ",""))+statistic.get("totalSold"));
+                      if(statistic.get(necessities[i])==null)
+                      {
+                          statistic.put(necessities[i],0);
+                      }
+                      else
+                       statistic.put(necessities[i],Integer.parseInt(amounts[i].replace(" ",""))+statistic.get(necessities[i]));
+                      
+                 
+                   }
+               }
+                
+            };
+         
+           
+           
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      if(conn != null){
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+            }
+      } 
+      return statistic;
+    }
+  
+     public static HashMap<String, Integer> getDebitStatistic() {
+        HashMap<String, Integer> statistic=new HashMap<String, Integer>();
+        String keyword="";
+      
+        Connection conn = null;
+        ResultSet rs = null;
+        
+        User a = null;
+        try {
+            conn = DriverManager.getConnection(DB_URL,USER, PASS);
+            String sql = "select * from Bill";
+            Statement statement = conn.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            
+            statistic.put("totalCost",0);
+            statistic.put("totalSold",0);
+            while(result.next()){
+             
+                
+            };
+         
+           
            
            
         } catch (SQLException ex) {

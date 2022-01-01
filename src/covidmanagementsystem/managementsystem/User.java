@@ -125,6 +125,18 @@ class User {
     private List<ManagementHistory> statusHistory;
     private double dept;
     private List<Bill> billCodes;
+
+    public User(String idCard, String name, String dob, String address, int state, String treatmentSite, String relatedPerson, double dept) {
+        this.idCard = idCard;
+        this.name = name;
+        this.dob = dob;
+        this.address = address;
+        this.state = state;
+       this.treatmentSite = new TreatmentSite(treatmentSite);
+        this.relatedPerson = relatedPerson;
+        this.dept = dept;
+    }
+    
     User(String idCard, String name, String dob, String address, int state, TreatmentSite treatmentSite, String relatedPerson, List<ManagementHistory> statusHistory , double dept, List<Bill> billCodes ){
         this.idCard = idCard;
         this.name = name;

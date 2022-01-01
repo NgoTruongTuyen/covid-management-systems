@@ -123,6 +123,7 @@ public class Manager_necessities_management extends javax.swing.JFrame {
         jPanel10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jTable1.setAutoCreateRowSorter(true);
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
