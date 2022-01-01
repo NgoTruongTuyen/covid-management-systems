@@ -2,8 +2,8 @@
 package covidmanagementsystem.managementsystem;
 
 
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Array;
+import java.util.*;
 
 
 
@@ -124,8 +124,8 @@ class User {
     private String relatedPerson;
     private List<ManagementHistory> statusHistory;
     private double dept;
-    private List<String> billCodes;
-    User(String idCard, String name, String dob, String address, int state, TreatmentSite treatmentSite, String relatedPerson, List<ManagementHistory> statusHistory , double dept, List<String> billCodes ){
+    private List<Bill> billCodes;
+    User(String idCard, String name, String dob, String address, int state, TreatmentSite treatmentSite, String relatedPerson, List<ManagementHistory> statusHistory , double dept, List<Bill> billCodes ){
         this.idCard = idCard;
         this.name = name;
         this.dob = dob;
@@ -184,7 +184,7 @@ class User {
     String getRelated(){
         return relatedPerson;
     }
-    List<String> getBill(){
+    List<Bill> getBill(){
         return billCodes;
     }
     List<ManagementHistory> getStatusHistory(){
@@ -218,8 +218,8 @@ class User {
     void setRelatedPerson(String t){
         relatedPerson = t;
     }
-    void setBill(List<String> Bill){
-        this.billCodes = Bill;
+    void setBill(List<Bill> bill){
+        this.billCodes = bill;
     }
     void setStatusHistory(List<ManagementHistory> t){
         statusHistory = t;

@@ -12,7 +12,7 @@ public class UserModify {
   static  String PASS = "87pjEZXsG2Wgsu5eDQNB";
   
     
-  public static User viewInformation(String ID){
+  public static User viewInformation(String username){
         List<User> userList = new ArrayList<>();
 
         Connection conn = null;
@@ -22,7 +22,9 @@ public class UserModify {
         User a = null;
         try {
             conn = DriverManager.getConnection(DB_URL,USER, PASS);
-            String req = "select * from User where IDcard="+ID;
+            String temp = "'"+ username + "'";
+            String req = "select * from User where account = " + temp;
+            
             Statement statement = conn.createStatement();
             ResultSet result = statement.executeQuery(req);
             while(result.next()){
@@ -31,9 +33,9 @@ public class UserModify {
                 result.getString("dob"),
                 result.getString("address"),
                 result.getInt("state"),
-                result.getString("treatmentSite"));
+                result.getString("treatmentSite"), result.getString("related"));
                 
-             a = newUser;
+                a = newUser;
                 
             }
            
@@ -50,7 +52,7 @@ public class UserModify {
       } 
        return a;
     }
-  
+    
     public static List<User> findAll(){
         List<User> userList = new ArrayList<>();
 
@@ -314,5 +316,118 @@ public class UserModify {
        
         
         return userList;
+    }
+      
+    public static List<Bill>viewPurchaseHistory(String username){
+        List<Bill> billList = new ArrayList<>();
+
+        Connection conn = null;
+        ResultSet rs = null;
+        
+       
+        try {
+            conn = DriverManager.getConnection(DB_URL,USER, PASS);
+            String temp = "'"+ username + "'";
+            String req = "select * from Bill,User where User.account = " + temp +" and User.idCard = Bill.userId";
+            
+            Statement statement = conn.createStatement();
+            ResultSet result = statement.executeQuery(req);
+            while(result.next()){
+                Bill newBill=new Bill(result.getString("id"),
+                result.getString("userId"),
+                result.getString("necessities"),
+                result.getString("amount"),
+                result.getInt("totalCost"),
+                result.getString("BillDate"));
+                
+                billList.add(newBill);
+                
+            }
+           
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      if(conn != null){
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+            }
+      } 
+       return billList;
+    }
+    
+    public static List<PaymentHistory>viewPaymentHistory(String username){
+        List<PaymentHistory> List = new ArrayList<>();
+
+        Connection conn = null;
+        ResultSet rs = null;
+        
+       
+        try {
+            conn = DriverManager.getConnection(DB_URL,USER, PASS);
+            String temp = "'"+ username + "'";
+            String req = "select * from PayHistory,User where User.account = " + temp +" and User.idCard = PayHistory.id";
+            
+            Statement statement = conn.createStatement();
+            ResultSet result = statement.executeQuery(req);
+            while(result.next()){
+                PaymentHistory newPay=new PaymentHistory(result.getString("id"),
+                result.getInt("balance"),
+                result.getString("day"));
+                
+                List.add(newPay);
+                
+            }
+           
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      if(conn != null){
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+            }
+      } 
+       return List;
+    }
+    public static List<ManagementHistory>viewManagementHistory(String username){
+        List<ManagementHistory> List = new ArrayList<>();
+
+        Connection conn = null;
+        ResultSet rs = null;
+        
+       
+        try {
+            conn = DriverManager.getConnection(DB_URL,USER, PASS);
+            String temp = "'"+ username + "'";
+            String req = "select * from StatusHistory,User where User.account = " + temp +" and User.idCard = StatusHistory.id";
+            
+            Statement statement = conn.createStatement();
+            ResultSet result = statement.executeQuery(req);
+            while(result.next()){
+                ManagementHistory newStatusHistory=new ManagementHistory(result.getString("id"),
+                result.getString("content"),
+                result.getString("day"));
+                
+                List.add(newStatusHistory);
+                
+            }
+           
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      if(conn != null){
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+            }
+      } 
+       return List;
     }
 }

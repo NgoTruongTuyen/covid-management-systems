@@ -4,19 +4,40 @@
  */
 package covidmanagementsystem.managementsystem;
 
+import java.util.List;
+import javax.swing.JLabel;
+import javax.swing.table.*;
+
 /**
  *
  * @author MTBH
  */
 public class UserStatusHistory extends javax.swing.JFrame {
 
-    /**
-     * Creates new form UserStatusHistory
-     */
-    public UserStatusHistory() {
+    String username;
+    public UserStatusHistory(String username) {
+        this.username = username;
         initComponents();
+        showStatusHistory(username);
     }
-
+    private void showStatusHistory(String username){
+        List<ManagementHistory> a = UserModify.viewManagementHistory(username);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        jtStatus.setDefaultRenderer(Object.class, centerRenderer);
+        
+        TableCellRenderer rendererFromHeader = jtStatus.getTableHeader().getDefaultRenderer();
+        JLabel headerLabel = (JLabel) rendererFromHeader;
+        headerLabel.setHorizontalAlignment(JLabel.CENTER);
+        
+        DefaultTableModel table = (DefaultTableModel) jtStatus.getModel();
+        table.setRowCount(0);
+        
+        for(ManagementHistory temp : a){
+            table.addRow(new Object[]{temp.getContent(),temp.getDate()});
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,7 +54,7 @@ public class UserStatusHistory extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtStatus = new javax.swing.JTable();
         jbInformation = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -59,7 +80,7 @@ public class UserStatusHistory extends javax.swing.JFrame {
         jLabel4.setText("Status History");
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 30, 220, 50));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtStatus.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -67,7 +88,7 @@ public class UserStatusHistory extends javax.swing.JFrame {
                 "Content", "Date"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtStatus);
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 910, -1));
 
@@ -120,7 +141,9 @@ public class UserStatusHistory extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbInformationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbInformationActionPerformed
-        // TODO add your handling code here:
+       UserInfo connectInfo = new UserInfo(username);
+        connectInfo.setVisible(true); 
+        this.dispose();
     }//GEN-LAST:event_jbInformationActionPerformed
 
     /**
@@ -153,7 +176,7 @@ public class UserStatusHistory extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UserStatusHistory().setVisible(true);
+                //new UserStatusHistory().setVisible(true);
             }
         });
     }
@@ -168,7 +191,7 @@ public class UserStatusHistory extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton jbInformation;
+    private javax.swing.JTable jtStatus;
     // End of variables declaration//GEN-END:variables
 }

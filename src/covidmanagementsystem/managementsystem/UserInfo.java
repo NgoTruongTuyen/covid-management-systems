@@ -4,22 +4,29 @@
  */
 package covidmanagementsystem.managementsystem;
 
+import java.util.*;
+import javax.swing.*;
+import javax.swing.table.*;
+
+
 /**
  *
  * @author MTBH
  */
 public class UserInfo extends javax.swing.JFrame {
 
-    /**
-     * Creates new form UserInfo
-     */
-    public UserInfo() {
+    String username;
+    public UserInfo(String user) {
+        username = "user1";
         initComponents();
-        showUser();
+        showUser(username);
+        showPurchaseHistory(username);
+        showPayHistory(username);
+        
         
     }
-    private void showUser(){
-        User a = UserModify.viewInformation("1029312");
+    private void showUser(String username){
+        User a = UserModify.viewInformation(username);
         jtfID.setText(a.getID());
         jtfName.setText(a.getName());
         jtfDob.setText(a.getDOB());
@@ -27,7 +34,47 @@ public class UserInfo extends javax.swing.JFrame {
         jtfDept.setText(String.valueOf(a.getDept()));
         jtfState.setText(String.valueOf(a.getState()));
         jtfRelatedPerson.setText(a.getRelated());
+        jtfTreatmentSite.setText(a.getTreatmentSiteName());
+        
+        
     }
+    private void showPurchaseHistory(String username){
+        List<Bill> a = UserModify.viewPurchaseHistory(username);
+        
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        jtPurchase.setDefaultRenderer(Object.class, centerRenderer);
+        
+        TableCellRenderer rendererFromHeader = jtPurchase.getTableHeader().getDefaultRenderer();
+        JLabel headerLabel = (JLabel) rendererFromHeader;
+        headerLabel.setHorizontalAlignment(JLabel.CENTER);
+        
+        DefaultTableModel table = (DefaultTableModel) jtPurchase.getModel();
+        table.setRowCount(0);
+        
+        for(Bill temp : a){
+            table.addRow(new Object[]{temp.getId(),temp.getNecessitiesList(),temp.getAmountList(),(double)temp.getTotalCost(),temp.getDate()});
+        }
+    }
+    private void showPayHistory(String username){
+        List<PaymentHistory> a = UserModify.viewPaymentHistory(username);
+        
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        jtPayment.setDefaultRenderer(Object.class, centerRenderer);
+        
+        TableCellRenderer rendererFromHeader = jtPayment.getTableHeader().getDefaultRenderer();
+        JLabel headerLabel = (JLabel) rendererFromHeader;
+        headerLabel.setHorizontalAlignment(JLabel.CENTER);
+        
+        DefaultTableModel table = (DefaultTableModel) jtPayment.getModel();
+        table.setRowCount(0);
+        
+        for(PaymentHistory temp : a){
+            table.addRow(new Object[]{temp.getBalance(),temp.getDate()});
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,20 +107,16 @@ public class UserInfo extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jtfID = new javax.swing.JTextField();
         jbPayDept = new javax.swing.JButton();
-        jbRefresh = new javax.swing.JButton();
+        jbStatus = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtPurchase = new javax.swing.JTable();
-        jbRefreshPurchase = new javax.swing.JButton();
         jbNeccessities = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jtBill = new javax.swing.JTable();
-        jbRefreshBill = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jtPayment = new javax.swing.JTable();
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -159,12 +202,17 @@ public class UserInfo extends javax.swing.JFrame {
 
         jbPayDept.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jbPayDept.setText("Pay Dept");
-
-        jbRefresh.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jbRefresh.setText("View status history");
-        jbRefresh.addActionListener(new java.awt.event.ActionListener() {
+        jbPayDept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbRefreshActionPerformed(evt);
+                jbPayDeptActionPerformed(evt);
+            }
+        });
+
+        jbStatus.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jbStatus.setText("View status history");
+        jbStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbStatusActionPerformed(evt);
             }
         });
 
@@ -208,7 +256,7 @@ public class UserInfo extends javax.swing.JFrame {
                         .addGroup(jPanel5Layout.createSequentialGroup()
                             .addComponent(jbPayDept, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(jbRefresh)))
+                            .addComponent(jbStatus)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -258,7 +306,7 @@ public class UserInfo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbPayDept, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
@@ -281,35 +329,29 @@ public class UserInfo extends javax.swing.JFrame {
             new String [] {
                 "Id", "Neccessities", "Amount", "Total Cost", "Date"
             }
-        ));
-        jScrollPane1.setViewportView(jtPurchase);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
-        jbRefreshPurchase.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jbRefreshPurchase.setText("Refresh");
-        jbRefreshPurchase.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbRefreshPurchaseActionPerformed(evt);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
+        jScrollPane1.setViewportView(jtPurchase);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jScrollPane1))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(255, 255, 255)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 299, Short.MAX_VALUE)))
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 815, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(343, 343, 343)
-                .addComponent(jbRefreshPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(282, 282, 282))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,23 +360,26 @@ public class UserInfo extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbRefreshPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, 860, 250));
 
         jbNeccessities.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jbNeccessities.setText("Necessities");
-        jPanel3.add(jbNeccessities, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 550, 160, 40));
+        jbNeccessities.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbNeccessitiesActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jbNeccessities, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 550, 160, 40));
 
         jPanel8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel5.setText("Billing History");
+        jLabel5.setText("Payment History");
 
-        jtBill.setModel(new javax.swing.table.DefaultTableModel(
+        jtPayment.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -342,45 +387,29 @@ public class UserInfo extends javax.swing.JFrame {
                 "Balance", "Date"
             }
         ));
-        jScrollPane2.setViewportView(jtBill);
-
-        jbRefreshBill.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jbRefreshBill.setText("Refresh");
-        jbRefreshBill.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbRefreshBillActionPerformed(evt);
-            }
-        });
+        jScrollPane2.setViewportView(jtPayment);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jScrollPane2))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(255, 255, 255)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 295, Short.MAX_VALUE)))
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(345, 345, 345)
-                .addComponent(jbRefreshBill, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(272, 272, 272))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(jbRefreshBill, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(46, 46, 46))
         );
 
         jPanel3.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 280, -1, 250));
@@ -435,17 +464,24 @@ public class UserInfo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfIDActionPerformed
 
-    private void jbRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRefreshActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbRefreshActionPerformed
+    private void jbStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbStatusActionPerformed
+        UserStatusHistory connectStatusHistory = new UserStatusHistory(username);
+        connectStatusHistory.setVisible(true); 
+         this.dispose();
+    }//GEN-LAST:event_jbStatusActionPerformed
 
-    private void jbRefreshBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRefreshBillActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbRefreshBillActionPerformed
+    private void jbNeccessitiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNeccessitiesActionPerformed
 
-    private void jbRefreshPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRefreshPurchaseActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbRefreshPurchaseActionPerformed
+        UserNecessities connectNecessities = new UserNecessities(username);
+        connectNecessities.setVisible(true); 
+        this.dispose();
+    }//GEN-LAST:event_jbNeccessitiesActionPerformed
+
+    private void jbPayDeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPayDeptActionPerformed
+        UserPay connectPay = new UserPay();
+        connectPay.setVisible(true); 
+         this.dispose();
+    }//GEN-LAST:event_jbPayDeptActionPerformed
 
     /**
      * @param args the command line arguments
@@ -477,7 +513,7 @@ public class UserInfo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UserInfo().setVisible(true);
+                new UserInfo("a").setVisible(true);
             }
         });
     }
@@ -505,10 +541,8 @@ public class UserInfo extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbNeccessities;
     private javax.swing.JButton jbPayDept;
-    private javax.swing.JButton jbRefresh;
-    private javax.swing.JButton jbRefreshBill;
-    private javax.swing.JButton jbRefreshPurchase;
-    private javax.swing.JTable jtBill;
+    private javax.swing.JButton jbStatus;
+    private javax.swing.JTable jtPayment;
     private javax.swing.JTable jtPurchase;
     private javax.swing.JTextField jtfAddress;
     private javax.swing.JTextField jtfDept;
