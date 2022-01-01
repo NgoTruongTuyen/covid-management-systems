@@ -150,7 +150,12 @@ public class Manger_contact_list_and_treament_history extends javax.swing.JFrame
             historyRecordTable.setRowCount(0);
         
             UserList.forEach((user) -> {
-                contactRecordTable.addRow(new Object[] {user.getID(),user.getName(),user.getDOB(),user.getAddress(),"F"+user.getState(),user.getTreatmentSiteName()});
+                 String status="Đã hồi phục";
+                 if(user.getState()!=-1)
+                {
+                    status="F"+user.getState();
+                }
+                contactRecordTable.addRow(new Object[] {user.getID(),user.getName(),user.getDOB(),user.getAddress(),status,user.getTreatmentSiteName()});
             });
              managemenList.forEach((history) -> {
                 historyRecordTable.addRow(new Object[] {history.getDate(),history.getContent()});

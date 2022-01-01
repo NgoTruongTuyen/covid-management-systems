@@ -48,8 +48,12 @@ public class Mananger_user_management extends javax.swing.JFrame {
             recordTable.setRowCount(0);
             
             UserList.forEach((user)->{
-        
-                recordTable.addRow(new Object[] {user.getID(),user.getName(),user.getDOB(),user.getAddress(),"F"+user.getState(),user.getTreatmentSiteName(),user.getRelated()});
+                String status="Đã hồi phục";
+                if(user.getState()!=-1)
+                {
+                    status="F"+user.getState();
+                }
+                recordTable.addRow(new Object[] {user.getID(),user.getName(),user.getDOB(),user.getAddress(),status,user.getTreatmentSiteName(),user.getRelated()});
             });
           
             jComboBoxTreatmentSiteInput.removeAllItems();
@@ -193,7 +197,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
         jPanel6.add(jComboBoxVillageInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 230, -1));
 
         jComboBoxStatus.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jComboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F0", "F1", "F2" }));
+        jComboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F0", "F1", "F2", "Đã hồi phục" }));
         jComboBoxStatus.setToolTipText("");
         jPanel6.add(jComboBoxStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, -1, -1));
 
@@ -365,13 +369,17 @@ public class Mananger_user_management extends javax.swing.JFrame {
         String dob = dobInputTxt1.getText();
         String address=(String)jComboBoxVillageInput.getSelectedItem()+","+(String)jComboBoxDistrictInput.getSelectedItem()+","+(String)jComboBoxCityInput.getSelectedItem();
         String strStatus=(String)jComboBoxStatus.getSelectedItem();
-        int status = Integer.parseInt(strStatus.substring(strStatus.length() - 1));
+        int status=-1;
+       if(!strStatus.equals("Đã hồi phục"))
+       {
+         status = Integer.parseInt(strStatus.substring(strStatus.length() - 1));
+       }
         String treatmentSite=(String)jComboBoxTreatmentSiteInput.getSelectedItem();
         String related=(String)contactInputTxt.getText();
         User newUser = new User(Id, fullname, dob, address, status,treatmentSite,related);
         
          DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
+            Date date = new Date();
 //        System.out.println(dateFormat.format(date));
         if(!currentStatus.equals(strStatus))
         {
@@ -470,7 +478,12 @@ public class Mananger_user_management extends javax.swing.JFrame {
         String dob = dobInputTxt1.getText();
         String address=(String)jComboBoxVillageInput.getSelectedItem()+","+(String)jComboBoxDistrictInput.getSelectedItem()+","+(String)jComboBoxCityInput.getSelectedItem();
         String strStatus=(String)jComboBoxStatus.getSelectedItem();
-        int status = Integer.parseInt(strStatus.substring(strStatus.length() - 1));
+        
+        int status=-1;
+       if(!strStatus.equals("Đã hồi phục"))
+       {
+         status = Integer.parseInt(strStatus.substring(strStatus.length() - 1));
+       }
         String treatmentSite=(String)jComboBoxTreatmentSiteInput.getSelectedItem();
         String related=(String)contactInputTxt.getText();
         User newUser = new User(Id, fullname, dob, address, status,treatmentSite,related);
@@ -481,7 +494,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
 
         ManagementHistory newRecord1=new ManagementHistory(Id,"Trở thành "+ strStatus,dateFormat.format(date));
         ManagementHistory newRecord2=new ManagementHistory(Id,"Được đưa vào khu cách ly "+ treatmentSite,dateFormat.format(date));
-        ManagementHistory newRecord3=new ManagementHistory(Id,"Danh sách tiếp xúc"+ related,dateFormat.format(date));
+        ManagementHistory newRecord3=new ManagementHistory(Id,"Danh sách tiếp xúc: "+ related,dateFormat.format(date));
         
         ManagementHistoryModify.insert(newRecord1);
         ManagementHistoryModify.insert(newRecord2);
