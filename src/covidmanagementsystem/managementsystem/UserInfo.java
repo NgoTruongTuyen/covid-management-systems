@@ -478,9 +478,9 @@ public class UserInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_jbNeccessitiesActionPerformed
 
     private void jbPayDeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPayDeptActionPerformed
-        UserPay connectPay = new UserPay();
+        UserPay connectPay = new UserPay(username);
         connectPay.setVisible(true); 
-         this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jbPayDeptActionPerformed
 
     /**

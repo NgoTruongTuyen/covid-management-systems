@@ -142,7 +142,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="36" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Pay Debit"/>
+                <Property name="text" type="java.lang.String" value="Pay Dept"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -175,18 +175,18 @@
                           <Group type="102" attributes="0">
                               <Component id="jLabel4" min="-2" pref="60" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtUsername1" min="-2" pref="240" max="-2" attributes="0"/>
+                              <Component id="jtfDept" min="-2" pref="240" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="btnLogin1" min="-2" pref="120" max="-2" attributes="0"/>
+                                  <Component id="btnPay" min="-2" pref="120" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                                   <Component id="btnCancel1" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="txtPassword1" max="32767" attributes="0"/>
+                                  <Component id="jtfBalance" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -199,18 +199,18 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="38" pref="38" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtUsername1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtfDept" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtPassword1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtfBalance" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnCancel1" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="btnLogin1" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="btnPay" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -222,7 +222,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Debit"/>
+                <Property name="text" type="java.lang.String" value="Dept"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
@@ -233,14 +233,14 @@
                 <Property name="text" type="java.lang.String" value="Balance "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtUsername1">
+            <Component class="javax.swing.JTextField" name="jtfDept">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JPasswordField" name="txtPassword1">
+            <Component class="javax.swing.JPasswordField" name="jtfBalance">
             </Component>
-            <Component class="javax.swing.JButton" name="btnLogin1">
+            <Component class="javax.swing.JButton" name="btnPay">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="1"/>
@@ -255,6 +255,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cancel"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancel1ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

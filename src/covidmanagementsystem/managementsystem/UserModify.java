@@ -33,7 +33,7 @@ public class UserModify {
                 result.getString("dob"),
                 result.getString("address"),
                 result.getInt("state"),
-                result.getString("treatmentSite"), result.getString("related"));
+                result.getString("treatmentSite"), result.getString("related"), result.getInt("dept"));
                 
                 a = newUser;
                 
