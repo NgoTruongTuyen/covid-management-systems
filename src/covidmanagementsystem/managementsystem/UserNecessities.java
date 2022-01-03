@@ -4,7 +4,12 @@
  */
 package covidmanagementsystem.managementsystem;
 
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -22,7 +27,7 @@ public class UserNecessities extends javax.swing.JFrame {
          loadComboSort();
         loadComboPrice();
         loadComboLimitDate();
-        System.out.println(name);
+        viewNecessities();
         
     }
     public UserNecessities() {
@@ -51,19 +56,35 @@ public class UserNecessities extends javax.swing.JFrame {
         model.addElement("< 100000");
         model.addElement("from 10000 to 500000");
         model.addElement(">= 500000");
-        
         jcbPrice.setModel(model);
         
     }
     private void loadComboLimitDate(){
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         model.addElement("...");
-        model.addElement(" < 1 week");
-        model.addElement("from 1 weeks to 1 month");
-        model.addElement("> 1 month");
-     
+        model.addElement(" < 100h");
+        model.addElement("from 100h to 500h");
+        model.addElement("> 500h");
         jcbLimitDate.setModel(model);
         
+    }
+    private void viewNecessities(){
+        List<Necessities> a = NecessitiesModify.viewNecessities();
+        
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        jtNeccessitiesList.setDefaultRenderer(Object.class, centerRenderer);
+        
+        TableCellRenderer rendererFromHeader = jtNeccessitiesList.getTableHeader().getDefaultRenderer();
+        JLabel headerLabel = (JLabel) rendererFromHeader;
+        headerLabel.setHorizontalAlignment(JLabel.CENTER);
+        
+        DefaultTableModel table = (DefaultTableModel) jtNeccessitiesList.getModel();
+        table.setRowCount(0);
+        
+        for(Necessities temp : a){
+            table.addRow(new Object[]{temp.getID(),temp.getName(),temp.getLimit(),temp.getLimitTime(),temp.getPrice()});
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -199,7 +220,7 @@ public class UserNecessities extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Name", "Price", "Limit Date"
+                "Id", "Name", "Limit", "Limit Date", "Price"
             }
         ));
         jScrollPane1.setViewportView(jtNeccessitiesList);
