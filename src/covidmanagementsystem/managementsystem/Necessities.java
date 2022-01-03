@@ -6,9 +6,9 @@ class Necessities {
     private String id;
     private String name;
     private int limit;
-    private int limitTime;
+    private String limitTime;
     private int price;
-    Necessities(String id, String name, int limit, int limitTime, int price){
+    Necessities(String id, String name, int limit, String limitTime, int price){
         this.id = id;
         this.name = name;
         this.limit = limit;
@@ -24,7 +24,7 @@ class Necessities {
     int getLimit(){
         return limit;
     }
-    int getLimitTime(){
+    String getLimitTime(){
         return limitTime;
     }
     int getPrice(){
@@ -39,8 +39,8 @@ class Necessities {
     void setLimit(int limit){
         this.limit = limit;
     }
-    void setLimitTime(int LimitTime){
-        this.limitTime = limit;
+    void setLimitTime(String LimitTime){
+        this.limitTime = LimitTime;
     }
     void setPrice(int price){
         this.price = price;

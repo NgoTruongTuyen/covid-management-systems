@@ -7,6 +7,7 @@ package covidmanagementsystem.managementsystem;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
@@ -21,10 +22,11 @@ public class UserNecessities extends javax.swing.JFrame {
      * Creates new form UserNecessities
      */
     String username;
+    int rowCart = 0;
     public UserNecessities(String name) {
         this.username = name;
         initComponents();
-         loadComboSort();
+        loadComboSort();
         loadComboPrice();
         loadComboLimitDate();
         viewNecessities();
@@ -35,8 +37,8 @@ public class UserNecessities extends javax.swing.JFrame {
         loadComboSort();
         loadComboPrice();
         loadComboLimitDate();
-        
-        
+        viewNecessities();
+        designCart();
     }
 
     
@@ -68,9 +70,16 @@ public class UserNecessities extends javax.swing.JFrame {
         jcbLimitDate.setModel(model);
         
     }
-    private void viewNecessities(){
-        List<Necessities> a = NecessitiesModify.viewNecessities();
-        
+    private void designCart(){
+            DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+            centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+            jtCart.setDefaultRenderer(Object.class, centerRenderer);
+
+            TableCellRenderer rendererFromHeader = jtCart.getTableHeader().getDefaultRenderer();
+            JLabel headerLabel = (JLabel) rendererFromHeader;
+            headerLabel.setHorizontalAlignment(JLabel.CENTER);
+    }
+    private void doNecessities(List<Necessities> a){
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment( JLabel.CENTER );
         jtNeccessitiesList.setDefaultRenderer(Object.class, centerRenderer);
@@ -86,6 +95,19 @@ public class UserNecessities extends javax.swing.JFrame {
             table.addRow(new Object[]{temp.getID(),temp.getName(),temp.getLimit(),temp.getLimitTime(),temp.getPrice()});
         }
     }
+    private void viewNecessities(){
+        List<Necessities> a = NecessitiesModify.viewNecessities();
+        doNecessities(a);
+    }
+    private String[][] getTableData () {
+    
+    int nRow = jtCart.getRowCount(), nCol = jtCart.getColumnCount();
+    String[][] tableData = new String[nRow][nCol];
+    for (int i = 0 ; i < nRow ; i++)
+        for (int j = 0 ; j < nCol ; j++)
+            tableData[i][j] = jtCart.getValueAt(i,j).toString();
+    return tableData;
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -102,11 +124,13 @@ public class UserNecessities extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        jtfProductName = new javax.swing.JTextField();
+        jtfID = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jtfAmount = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        jbAdd = new javax.swing.JButton();
+        jtfProductName = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -122,8 +146,8 @@ public class UserNecessities extends javax.swing.JFrame {
         jcbLimitDate = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jtaCart = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jtCart = new javax.swing.JTable();
         jPanel8 = new javax.swing.JPanel();
         jbNeccessities = new javax.swing.JButton();
         jbRefresh = new javax.swing.JButton();
@@ -147,66 +171,46 @@ public class UserNecessities extends javax.swing.JFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel13.setText("Name");
+        jLabel13.setText("ID");
+        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 110, 40));
+
+        jtfID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfIDActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jtfID, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 440, -1));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel14.setText("Amount");
+        jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, 40));
+        jPanel5.add(jtfAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 440, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        jLabel4.setText("Necessities");
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 12, 290, 33));
+
+        jbAdd.setText("Add");
+        jbAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAddActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jbAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 122, 43));
 
         jtfProductName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfProductNameActionPerformed(evt);
             }
         });
+        jPanel5.add(jtfProductName, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 440, -1));
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel14.setText("Amount");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel4.setText("Necessities");
-
-        jButton3.setText("Add");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtfAmount, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
-                            .addComponent(jtfProductName)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel14))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                    .addContainerGap(181, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(155, 155, 155)))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfProductName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(353, 353, 353))
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addGap(10, 10, 10)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(498, Short.MAX_VALUE)))
-        );
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel15.setText("Name");
+        jPanel5.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 110, 40));
 
         jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 630, 250));
 
@@ -223,6 +227,16 @@ public class UserNecessities extends javax.swing.JFrame {
                 "Id", "Name", "Limit", "Limit Date", "Price"
             }
         ));
+        jtNeccessitiesList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtNeccessitiesListMouseClicked(evt);
+            }
+        });
+        jtNeccessitiesList.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtNeccessitiesListKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtNeccessitiesList);
 
         jbSearch.setText("Search");
@@ -233,6 +247,11 @@ public class UserNecessities extends javax.swing.JFrame {
         });
 
         jbSort.setText("Sort");
+        jbSort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSortActionPerformed(evt);
+            }
+        });
 
         jcbSort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -314,22 +333,28 @@ public class UserNecessities extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         jLabel7.setText("Cart");
 
-        jtaCart.setColumns(20);
-        jtaCart.setRows(5);
-        jScrollPane2.setViewportView(jtaCart);
+        jtCart.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Name", "Amount"
+            }
+        ));
+        jScrollPane3.setViewportView(jtCart);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2)
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(227, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(257, 257, 257))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(198, 198, 198)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(109, 109, 109))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,8 +362,8 @@ public class UserNecessities extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 630, 260));
@@ -356,10 +381,20 @@ public class UserNecessities extends javax.swing.JFrame {
 
         jbRefresh.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jbRefresh.setText("Refresh");
+        jbRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRefreshActionPerformed(evt);
+            }
+        });
         jPanel8.add(jbRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 10, 150, 40));
 
         jbPayDebit.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jbPayDebit.setText("Buy");
+        jbPayDebit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbPayDebitActionPerformed(evt);
+            }
+        });
         jPanel8.add(jbPayDebit, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 150, 40));
 
         jPanel3.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 540, 1490, 60));
@@ -381,9 +416,9 @@ public class UserNecessities extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtfProductNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfProductNameActionPerformed
+    private void jtfIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtfProductNameActionPerformed
+    }//GEN-LAST:event_jtfIDActionPerformed
 
     private void jbSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSearchActionPerformed
         // TODO add your handling code here:
@@ -394,6 +429,80 @@ public class UserNecessities extends javax.swing.JFrame {
         connectInfo.setVisible(true); 
         this.dispose();
     }//GEN-LAST:event_jbNeccessitiesActionPerformed
+
+    private void jtfProductNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfProductNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfProductNameActionPerformed
+
+    private void jbSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSortActionPerformed
+        String rq = jcbSort.getSelectedItem().toString();
+        if("A to Z".equals(rq)){
+            List<Necessities> a = NecessitiesModify.sortNecessitiesAZ();
+            doNecessities(a);
+        }
+        if("Z to A".equals(rq)){
+            List<Necessities> a = NecessitiesModify.sortNecessitiesZA();
+            doNecessities(a);
+        }
+        if("Smaller to Larger".equals(rq)){
+            List<Necessities> a = NecessitiesModify.sortNecessitiesSmallToLarge();
+            doNecessities(a);
+        }
+        if("Larger to Smaller".equals(rq)){
+            List<Necessities> a = NecessitiesModify.sortNecessitiesLargeToSmall();
+            doNecessities(a);
+        }
+    }//GEN-LAST:event_jbSortActionPerformed
+
+    private void jbRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRefreshActionPerformed
+        viewNecessities();
+    }//GEN-LAST:event_jbRefreshActionPerformed
+
+    private void jtNeccessitiesListKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNeccessitiesListKeyPressed
+        
+    }//GEN-LAST:event_jtNeccessitiesListKeyPressed
+
+    private void jtNeccessitiesListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtNeccessitiesListMouseClicked
+        DefaultTableModel table = (DefaultTableModel) jtNeccessitiesList.getModel();
+        int selectedRow = jtNeccessitiesList.getSelectedRow();
+        if(selectedRow >= 0){
+        jtfID.setText(table.getValueAt(selectedRow, 0).toString());
+        jtfProductName.setText(table.getValueAt(selectedRow, 1).toString());
+        }
+    }//GEN-LAST:event_jtNeccessitiesListMouseClicked
+
+    private void jbAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAddActionPerformed
+        String id = jtfID.getText();
+        String name = jtfProductName.getText();
+        String amount = jtfAmount.getText();
+        if(id.length() == 0 || name.length() == 0 || amount.length() == 0){
+             JOptionPane.showMessageDialog(this, " You have to fill full information");
+        }
+        else{
+            DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+            centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+            jtCart.setDefaultRenderer(Object.class, centerRenderer);
+
+            TableCellRenderer rendererFromHeader = jtCart.getTableHeader().getDefaultRenderer();
+            JLabel headerLabel = (JLabel) rendererFromHeader;
+            headerLabel.setHorizontalAlignment(JLabel.CENTER);
+
+            DefaultTableModel table = (DefaultTableModel) jtCart.getModel();
+            table.setRowCount(rowCart);
+            rowCart++;
+            table.addRow(new Object[]{id,name,amount});
+        
+        }
+    }//GEN-LAST:event_jbAddActionPerformed
+  
+    private void jbPayDebitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPayDebitActionPerformed
+       String[][] a = getTableData();
+       for(int i = 0;i < jtCart.getRowCount();i++){
+           for(int j = 0;j < jtCart.getColumnCount();j++){
+               System.out.println(a[i][j]);
+           }
+       }
+    }//GEN-LAST:event_jbPayDebitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -432,10 +541,10 @@ public class UserNecessities extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -450,7 +559,8 @@ public class UserNecessities extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton jbAdd;
     private javax.swing.JButton jbNeccessities;
     private javax.swing.JButton jbPayDebit;
     private javax.swing.JButton jbRefresh;
@@ -459,9 +569,10 @@ public class UserNecessities extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcbLimitDate;
     private javax.swing.JComboBox<String> jcbPrice;
     private javax.swing.JComboBox<String> jcbSort;
+    private javax.swing.JTable jtCart;
     private javax.swing.JTable jtNeccessitiesList;
-    private javax.swing.JTextArea jtaCart;
     private javax.swing.JTextField jtfAmount;
+    private javax.swing.JTextField jtfID;
     private javax.swing.JTextField jtfProductName;
     private javax.swing.JTextField jtfSearch;
     // End of variables declaration//GEN-END:variables
