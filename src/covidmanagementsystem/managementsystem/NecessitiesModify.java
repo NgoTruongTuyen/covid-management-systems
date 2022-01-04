@@ -214,20 +214,21 @@ public interface NecessitiesModify {
             if("> 500000".equals(price)){
                 req1 = " cost > 500000 ";
             }
-            if("< 100".equals(limit)){
+            if("< 10".equals(limit)){
                 req2 = " and limitNecess < 10 ";
             }
-            if("100 to 200".equals(limit)){
-                req2 = " and limitNecess >= 10 and limitNecess <= 20 ";
+            if("10 to 40".equals(limit)){
+                req2 = " and limitNecess >= 10 and limitNecess <= 40 ";
             }
-            if("> 200".equals(limit)){
-                req2 = " and limitNecess > 20 ";
+            if("> 40".equals(limit)){
+                req2 = " and limitNecess > 40 ";
             }
             if("...".equals(price)){
                 req2 = req2.replace("and","");
             }
-            String req = "select * from Necessities where " + req1 + req2;
             
+            String req = "select * from Necessities where " + req1 + req2;
+            System.out.println(req);
             Statement statement = conn.createStatement();
             ResultSet result = statement.executeQuery(req);
             while(result.next()){
@@ -589,5 +590,13 @@ public interface NecessitiesModify {
             }
       } 
         return true;
+    }
+    public static boolean checkInt(String a){
+        try{
+            int tmp = Integer.parseInt(a);
+            return true;
+        }catch(NumberFormatException e){
+            return false;
+        }
     }
 }

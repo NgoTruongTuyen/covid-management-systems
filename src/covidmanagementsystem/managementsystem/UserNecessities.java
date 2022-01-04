@@ -67,8 +67,8 @@ public class UserNecessities extends javax.swing.JFrame {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         model.addElement("...");
         model.addElement("< 10");
-        model.addElement("10 to 20");
-        model.addElement("> 20");
+        model.addElement("10 to 40");
+        model.addElement("> 40");
         jcbStock.setModel(model);
         
     }
@@ -110,14 +110,7 @@ public class UserNecessities extends javax.swing.JFrame {
             tableData[i][j] = jtCart.getValueAt(i,j).toString();
     return tableData;
     }
-    boolean checkInt(String a){
-        try{
-            int tmp = Integer.parseInt(a);
-            return true;
-        }catch(NumberFormatException e){
-            return false;
-        }
-    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -147,7 +140,7 @@ public class UserNecessities extends javax.swing.JFrame {
         jbSort = new javax.swing.JButton();
         jtfSearch = new javax.swing.JTextField();
         jcbSort = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        jbFilter = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jcbPrice = new javax.swing.JComboBox<>();
@@ -246,16 +239,16 @@ public class UserNecessities extends javax.swing.JFrame {
 
         jcbSort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton1.setText("Filter");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbFilter.setText("Filter");
+        jbFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbFilterActionPerformed(evt);
             }
         });
 
         jLabel5.setText("Price");
 
-        jLabel6.setText("      Stock");
+        jLabel6.setText("Limit per person");
 
         jcbPrice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -269,7 +262,7 @@ public class UserNecessities extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Id", "Name", "Limit", "Limit date", "Price"
+                "Id", "Name", "Limit per person", "Limit date", "Price"
             }
         )
         {
@@ -303,10 +296,10 @@ public class UserNecessities extends javax.swing.JFrame {
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jtfSearch)
-                        .addComponent(jcbSort, 0, 338, Short.MAX_VALUE))
+                        .addComponent(jcbSort, 0, 311, Short.MAX_VALUE))
                     .addGap(55, 55, 55)
                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbFilter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -327,7 +320,7 @@ public class UserNecessities extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jbSearch)
                 .addComponent(jtfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jButton1))
+                .addComponent(jbFilter))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel7Layout.createSequentialGroup()
@@ -504,7 +497,7 @@ public class UserNecessities extends javax.swing.JFrame {
         String id = jtfID.getText();
         String name = jtfProductName.getText();
         String amount = jtfAmount.getText();
-        if(id.length() == 0 || name.length() == 0 || amount.length() == 0 || checkInt(amount) == false){
+        if(id.length() == 0 || name.length() == 0 || amount.length() == 0 || NecessitiesModify.checkInt(amount) == false){
              JOptionPane.showMessageDialog(this, " You have to fill full information or amount value only be a integer");
         }
         else{
@@ -538,12 +531,12 @@ public class UserNecessities extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_jbBuyActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFilterActionPerformed
         String price = jcbPrice.getSelectedItem().toString();
         String stock = jcbStock.getSelectedItem().toString();
          List<Necessities> a = NecessitiesModify.filterNecessities(price,stock);
          doNecessities(a);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbFilterActionPerformed
 
     private void jbDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDeleteActionPerformed
        int[] selectedRows = jtCart.getSelectedRows();
@@ -601,7 +594,6 @@ public class UserNecessities extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -624,6 +616,7 @@ public class UserNecessities extends javax.swing.JFrame {
     private javax.swing.JButton jbAdd;
     private javax.swing.JButton jbBuy;
     private javax.swing.JButton jbDelete;
+    private javax.swing.JButton jbFilter;
     private javax.swing.JButton jbInformation;
     private javax.swing.JButton jbRefresh;
     private javax.swing.JButton jbSearch;
