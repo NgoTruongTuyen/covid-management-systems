@@ -65,6 +65,7 @@ public class Manager_necessities_management extends javax.swing.JFrame {
         jcbUnit.setModel(model);  
     }
     private void doNecessities(List<Necessities> a){
+        
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment( JLabel.CENTER );
         jtNecessitiesList.setDefaultRenderer(Object.class, centerRenderer);
@@ -99,8 +100,6 @@ public class Manager_necessities_management extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jtTimeLimit = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jtfId = new javax.swing.JTextField();
         jcbUnit = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jtfLimit = new javax.swing.JTextField();
@@ -121,11 +120,11 @@ public class Manager_necessities_management extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
-        jButton11 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
+        jbAdd = new javax.swing.JButton();
+        jbUpdate = new javax.swing.JButton();
+        jbBack = new javax.swing.JButton();
         jbRefresh = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
+        jbDelete = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -151,33 +150,11 @@ public class Manager_necessities_management extends javax.swing.JFrame {
         jPanel6.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, 30));
 
         jtTimeLimit.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jtTimeLimit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtTimeLimitActionPerformed(evt);
-            }
-        });
         jPanel6.add(jtTimeLimit, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 140, -1));
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel6.setText("Id");
-        jPanel6.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, 30));
-
-        jtfId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jtfId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfIdActionPerformed(evt);
-            }
-        });
-        jPanel6.add(jtfId, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 240, -1));
 
         jcbUnit.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jcbUnit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F0", "F1", "F2" }));
         jcbUnit.setToolTipText("");
-        jcbUnit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbUnitActionPerformed(evt);
-            }
-        });
         jPanel6.add(jcbUnit, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, 90, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -185,11 +162,6 @@ public class Manager_necessities_management extends javax.swing.JFrame {
         jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, 30));
 
         jtfLimit.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jtfLimit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfLimitActionPerformed(evt);
-            }
-        });
         jPanel6.add(jtfLimit, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 240, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -201,19 +173,9 @@ public class Manager_necessities_management extends javax.swing.JFrame {
         jPanel6.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, 30));
 
         jtfName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jtfName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfNameActionPerformed(evt);
-            }
-        });
         jPanel6.add(jtfName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 240, -1));
 
         jtfPrice.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jtfPrice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfPriceActionPerformed(evt);
-            }
-        });
         jPanel6.add(jtfPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 240, -1));
 
         jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 420, 490));
@@ -241,11 +203,6 @@ public class Manager_necessities_management extends javax.swing.JFrame {
         jPanel10.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 1050, 330));
 
         jtfSearch.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jtfSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfSearchActionPerformed(evt);
-            }
-        });
         jPanel10.add(jtfSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 180, -1));
 
         jbFilter.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -259,11 +216,6 @@ public class Manager_necessities_management extends javax.swing.JFrame {
 
         jcbLimit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jcbLimit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jcbLimit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbLimitActionPerformed(evt);
-            }
-        });
         jPanel10.add(jcbLimit, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 180, 30));
 
         jbSearch.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -286,20 +238,10 @@ public class Manager_necessities_management extends javax.swing.JFrame {
 
         jcbSort.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jcbSort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jcbSort.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbSortActionPerformed(evt);
-            }
-        });
         jPanel10.add(jcbSort, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 180, 30));
 
         jcbPrice.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jcbPrice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jcbPrice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbPriceActionPerformed(evt);
-            }
-        });
         jPanel10.add(jcbPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 50, 180, 30));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -315,27 +257,27 @@ public class Manager_necessities_management extends javax.swing.JFrame {
         jPanel11.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton11.setText("Add");
-        jPanel11.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 220, 40));
+        jbAdd.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jbAdd.setText("Add");
+        jPanel11.add(jbAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 220, 40));
 
-        jButton15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton15.setText("Update");
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
+        jbUpdate.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jbUpdate.setText("Update");
+        jbUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
+                jbUpdateActionPerformed(evt);
             }
         });
-        jPanel11.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 220, 40));
+        jPanel11.add(jbUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 220, 40));
 
-        jButton16.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton16.setText("Back");
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
+        jbBack.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jbBack.setText("Back");
+        jbBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton16ActionPerformed(evt);
+                jbBackActionPerformed(evt);
             }
         });
-        jPanel11.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 10, 220, 40));
+        jPanel11.add(jbBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 10, 220, 40));
 
         jbRefresh.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jbRefresh.setText("Refresh");
@@ -346,9 +288,9 @@ public class Manager_necessities_management extends javax.swing.JFrame {
         });
         jPanel11.add(jbRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 10, 220, 40));
 
-        jButton17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton17.setText("Delete");
-        jPanel11.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 220, 40));
+        jbDelete.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jbDelete.setText("Delete");
+        jPanel11.add(jbDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 220, 40));
 
         jPanel3.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, 1510, 60));
 
@@ -365,18 +307,6 @@ public class Manager_necessities_management extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtTimeLimitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtTimeLimitActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtTimeLimitActionPerformed
-
-    private void jtfIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfIdActionPerformed
-
-    private void jtfSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfSearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfSearchActionPerformed
-
     private void jbFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFilterActionPerformed
         String price = jcbPrice.getSelectedItem().toString();
         String stock = jcbLimit.getSelectedItem().toString();
@@ -384,21 +314,13 @@ public class Manager_necessities_management extends javax.swing.JFrame {
         doNecessities(a);
     }//GEN-LAST:event_jbFilterActionPerformed
 
-    private void jcbLimitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbLimitActionPerformed
+    private void jbUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbUpdateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jcbLimitActionPerformed
+    }//GEN-LAST:event_jbUpdateActionPerformed
 
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton15ActionPerformed
-
-    private void jtfLimitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfLimitActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfLimitActionPerformed
-
-    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+    private void jbBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBackActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton16ActionPerformed
+    }//GEN-LAST:event_jbBackActionPerformed
 
     private void jbSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSearchActionPerformed
         String pname = jtfSearch.getText();
@@ -431,26 +353,6 @@ public class Manager_necessities_management extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbSortActionPerformed
 
-    private void jcbSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbSortActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbSortActionPerformed
-
-    private void jcbPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbPriceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbPriceActionPerformed
-
-    private void jtfNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfNameActionPerformed
-
-    private void jcbUnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbUnitActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbUnitActionPerformed
-
-    private void jtfPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfPriceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfPriceActionPerformed
-
     private void jbRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRefreshActionPerformed
         viewNecessities();
     }//GEN-LAST:event_jbRefreshActionPerformed
@@ -459,7 +361,7 @@ public class Manager_necessities_management extends javax.swing.JFrame {
         DefaultTableModel table = (DefaultTableModel) jtNecessitiesList.getModel();
         int selectedRow = jtNecessitiesList.getSelectedRow();
         if(selectedRow >= 0){
-        jtfId.setText(table.getValueAt(selectedRow, 0).toString());
+        
         jtfName.setText(table.getValueAt(selectedRow, 1).toString());
         jtfLimit.setText(table.getValueAt(selectedRow, 2).toString());
         jtfPrice.setText(table.getValueAt(selectedRow, 4).toString());
@@ -506,16 +408,11 @@ public class Manager_necessities_management extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -526,17 +423,20 @@ public class Manager_necessities_management extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbAdd;
+    private javax.swing.JButton jbBack;
+    private javax.swing.JButton jbDelete;
     private javax.swing.JButton jbFilter;
     private javax.swing.JButton jbRefresh;
     private javax.swing.JButton jbSearch;
     private javax.swing.JButton jbSort;
+    private javax.swing.JButton jbUpdate;
     private javax.swing.JComboBox<String> jcbLimit;
     private javax.swing.JComboBox<String> jcbPrice;
     private javax.swing.JComboBox<String> jcbSort;
     private javax.swing.JComboBox<String> jcbUnit;
     private javax.swing.JTable jtNecessitiesList;
     private javax.swing.JTextField jtTimeLimit;
-    private javax.swing.JTextField jtfId;
     private javax.swing.JTextField jtfLimit;
     private javax.swing.JTextField jtfName;
     private javax.swing.JTextField jtfPrice;
