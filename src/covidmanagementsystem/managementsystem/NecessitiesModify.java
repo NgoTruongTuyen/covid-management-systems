@@ -22,11 +22,11 @@ public interface NecessitiesModify {
        
         try {  
             conn = DriverManager.getConnection(DB_URL,USER, PASS);
-            String req = "select * from Necessities where limitDate >= CURRENT_DATE() order by id ASC";
+            String req = "select * from Necessities order by id ASC";
             Statement statement = conn.createStatement();
             ResultSet result = statement.executeQuery(req);
             while(result.next()){
-             Necessities temp = new Necessities(result.getString("id"),result.getString("name"),result.getInt("stock"),
+             Necessities temp = new Necessities(result.getString("id"),result.getString("name"),result.getInt("limitNecess"),
                      result.getString("limitDate"),result.getInt("cost"));
              nec.add(temp);
             }
@@ -53,12 +53,12 @@ public interface NecessitiesModify {
         try {  
             conn = DriverManager.getConnection(DB_URL,USER, PASS);
             String tmp = "'%"+ name + "%'";
-            String req = "select * from Necessities where limitDate >= CURRENT_DATE() and name like " + tmp;
+            String req = "select * from Necessities where name like " + tmp;
             
             Statement statement = conn.createStatement();
             ResultSet result = statement.executeQuery(req);
             while(result.next()){
-             Necessities temp = new Necessities(result.getString("id"),result.getString("name"),result.getInt("stock"),
+             Necessities temp = new Necessities(result.getString("id"),result.getString("name"),result.getInt("limitNecess"),
                      result.getString("limitDate"),result.getInt("cost"));
              nec.add(temp);
             }
@@ -84,11 +84,11 @@ public interface NecessitiesModify {
        
         try {  
             conn = DriverManager.getConnection(DB_URL,USER, PASS);
-            String req = "select * from Necessities where limitDate >= CURRENT_DATE() order by name ASC";
+            String req = "select * from Necessities order by name ASC";
             Statement statement = conn.createStatement();
             ResultSet result = statement.executeQuery(req);
             while(result.next()){
-             Necessities temp = new Necessities(result.getString("id"),result.getString("name"),result.getInt("stock"),
+             Necessities temp = new Necessities(result.getString("id"),result.getString("name"),result.getInt("limitNecess"),
                      result.getString("limitDate"),result.getInt("cost"));
              nec.add(temp);
             }
@@ -114,11 +114,11 @@ public interface NecessitiesModify {
        
         try {  
             conn = DriverManager.getConnection(DB_URL,USER, PASS);
-            String req = "select * from Necessities where limitDate >= CURRENT_DATE() order by name DESC";
+            String req = "select * from Necessities order by name DESC";
             Statement statement = conn.createStatement();
             ResultSet result = statement.executeQuery(req);
             while(result.next()){
-             Necessities temp = new Necessities(result.getString("id"),result.getString("name"),result.getInt("stock"),
+             Necessities temp = new Necessities(result.getString("id"),result.getString("name"),result.getInt("limitNecess"),
                      result.getString("limitDate"),result.getInt("cost"));
              nec.add(temp);
             }
@@ -144,11 +144,11 @@ public interface NecessitiesModify {
        
         try {  
             conn = DriverManager.getConnection(DB_URL,USER, PASS);
-            String req = "select * from Necessities where limitDate >= CURRENT_DATE() order by cost ASC ";
+            String req = "select * from Necessities order by cost ASC ";
             Statement statement = conn.createStatement();
             ResultSet result = statement.executeQuery(req);
             while(result.next()){
-             Necessities temp = new Necessities(result.getString("id"),result.getString("name"),result.getInt("stock"),
+             Necessities temp = new Necessities(result.getString("id"),result.getString("name"),result.getInt("limitNecess"),
                      result.getString("limitDate"),result.getInt("cost"));
              nec.add(temp);
             }
@@ -174,11 +174,11 @@ public interface NecessitiesModify {
        
         try {  
             conn = DriverManager.getConnection(DB_URL,USER, PASS);
-            String req = "select * from Necessities where limitDate >= CURRENT_DATE() order by cost DESC";
+            String req = "select * from Necessities order by cost DESC";
             Statement statement = conn.createStatement();
             ResultSet result = statement.executeQuery(req);
             while(result.next()){
-             Necessities temp = new Necessities(result.getString("id"),result.getString("name"),result.getInt("stock"),
+             Necessities temp = new Necessities(result.getString("id"),result.getString("name"),result.getInt("limitNecess"),
                      result.getString("limitDate"),result.getInt("cost"));
              nec.add(temp);
             }
@@ -196,7 +196,7 @@ public interface NecessitiesModify {
       } 
         return nec;
     }
-    public static List<Necessities> filterNecessities(String price , String stock){
+    public static List<Necessities> filterNecessities(String price , String limit){
         List<Necessities> nec = new ArrayList<>();
 
         Connection conn = null;
@@ -206,29 +206,32 @@ public interface NecessitiesModify {
         try {  
             conn = DriverManager.getConnection(DB_URL,USER, PASS);
             if("< 100000".equals(price)){
-                req1 = " and cost < 100000 ";
+                req1 = " cost < 100000 ";
             }
             if("100000 to 500000".equals(price)){
-                req1 = " and cost >= 100000 and cost <= 500000 ";
+                req1 = " cost >= 100000 and cost <= 500000 ";
             }
             if("> 500000".equals(price)){
-                req1 = " and cost > 500000 ";
+                req1 = " cost > 500000 ";
             }
-            if("< 100".equals(stock)){
-                req2 = " and stock < 100 ";
+            if("< 100".equals(limit)){
+                req2 = " and limitNecess < 10 ";
             }
-            if("100 to 200".equals(stock)){
-                req2 = " and stock >= 100 and stock <= 200 ";
+            if("100 to 200".equals(limit)){
+                req2 = " and limitNecess >= 10 and limitNecess <= 20 ";
             }
-            if("> 200".equals(stock)){
-                req2 = " and stock > 200 ";
+            if("> 200".equals(limit)){
+                req2 = " and limitNecess > 20 ";
             }
-            String req = "select * from Necessities where limitDate >= CURRENT_DATE()" + req1 + req2;
+            if("...".equals(price)){
+                req2 = req2.replace("and","");
+            }
+            String req = "select * from Necessities where " + req1 + req2;
             
             Statement statement = conn.createStatement();
             ResultSet result = statement.executeQuery(req);
             while(result.next()){
-             Necessities temp = new Necessities(result.getString("id"),result.getString("name"),result.getInt("stock"),
+             Necessities temp = new Necessities(result.getString("id"),result.getString("name"),result.getInt("limitNecess"),
                      result.getString("limitDate"),result.getInt("cost"));
              nec.add(temp);
             }
@@ -246,7 +249,7 @@ public interface NecessitiesModify {
       } 
         return nec;
     }
-    public static boolean checkStock(String id, String amount){
+    public static boolean checkStock(String id, String amount, String username){
         
         Connection conn = null;
         ResultSet rs = null;
@@ -258,7 +261,8 @@ public interface NecessitiesModify {
             Statement statement = conn.createStatement();
             ResultSet result = statement.executeQuery(req);
             while(result.next()){
-              am = result.getInt("stock");
+                am = getAmountHadBought(username,result.getString("name"),result.getString("limitDate"));
+              
             }
         
            
@@ -279,7 +283,70 @@ public interface NecessitiesModify {
             return false;
         }
     }
-    public static int getStock(String id){
+    public static String getTime(String limitTime){
+        String temp[] = limitTime.split(" ");
+        int numDay = 0;
+        int num = Integer.valueOf(temp[0]);
+        
+        if("day".equals(temp[1])){
+            numDay = num;
+        }
+        if("week".equals(temp[1])){
+            numDay = num * 7;
+        }
+        if("month".equals(temp[1])){
+            numDay = num*30;
+        }
+        numDay= -numDay;
+        
+        LocalDateTime ldt = LocalDateTime.now().plusDays(numDay);
+        DateTimeFormatter formmat1 = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
+        String formatter = formmat1.format(ldt);
+        return formatter;
+    }
+    public static int getAmountHadBought(String username, String productName, String limitTime){
+        String id = getUserId(username);
+        String time = getTime(limitTime);
+        Connection conn = null;
+        ResultSet rs = null;
+        int sum = 0;
+        
+        try {  
+            conn = DriverManager.getConnection(DB_URL,USER, PASS);
+            String tmp = "'"+ id + "'";
+            String rq = "'"+ time + "'";
+            String req = "select * from Bill where billDate >= " + rq + " and userId =" + tmp;
+            
+            
+            Statement statement = conn.createStatement();
+            ResultSet result = statement.executeQuery(req);
+            
+           while(result.next()){
+               
+              String list[] = result.getString("necessities").split(", ");
+                for (int i = 0; i<list.length;i++) {
+                    if (list[i] == null ? productName == null : list[i].equals(productName)) {
+                        String amount[] = result.getString("amount").split(", ");
+                        sum+=Integer.valueOf(amount[i]);
+                        break;
+                    }
+                }
+            }
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      if(conn != null){
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+            }
+      } 
+       return sum; 
+        
+    }
+    public static int getLimitNecess(String id){
         
         Connection conn = null;
         ResultSet rs = null;
@@ -287,14 +354,14 @@ public interface NecessitiesModify {
         try {  
             conn = DriverManager.getConnection(DB_URL,USER, PASS);
             String tmp = "'"+ id + "'";
-            String req = "select * from Necessities where limitDate >= CURRENT_DATE() and id =" + tmp;
+            String req = "select * from Necessities where id =" + tmp;
             
             Statement statement = conn.createStatement();
             ResultSet result = statement.executeQuery(req);
             
            while(result.next()){
                
-              stock = result.getInt("stock");
+              stock = result.getInt("limitNecess");
               
             }
            
@@ -317,7 +384,7 @@ public interface NecessitiesModify {
         try {  
             conn = DriverManager.getConnection(DB_URL,USER, PASS);
             String tmp = "'"+ id + "'";
-            String req = "select * from Necessities where limitDate >= CURRENT_DATE() and id =" + tmp;
+            String req = "select * from Necessities where id =" + tmp;
             
             Statement statement = conn.createStatement();
             ResultSet result = statement.executeQuery(req);
@@ -340,35 +407,7 @@ public interface NecessitiesModify {
       } 
        return price; 
     }
-    public static void updateStock(String id, String amount){
-        Connection conn = null;
-        ResultSet rs = null;
-        
-        try { 
-            conn = DriverManager.getConnection(DB_URL,USER, PASS);
-            String sqlUpdate = "UPDATE Necessities "
-                + "SET stock = ? "
-                + "WHERE id = ?";
- 
-            PreparedStatement pstmt = conn.prepareStatement(sqlUpdate);
-            
-            int stock = getStock(id) - Integer.parseInt(amount);
-            pstmt.setInt(1, stock);
-            pstmt.setString(2, id);
-            pstmt.executeUpdate();
-           
-        } catch (SQLException ex) {
-            Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
-        }
-      if(conn != null){
-            try {
-                conn.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
-            }
-      } 
-        
-    }
+    
     public static int getDept(String account){
         Connection conn = null;
         ResultSet rs = null;
@@ -492,13 +531,13 @@ public interface NecessitiesModify {
     public static boolean buyNecessities(String a[][], int row , String username){
         List<Necessities> nec = new ArrayList<>();
         for(int i = 0 ;i < row ; i++){          
-                if(checkStock(a[i][0],a[i][2]) == false){
+                if(checkStock(a[i][0],a[i][2],username) == false){
                     return false;
                 } 
         }
         int total = 0;
         for(int i = 0 ;i < row ; i++){ 
-            updateStock(a[i][0],a[i][2]);
+            
             total += getPrice(a[i][0]) * Integer.parseInt(a[i][2]);  
         }
         

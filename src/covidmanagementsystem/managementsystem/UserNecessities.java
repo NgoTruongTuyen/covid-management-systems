@@ -37,7 +37,9 @@ public class UserNecessities extends javax.swing.JFrame {
         loadComboSort();
         loadComboPrice();
         loadComboLimitDate();
+        
         viewNecessities();
+        
         designCart();
     }
 
@@ -64,9 +66,9 @@ public class UserNecessities extends javax.swing.JFrame {
     private void loadComboLimitDate(){
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         model.addElement("...");
-        model.addElement("< 100");
-        model.addElement("100 to 200");
-        model.addElement("> 200");
+        model.addElement("< 10");
+        model.addElement("10 to 20");
+        model.addElement("> 20");
         jcbStock.setModel(model);
         
     }
@@ -141,8 +143,6 @@ public class UserNecessities extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtNeccessitiesList = new javax.swing.JTable();
         jbSearch = new javax.swing.JButton();
         jbSort = new javax.swing.JButton();
         jtfSearch = new javax.swing.JTextField();
@@ -152,6 +152,8 @@ public class UserNecessities extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jcbPrice = new javax.swing.JComboBox<>();
         jcbStock = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtNeccessitiesList = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -228,12 +230,46 @@ public class UserNecessities extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         jLabel3.setText("Necessities List");
 
+        jbSearch.setText("Search");
+        jbSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSearchActionPerformed(evt);
+            }
+        });
+
+        jbSort.setText("Sort");
+        jbSort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSortActionPerformed(evt);
+            }
+        });
+
+        jcbSort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jButton1.setText("Filter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Price");
+
+        jLabel6.setText("      Stock");
+
+        jcbPrice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jcbStock.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         jtNeccessitiesList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Id", "Name", "Stock", "Limit Date", "Price"
+                "Id", "Name", "Limit", "Limit date", "Price"
             }
         )
         {
@@ -247,43 +283,7 @@ public class UserNecessities extends javax.swing.JFrame {
             jtNeccessitiesListMouseClicked(evt);
         }
     });
-    jtNeccessitiesList.addKeyListener(new java.awt.event.KeyAdapter() {
-        public void keyPressed(java.awt.event.KeyEvent evt) {
-            jtNeccessitiesListKeyPressed(evt);
-        }
-    });
-    jScrollPane1.setViewportView(jtNeccessitiesList);
-
-    jbSearch.setText("Search");
-    jbSearch.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jbSearchActionPerformed(evt);
-        }
-    });
-
-    jbSort.setText("Sort");
-    jbSort.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jbSortActionPerformed(evt);
-        }
-    });
-
-    jcbSort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-    jButton1.setText("Filter");
-    jButton1.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton1ActionPerformed(evt);
-        }
-    });
-
-    jLabel5.setText("Price");
-
-    jLabel6.setText("      Stock");
-
-    jcbPrice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-    jcbStock.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+    jScrollPane2.setViewportView(jtNeccessitiesList);
 
     javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
     jPanel7.setLayout(jPanel7Layout);
@@ -291,9 +291,6 @@ public class UserNecessities extends javax.swing.JFrame {
         jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanel7Layout.createSequentialGroup()
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel7Layout.createSequentialGroup()
-                    .addGap(29, 29, 29)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 805, Short.MAX_VALUE))
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -306,7 +303,7 @@ public class UserNecessities extends javax.swing.JFrame {
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jtfSearch)
-                        .addComponent(jcbSort, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jcbSort, 0, 338, Short.MAX_VALUE))
                     .addGap(55, 55, 55)
                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -315,7 +312,10 @@ public class UserNecessities extends javax.swing.JFrame {
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jcbPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jcbStock, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jcbStock, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane2)))
             .addContainerGap())
     );
     jPanel7Layout.setVerticalGroup(
@@ -341,9 +341,9 @@ public class UserNecessities extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbSort)
                     .addComponent(jcbSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGap(31, 31, 31)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(23, Short.MAX_VALUE))
+            .addGap(25, 25, 25)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
     jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, 850, 520));
@@ -500,19 +500,6 @@ public class UserNecessities extends javax.swing.JFrame {
         viewNecessities();
     }//GEN-LAST:event_jbRefreshActionPerformed
 
-    private void jtNeccessitiesListKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNeccessitiesListKeyPressed
-        
-    }//GEN-LAST:event_jtNeccessitiesListKeyPressed
-
-    private void jtNeccessitiesListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtNeccessitiesListMouseClicked
-        DefaultTableModel table = (DefaultTableModel) jtNeccessitiesList.getModel();
-        int selectedRow = jtNeccessitiesList.getSelectedRow();
-        if(selectedRow >= 0){
-        jtfID.setText(table.getValueAt(selectedRow, 0).toString());
-        jtfProductName.setText(table.getValueAt(selectedRow, 1).toString());
-        }   
-    }//GEN-LAST:event_jtNeccessitiesListMouseClicked
-
     private void jbAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAddActionPerformed
         String id = jtfID.getText();
         String name = jtfProductName.getText();
@@ -569,6 +556,15 @@ public class UserNecessities extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_jbDeleteActionPerformed
 
+    private void jtNeccessitiesListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtNeccessitiesListMouseClicked
+        DefaultTableModel table = (DefaultTableModel) jtNeccessitiesList.getModel();
+        int selectedRow = jtNeccessitiesList.getSelectedRow();
+        if(selectedRow >= 0){
+        jtfID.setText(table.getValueAt(selectedRow, 0).toString());
+        jtfProductName.setText(table.getValueAt(selectedRow, 1).toString());
+        } 
+    }//GEN-LAST:event_jtNeccessitiesListMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -623,7 +619,7 @@ public class UserNecessities extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton jbAdd;
     private javax.swing.JButton jbBuy;
