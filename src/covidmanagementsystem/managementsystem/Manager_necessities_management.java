@@ -250,7 +250,7 @@ public class Manager_necessities_management extends javax.swing.JFrame {
     }//GEN-LAST:event_txtID3ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jButton16ActionPerformed
 
     /**

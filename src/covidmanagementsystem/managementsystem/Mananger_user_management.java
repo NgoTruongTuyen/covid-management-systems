@@ -5,6 +5,7 @@
  */
 package covidmanagementsystem.managementsystem;
 
+import java.awt.Component;
 import java.util.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSetMetaData;
@@ -13,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,6 +27,7 @@ import javax.swing.table.DefaultTableModel;
 public class Mananger_user_management extends javax.swing.JFrame {
      List<User> UserList = new ArrayList<>();
      List<String> TreatmentSiteNameList = new ArrayList<>();
+     List<TreatmentSite> TreatmentSiteList=new ArrayList<>();
      List<String> CityList=new ArrayList<>();
      String currentStatus="";
      String currentTreatmentSite="";
@@ -43,6 +46,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
             
             UserList=UserModify.findAll();
             TreatmentSiteNameList=TreatmentSiteModify.findAllTreatmentSiteName();
+            TreatmentSiteList=TreatmentSiteModify.findAll();
             CityList=AddressModify.findAllCity();
 
             DefaultTableModel recordTable = (DefaultTableModel) TableModel.getModel();
@@ -76,6 +80,32 @@ public class Mananger_user_management extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
+     public void checkCapacity(String siteName)
+     {
+           for(TreatmentSite site:TreatmentSiteList)
+       {
+           if (site.getName().equals(siteName))
+                   {
+                       if((site.getCurrentNumber()+1)>site.getCapacity())
+                               {
+                                   JOptionPane.showMessageDialog(new JFrame(), "This treatment site is full of user!!");
+                               }
+                   }
+       }
+     }
+     public boolean checkId(String id)
+     {
+          for(User user:UserList)
+       {
+           if(user.getID().equals(id))
+                   {
+                       JOptionPane.showMessageDialog(new JFrame(), "This ID card has already exist!!");
+                       return false;
+                   }
+                  
+       }
+         return true;
+     }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -178,6 +208,11 @@ public class Mananger_user_management extends javax.swing.JFrame {
 
         jComboBoxTreatmentSiteInput.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jComboBoxTreatmentSiteInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxTreatmentSiteInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxTreatmentSiteInputActionPerformed(evt);
+            }
+        });
         jPanel6.add(jComboBoxTreatmentSiteInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 380, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -251,6 +286,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
         jPanel10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        TableModel.setAutoCreateRowSorter(true);
         TableModel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         TableModel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -260,6 +296,8 @@ public class Mananger_user_management extends javax.swing.JFrame {
                 "User ID", "Full Name", "Date of birth", "Address", "Status", "Treatement place", "Contact"
             }
         ));
+        TableModel.setDoubleBuffered(true);
+        TableModel.setDragEnabled(true);
         TableModel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TableModelMouseClicked(evt);
@@ -428,7 +466,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
     }//GEN-LAST:event_viewContactButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+       this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
@@ -475,6 +513,8 @@ public class Mananger_user_management extends javax.swing.JFrame {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         String Id=idInputTxt.getText();
+        boolean isValiad=checkId(Id);
+        if(isValiad){
         String fullname = fullNameInputTxt.getText();
         String dob = dobInputTxt1.getText();
         String address=(String)jComboBoxVillageInput.getSelectedItem()+","+(String)jComboBoxDistrictInput.getSelectedItem()+","+(String)jComboBoxCityInput.getSelectedItem();
@@ -485,7 +525,10 @@ public class Mananger_user_management extends javax.swing.JFrame {
        {
          status = Integer.parseInt(strStatus.substring(strStatus.length() - 1));
        }
+       
         String treatmentSite=(String)jComboBoxTreatmentSiteInput.getSelectedItem();
+        checkCapacity(treatmentSite);
+        
         String related=(String)contactInputTxt.getText();
         User newUser = new User(Id, fullname, dob, address, status,treatmentSite,related);
         
@@ -503,6 +546,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
        
         UserModify.insert(newUser);
         updateDB();
+        }
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void TableModelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableModelMouseClicked
@@ -556,6 +600,11 @@ public class Mananger_user_management extends javax.swing.JFrame {
         
 
     }//GEN-LAST:event_refreshButtonActionPerformed
+
+    private void jComboBoxTreatmentSiteInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTreatmentSiteInputActionPerformed
+       
+        
+    }//GEN-LAST:event_jComboBoxTreatmentSiteInputActionPerformed
 
     /**
      * @param args the command line arguments

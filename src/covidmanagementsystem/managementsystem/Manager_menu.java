@@ -29,16 +29,15 @@ public class Manager_menu extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        btnViewTreatmentSiteList = new javax.swing.JButton();
-        btnViewManagerList = new javax.swing.JButton();
+        statisticBtn = new javax.swing.JButton();
+        necessitiesManagementBtn = new javax.swing.JButton();
+        userManagementBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 102), 3));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
@@ -47,56 +46,61 @@ public class Manager_menu extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1520, 90));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel2.setText("Admin");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jLabel2)
-                .addContainerGap(199, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addContainerGap())
-        );
-
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, -1, 60));
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 102), 3));
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnViewTreatmentSiteList.setBackground(new java.awt.Color(0, 0, 255));
-        btnViewTreatmentSiteList.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnViewTreatmentSiteList.setForeground(new java.awt.Color(255, 255, 255));
-        btnViewTreatmentSiteList.setText("View Treatment Site List");
-        jPanel3.add(btnViewTreatmentSiteList, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 210, 330, 130));
-
-        btnViewManagerList.setBackground(new java.awt.Color(0, 0, 255));
-        btnViewManagerList.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnViewManagerList.setForeground(new java.awt.Color(255, 255, 255));
-        btnViewManagerList.setText("View Manager List");
-        btnViewManagerList.addActionListener(new java.awt.event.ActionListener() {
+        statisticBtn.setBackground(new java.awt.Color(0, 0, 255));
+        statisticBtn.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        statisticBtn.setForeground(new java.awt.Color(255, 255, 255));
+        statisticBtn.setText("Statistics");
+        statisticBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewManagerListActionPerformed(evt);
+                statisticBtnActionPerformed(evt);
             }
         });
-        jPanel3.add(btnViewManagerList, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 330, 130));
+        jPanel3.add(statisticBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 210, 330, 130));
+
+        necessitiesManagementBtn.setBackground(new java.awt.Color(0, 0, 255));
+        necessitiesManagementBtn.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        necessitiesManagementBtn.setForeground(new java.awt.Color(255, 255, 255));
+        necessitiesManagementBtn.setText("Necessities Management");
+        necessitiesManagementBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                necessitiesManagementBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(necessitiesManagementBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 210, 410, 130));
+
+        userManagementBtn.setBackground(new java.awt.Color(0, 0, 255));
+        userManagementBtn.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        userManagementBtn.setForeground(new java.awt.Color(255, 255, 255));
+        userManagementBtn.setText("User Management");
+        userManagementBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userManagementBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(userManagementBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 330, 130));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 1520, 610));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnViewManagerListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewManagerListActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnViewManagerListActionPerformed
+    private void necessitiesManagementBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_necessitiesManagementBtnActionPerformed
+          Manager_necessities_management necessitiesManagement=new Manager_necessities_management();
+        necessitiesManagement.setVisible(true); 
+    }//GEN-LAST:event_necessitiesManagementBtnActionPerformed
+
+    private void userManagementBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userManagementBtnActionPerformed
+        Mananger_user_management userManagement=new Mananger_user_management();
+        userManagement.setVisible(true); 
+    }//GEN-LAST:event_userManagementBtnActionPerformed
+
+    private void statisticBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statisticBtnActionPerformed
+        Statistics stat=new Statistics();
+        stat.setVisible(true);
+    }//GEN-LAST:event_statisticBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,12 +138,11 @@ public class Manager_menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnViewManagerList;
-    private javax.swing.JButton btnViewTreatmentSiteList;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JButton necessitiesManagementBtn;
+    private javax.swing.JButton statisticBtn;
+    private javax.swing.JButton userManagementBtn;
     // End of variables declaration//GEN-END:variables
 }

@@ -94,11 +94,11 @@ public class Manger_contact_list_and_treament_history extends javax.swing.JFrame
         ));
         jScrollPane1.setViewportView(historyTable);
 
-        jPanel10.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 140, 730, 380));
+        jPanel10.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 120, 730, 360));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel12.setText("Contact list");
-        jPanel10.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, 30));
+        jPanel10.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, 30));
 
         ContactTable.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         ContactTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -111,7 +111,7 @@ public class Manger_contact_list_and_treament_history extends javax.swing.JFrame
         ));
         jScrollPane3.setViewportView(ContactTable);
 
-        jPanel10.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 650, 380));
+        jPanel10.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 650, 360));
 
         jButton16.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton16.setText("Back");
@@ -120,7 +120,7 @@ public class Manger_contact_list_and_treament_history extends javax.swing.JFrame
                 jButton16ActionPerformed(evt);
             }
         });
-        jPanel10.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 20, 220, 40));
+        jPanel10.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 500, 220, 40));
 
         jPanel3.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 1490, 550));
 
@@ -164,7 +164,7 @@ public class Manger_contact_list_and_treament_history extends javax.swing.JFrame
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        // TODO add your handling code here:
+       this.dispose();
     }//GEN-LAST:event_jButton16ActionPerformed
 
     /**
