@@ -599,4 +599,135 @@ public interface NecessitiesModify {
             return false;
         }
     }
+    public static boolean checkNecessitiesId(String i){
+        Connection conn = null;
+        ResultSet rs = null;
+        boolean id = false;
+        String tmp = "";
+        try {  
+            conn = DriverManager.getConnection(DB_URL,USER, PASS);
+            tmp = "'" + i + "'";
+            String req = "select * from Necessities where id = " + tmp;
+            
+            Statement statement = conn.createStatement();
+            ResultSet result = statement.executeQuery(req);
+            
+           while(result.next()){ 
+              id = true;
+            }
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      if(conn != null){
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+            }
+      } 
+       return id; 
+    }
+    public static boolean updateNecessities(String oldid , String id, String name, int limit, String limitDate, int price ){
+        Connection conn = null;
+        ResultSet rs = null;
+       
+        String tmp = "";
+        try {  
+            conn = DriverManager.getConnection(DB_URL,USER, PASS);
+            String sqlUpdate = "UPDATE Necessities "
+                + "SET id = ? , name = ? , limitNecess = ? , limitDate = ? , cost = ? "
+                + "WHERE id = ?";
+
+            PreparedStatement pstmt = conn.prepareStatement(sqlUpdate);
+            pstmt.setString(1, id);
+            pstmt.setString(2, name);
+            pstmt.setInt(3, limit);
+            pstmt.setString(4, limitDate);
+            pstmt.setInt(5, price);
+            pstmt.setString(6, oldid);
+            System.out.println(pstmt);
+            int rowAffected = pstmt.executeUpdate();
+            
+           if(rowAffected == 1){
+               return true;
+           }
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      if(conn != null){
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+            }
+      } 
+       return false; 
+    }
+    public static boolean addNecessities(String id, String name, int limit, String limitDate, int price ){
+        Connection conn = null;
+        ResultSet rs = null;
+        
+        String tmp = "";
+        try {  
+            conn = DriverManager.getConnection(DB_URL,USER, PASS);
+            String sql = "INSERT INTO Necessities(id,name,limitNecess,limitDate,cost) "
+            + "VALUES(?,?,?,?,?)";;
+
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            pstmt.setString(2, name);
+            pstmt.setInt(3, limit);
+            pstmt.setString(4, limitDate);
+            pstmt.setInt(5, price);
+            
+            int rowAffected = pstmt.executeUpdate();
+            
+           if(rowAffected == 1){
+               return true;
+           }
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      if(conn != null){
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+            }
+      } 
+       return false; 
+    }
+    public static boolean deleteNecessities(String id ){
+        Connection conn = null;
+        ResultSet rs = null;
+        
+        String tmp = "";
+        try {  
+            conn = DriverManager.getConnection(DB_URL,USER, PASS);
+            String sql = "DELETE FROM Necessities WHERE id = ?";
+
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            
+            int rowAffected = pstmt.executeUpdate();
+            
+           if(rowAffected == 1){
+               return true;
+           }
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      if(conn != null){
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
+            }
+      } 
+       return false; 
+    }
 }

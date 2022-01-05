@@ -22,6 +22,7 @@ public class Manager_necessities_management extends javax.swing.JFrame {
     /**
      * Creates new form Manager_necessities_management
      */
+    String oldId;
     public Manager_necessities_management() {
         initComponents();
         loadComboSort();
@@ -99,14 +100,16 @@ public class Manager_necessities_management extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jtTimeLimit = new javax.swing.JTextField();
+        jtfTimeLimit = new javax.swing.JTextField();
         jcbUnit = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jtfLimit = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jtfName = new javax.swing.JTextField();
+        jtfId = new javax.swing.JTextField();
         jtfPrice = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jtfName = new javax.swing.JTextField();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtNecessitiesList = new javax.swing.JTable();
@@ -149,8 +152,8 @@ public class Manager_necessities_management extends javax.swing.JFrame {
         jLabel4.setText("Price");
         jPanel6.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, 30));
 
-        jtTimeLimit.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel6.add(jtTimeLimit, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 140, -1));
+        jtfTimeLimit.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel6.add(jtfTimeLimit, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 140, -1));
 
         jcbUnit.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jcbUnit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F0", "F1", "F2" }));
@@ -169,14 +172,21 @@ public class Manager_necessities_management extends javax.swing.JFrame {
         jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, 30));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel10.setText("Name");
-        jPanel6.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, 30));
+        jLabel10.setText("Id");
+        jPanel6.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, 30));
 
-        jtfName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel6.add(jtfName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 240, -1));
+        jtfId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel6.add(jtfId, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 240, -1));
 
         jtfPrice.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jPanel6.add(jtfPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 240, -1));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel11.setText("Name");
+        jPanel6.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, 30));
+
+        jtfName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel6.add(jtfName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 240, -1));
 
         jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 420, 490));
 
@@ -259,6 +269,11 @@ public class Manager_necessities_management extends javax.swing.JFrame {
 
         jbAdd.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jbAdd.setText("Add");
+        jbAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAddActionPerformed(evt);
+            }
+        });
         jPanel11.add(jbAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 220, 40));
 
         jbUpdate.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -290,6 +305,11 @@ public class Manager_necessities_management extends javax.swing.JFrame {
 
         jbDelete.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jbDelete.setText("Delete");
+        jbDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbDeleteActionPerformed(evt);
+            }
+        });
         jPanel11.add(jbDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 220, 40));
 
         jPanel3.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, 1510, 60));
@@ -315,7 +335,32 @@ public class Manager_necessities_management extends javax.swing.JFrame {
     }//GEN-LAST:event_jbFilterActionPerformed
 
     private void jbUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbUpdateActionPerformed
-        // TODO add your handling code here:
+        String id =  jtfId.getText();
+       String name = jtfName.getText();
+       String limit = jtfLimit.getText();
+       String price = jtfPrice.getText();
+       String limitDate = jtfTimeLimit.getText();
+       String unit = jcbUnit.getSelectedItem().toString();
+       if(id.length()== 0 || name.length() == 0 || limit.length() == 0 || price.length() == 0 || limitDate.length() == 0){
+           JOptionPane.showMessageDialog(this, " You have to fill full information"); 
+       }
+       else if(NecessitiesModify.checkInt(limit)== false || NecessitiesModify.checkInt(price)== false ){
+               JOptionPane.showMessageDialog(this, "Limit per person and price must be int"); 
+           }
+        else if(NecessitiesModify.checkNecessitiesId(id)== true){
+               JOptionPane.showMessageDialog(this, "Id already exists"); 
+           }
+           else{
+               limitDate += " ";
+               limitDate += unit;
+               if(NecessitiesModify.updateNecessities(oldId, id, name, Integer.valueOf(limit), limitDate, Integer.valueOf(price)) == true){
+                   JOptionPane.showMessageDialog(this, "Update sucessfully"); 
+                   
+               }else{
+                   JOptionPane.showMessageDialog(this, "Fail to update"); 
+               }
+               
+           }
     }//GEN-LAST:event_jbUpdateActionPerformed
 
     private void jbBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBackActionPerformed
@@ -361,16 +406,66 @@ public class Manager_necessities_management extends javax.swing.JFrame {
         DefaultTableModel table = (DefaultTableModel) jtNecessitiesList.getModel();
         int selectedRow = jtNecessitiesList.getSelectedRow();
         if(selectedRow >= 0){
-        
-        jtfName.setText(table.getValueAt(selectedRow, 1).toString());
-        jtfLimit.setText(table.getValueAt(selectedRow, 2).toString());
-        jtfPrice.setText(table.getValueAt(selectedRow, 4).toString());
-        String limitDate  = table.getValueAt(selectedRow, 3).toString();
-        String temp [] = limitDate.split(" ");
-        jtTimeLimit.setText(temp[0]);
-        jcbUnit.setSelectedItem(temp[1]);
+            oldId = table.getValueAt(selectedRow, 0).toString();
+            jtfId.setText(table.getValueAt(selectedRow, 0).toString());
+            jtfName.setText(table.getValueAt(selectedRow, 1).toString());
+            jtfLimit.setText(table.getValueAt(selectedRow, 2).toString());
+            jtfPrice.setText(table.getValueAt(selectedRow, 4).toString());
+            String limitDate  = table.getValueAt(selectedRow, 3).toString();
+            String temp [] = limitDate.split(" ");
+            jtfTimeLimit.setText(temp[0]);
+            jcbUnit.setSelectedItem(temp[1]);
         }
     }//GEN-LAST:event_jtNecessitiesListMouseClicked
+
+    private void jbAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAddActionPerformed
+       String id =  jtfId.getText();
+       String name = jtfName.getText();
+       String limit = jtfLimit.getText();
+       String price = jtfPrice.getText();
+       String limitDate = jtfTimeLimit.getText();
+       String unit = jcbUnit.getSelectedItem().toString();
+       if(id.length()== 0 || name.length() == 0 || limit.length() == 0 || price.length() == 0 || limitDate.length() == 0){
+           JOptionPane.showMessageDialog(this, " You have to fill full information"); 
+       }
+       else if(NecessitiesModify.checkInt(limit)== false || NecessitiesModify.checkInt(price)== false ){
+               JOptionPane.showMessageDialog(this, "Limit per person and price must be int"); 
+           }
+        else if(NecessitiesModify.checkNecessitiesId(id)== true){
+               JOptionPane.showMessageDialog(this, "Id already exists"); 
+           }
+           else{
+               limitDate += " ";
+               limitDate += unit;
+               if(NecessitiesModify.addNecessities(id, name, Integer.valueOf(limit), limitDate, Integer.valueOf(price)) == true){
+                   JOptionPane.showMessageDialog(this, "Add sucessfully"); 
+                   
+               }else{
+                   JOptionPane.showMessageDialog(this, "Fail to add"); 
+               }
+               
+           }
+    }//GEN-LAST:event_jbAddActionPerformed
+
+    private void jbDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDeleteActionPerformed
+       String id =  jtfId.getText();
+       
+       if(id.length()== 0){
+           JOptionPane.showMessageDialog(this, " You have to fill id"); 
+       }
+       
+        else if(NecessitiesModify.checkNecessitiesId(id)== false){
+               JOptionPane.showMessageDialog(this, "Can't find id"); 
+           }
+           else{
+              
+               if(NecessitiesModify.deleteNecessities(id) == true){
+                   JOptionPane.showMessageDialog(this, "Delete sucessfully"); 
+                   
+               
+               }
+           }
+    }//GEN-LAST:event_jbDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -410,6 +505,7 @@ public class Manager_necessities_management extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -436,10 +532,11 @@ public class Manager_necessities_management extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcbSort;
     private javax.swing.JComboBox<String> jcbUnit;
     private javax.swing.JTable jtNecessitiesList;
-    private javax.swing.JTextField jtTimeLimit;
+    private javax.swing.JTextField jtfId;
     private javax.swing.JTextField jtfLimit;
     private javax.swing.JTextField jtfName;
     private javax.swing.JTextField jtfPrice;
     private javax.swing.JTextField jtfSearch;
+    private javax.swing.JTextField jtfTimeLimit;
     // End of variables declaration//GEN-END:variables
 }
