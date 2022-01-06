@@ -1,18 +1,27 @@
-/*
- *  Student's ID: 19127622
- *  Full name: Ngo Truong Tuyen
- *  Subject: Java Programming
- *  Assignment :
- *  Problem :
- */
 package covidmanagementsystem.managementsystem;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import covidmanagementsystem.managementsystem.Account;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 /**
  *
  * @author zerotus
  */
 public class Login extends javax.swing.JFrame {
-
+    
+    static String DB_URL = "jdbc:mysql://ba789yyeviyfpuqmprn9-mysql.services.clever-cloud.com/ba789yyeviyfpuqmprn9";
+    static String USER = "uuaeqsyvhif6hnzh";
+    static String PASS = "87pjEZXsG2Wgsu5eDQNB";
+    private Connection conn = null;
+    private PreparedStatement pstmt = null;
+    private ResultSet rs = null;
+    JFrame jfrm;
+    
     /**
      * Creates new form Login
      */
@@ -57,18 +66,27 @@ public class Login extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Username");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, -1, -1));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Password");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
-        jPanel3.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 260, -1));
-        jPanel3.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 260, -1));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, -1, -1));
+
+        txtUsername.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel3.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, 260, 40));
+
+        txtPassword.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel3.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 260, 40));
 
         btnLogin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 120, 50));
 
         btnCancel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -82,6 +100,71 @@ public class Login extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        String sqlSelect = "select * from Account where username = ? and password = ?";
+        
+        try {
+            conn = DriverManager.getConnection(DB_URL,USER, PASS);
+            pstmt = conn.prepareStatement(sqlSelect);
+            pstmt.setString(1, txtUsername.getText());
+            pstmt.setString(2, new String(txtPassword.getPassword()));
+            
+            rs = pstmt.executeQuery();
+            
+            if (rs.next()) {
+                String username = rs.getString("username");
+                int role = Integer.parseInt(rs.getString("role"));
+                int status = Integer.parseInt(rs.getString("state"));
+                
+                if (status == 0) {
+                    jfrm = new JFrame("Thông báo");
+                    JOptionPane.showMessageDialog(jfrm, "Tài khoản của bạn đã bị khóa","Thông báo",JOptionPane.WARNING_MESSAGE);
+                    txtUsername.setText("");
+                    txtPassword.setText("");
+                } 
+                else {
+                    switch(role) {
+                        case 1:
+                            Admin_menu admin = new Admin_menu();
+                            admin.username = username;
+                            
+                            this.hide();
+                            admin.setVisible(true);
+                            break;
+                        case 2:
+                            Manager_menu manager = new Manager_menu();
+                            this.hide();
+                            
+                            manager.setVisible(true);
+                            break;
+                        case 3:
+                            
+                            
+                            this.hide();
+                            
+                            
+                            break; 
+                    }
+                } 
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Wrong password, please try again!");
+                txtUsername.setText("");
+                txtPassword.setText("");
+            }
+            
+        } catch (SQLException e) {
+        }
+        finally{
+            try {
+                conn.close();
+                pstmt.close();
+                rs.close();
+            } catch (SQLException e) {
+            }
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments

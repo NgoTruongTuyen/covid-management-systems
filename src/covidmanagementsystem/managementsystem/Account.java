@@ -11,16 +11,12 @@ package covidmanagementsystem.managementsystem;
  *
  * @author zerotus
  */
-public class Admin {
+public class Account {
     private String username;
+    private String password;
     private int role;
     private int state;
-
-    public Admin(String username, int role, int state) {
-        this.username = username;
-        this.role = role;
-        this.state = state;
-    }
+    
 
     public String getUsername() {
         return username;
@@ -28,6 +24,14 @@ public class Admin {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getRole() {
@@ -45,6 +49,11 @@ public class Admin {
     public void setState(int state) {
         this.state = state;
     }
-    
-    
+
+    public Account(String username, String password, int role, int state) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.state = state;
+    }
 }
