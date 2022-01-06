@@ -10,7 +10,7 @@ package covidmanagementsystem.managementsystem;
  * @author 123
  */
 public class Manager_menu extends javax.swing.JFrame {
-
+    String username;
     /**
      * Creates new form Manager_menu
      */
@@ -88,7 +88,7 @@ public class Manager_menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void necessitiesManagementBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_necessitiesManagementBtnActionPerformed
-          Manager_necessities_management necessitiesManagement=new Manager_necessities_management();
+        Manager_necessities_management necessitiesManagement=new Manager_necessities_management();
         necessitiesManagement.setVisible(true); 
     }//GEN-LAST:event_necessitiesManagementBtnActionPerformed
 

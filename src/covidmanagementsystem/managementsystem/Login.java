@@ -1,9 +1,10 @@
 package covidmanagementsystem.managementsystem;
 
+import covidmanagementsystem.managementsystem.Account;
+import covidmanagementsystem.managementsystem.SimpleMD5;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import covidmanagementsystem.managementsystem.Account;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JFrame;
@@ -21,6 +22,7 @@ public class Login extends javax.swing.JFrame {
     private PreparedStatement pstmt = null;
     private ResultSet rs = null;
     JFrame jfrm;
+    private String defaultPwd = "managercovid2021";
     
     /**
      * Creates new form Login
@@ -102,18 +104,21 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        SimpleMD5 md5 = new SimpleMD5();
         String sqlSelect = "select * from Account where username = ? and password = ?";
         
         try {
             conn = DriverManager.getConnection(DB_URL,USER, PASS);
             pstmt = conn.prepareStatement(sqlSelect);
             pstmt.setString(1, txtUsername.getText());
-            pstmt.setString(2, new String(txtPassword.getPassword()));
+            String passwordHash = md5.hashPassword(new String(txtPassword.getPassword()));
+            pstmt.setString(2, passwordHash);
             
             rs = pstmt.executeQuery();
             
             if (rs.next()) {
                 String username = rs.getString("username");
+                String password = rs.getString("password");                
                 int role = Integer.parseInt(rs.getString("role"));
                 int status = Integer.parseInt(rs.getString("state"));
                 
@@ -133,10 +138,20 @@ public class Login extends javax.swing.JFrame {
                             admin.setVisible(true);
                             break;
                         case 2:
-                            Manager_menu manager = new Manager_menu();
-                            this.hide();
-                            
-                            manager.setVisible(true);
+                            String defaultPwdHash = md5.hashPassword(defaultPwd);
+                            if (defaultPwdHash.equals(password)) {
+                                FirstLogin flogin = new FirstLogin();
+                                flogin.username = username;
+                                
+                                this.hide();
+                                flogin.setVisible(true);
+                            } else {
+                                Manager_menu manager = new Manager_menu();
+                                manager.username = username;
+                                this.hide();
+
+                                manager.setVisible(true);
+                            }
                             break;
                         case 3:
                             
