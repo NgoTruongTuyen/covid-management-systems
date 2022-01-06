@@ -265,7 +265,7 @@ public interface NecessitiesModify {
                 am = getAmountHadBought(username,result.getString("name"),result.getString("limitDate"));
               
             }
-        
+            
            
         } catch (SQLException ex) {
             Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
@@ -277,7 +277,7 @@ public interface NecessitiesModify {
                 Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
             }
       } 
-        if(am - Integer.parseInt(amount) >= 0){
+        if(Integer.parseInt(amount) - am >= 0){
             return true;
         }
         else{
@@ -333,7 +333,7 @@ public interface NecessitiesModify {
                     }
                 }
             }
-           
+         
         } catch (SQLException ex) {
             Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -574,6 +574,7 @@ public interface NecessitiesModify {
             pstmt.setString(4, listAmount);
             pstmt.setInt(5, total);
             pstmt.setDate(6, java.sql.Date.valueOf(date));
+           
             int rowAffected = pstmt.executeUpdate();
             if(rowAffected == 1)
             {

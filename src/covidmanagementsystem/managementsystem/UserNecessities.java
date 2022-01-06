@@ -23,6 +23,7 @@ public class UserNecessities extends javax.swing.JFrame {
      */
     String username;
     int rowCart = 0;
+    String pName = "";
     public UserNecessities(String name) {
         this.username = name;
         initComponents();
@@ -497,8 +498,8 @@ public class UserNecessities extends javax.swing.JFrame {
         String id = jtfID.getText();
         String name = jtfProductName.getText();
         String amount = jtfAmount.getText();
-        if(id.length() == 0 || name.length() == 0 || amount.length() == 0 || NecessitiesModify.checkInt(amount) == false){
-             JOptionPane.showMessageDialog(this, " You have to fill full information or amount value only be a integer");
+        if(id.length() == 0 || name.length() == 0 || amount.length() == 0 || NecessitiesModify.checkInt(amount) == false || NecessitiesModify.checkNecessitiesId(id) == false){
+             JOptionPane.showMessageDialog(this, "Wrong information");
         }
         else{
             DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -519,7 +520,7 @@ public class UserNecessities extends javax.swing.JFrame {
   
     private void jbBuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuyActionPerformed
        String[][] a = getTableData();
-      
+       
        if(NecessitiesModify.buyNecessities(a, jtCart.getRowCount(), username)== false){
            JOptionPane.showMessageDialog(this, "Fail to buy necessities");
        }
