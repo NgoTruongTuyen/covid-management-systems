@@ -376,7 +376,21 @@ public class ManagerList extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUnblockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnblockActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel recordTable = (DefaultTableModel)tblManager.getModel();
+        int selectedRows = tblManager.getSelectedRow();
+        
+        String username = recordTable.getValueAt(selectedRows, 1).toString();
+        ManagerListModify managerListModify = new ManagerListModify();
+        
+        int result = managerListModify.unlockManager(username);
+        
+        if (result == 0) {
+            JOptionPane.showMessageDialog(this, "There was a problem. Please try again later.");
+        } else {
+            loadData();
+            JOptionPane.showMessageDialog(this, "Unlock account successfully!");  
+        }
+        
     }//GEN-LAST:event_btnUnblockActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

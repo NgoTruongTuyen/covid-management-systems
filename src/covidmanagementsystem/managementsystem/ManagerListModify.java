@@ -176,4 +176,30 @@ public class ManagerListModify {
         
         return result;
     }
+    
+    public int unlockManager(String username) {
+        int result = 0;
+            
+        String sqlUpdate = "update Account set state = ? where username = ?";
+
+        try {
+            conn = DriverManager.getConnection(DB_URL,USER, PASS);
+            pstmt = conn.prepareStatement(sqlUpdate);
+            pstmt.setInt(1, 1);
+            pstmt.setString(2, username);
+
+            result = pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+        }
+        finally{
+            try {
+                conn.close();
+                pstmt.close();
+            } catch (SQLException e) {
+            }
+        }
+        
+        return result;
+    }
 }
