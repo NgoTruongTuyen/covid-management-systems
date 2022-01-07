@@ -54,6 +54,11 @@ public class Admin_menu extends javax.swing.JFrame {
 
         btnViewTreatmentSiteList.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnViewTreatmentSiteList.setText("View Treatment Site List");
+        btnViewTreatmentSiteList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewTreatmentSiteListActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnViewTreatmentSiteList, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 210, 330, 130));
 
         btnViewManagerList.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -109,6 +114,12 @@ public class Admin_menu extends javax.swing.JFrame {
         this.hide();
         managerList.setVisible(true);
     }//GEN-LAST:event_btnViewManagerListActionPerformed
+
+    private void btnViewTreatmentSiteListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewTreatmentSiteListActionPerformed
+        TreatmentSiteList treatmentSiteList = new TreatmentSiteList();
+        this.hide();
+        treatmentSiteList.setVisible(true);
+    }//GEN-LAST:event_btnViewTreatmentSiteListActionPerformed
 
     /**
      * @param args the command line arguments
