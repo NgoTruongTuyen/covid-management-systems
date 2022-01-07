@@ -141,9 +141,34 @@ public class TreatmentSiteModify {
                 try {
                     conn.close();
                     pstmt.close();
-                    rs.close();
                 } catch (SQLException e) {
                 }
+            }
+        }
+        
+        return result;
+    }
+    
+    public int updateTreatmentSite(String name, int capacity, int currentNumber) {
+        int result = 0;
+        String sqlUpdate = "update TreatmentSite set capacity = ?, currentNumber = ? where tsName = ?";
+        
+        
+        try {
+            conn = DriverManager.getConnection(DB_URL,USER, PASS);
+            pstmt = conn.prepareStatement(sqlUpdate);
+            pstmt.setInt(1, capacity);
+            pstmt.setInt(2, currentNumber);
+            pstmt.setString(3, name);
+
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+        }
+        finally{
+            try {
+                conn.close();
+                pstmt.close();
+            } catch (SQLException e) {
             }
         }
         

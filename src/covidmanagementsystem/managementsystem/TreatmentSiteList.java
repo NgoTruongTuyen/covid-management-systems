@@ -80,6 +80,7 @@ public class TreatmentSiteList extends javax.swing.JFrame {
         txtCapacity = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -105,7 +106,7 @@ public class TreatmentSiteList extends javax.swing.JFrame {
                 btnUpdateActionPerformed(evt);
             }
         });
-        jPanel3.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 520, 210, 60));
+        jPanel3.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 520, 210, 60));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -125,6 +126,11 @@ public class TreatmentSiteList extends javax.swing.JFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        tableTreatmentSiteList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableTreatmentSiteListMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(tableTreatmentSiteList);
@@ -181,6 +187,15 @@ public class TreatmentSiteList extends javax.swing.JFrame {
         });
         jPanel3.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 520, 210, 60));
 
+        btnRefresh.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnRefresh.setText("Refresh");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 520, 210, 60));
+
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 1520, 610));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -231,7 +246,21 @@ public class TreatmentSiteList extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
+        txtName.setEditable(false);
+        String name = txtName.getText();
+        int capacity = Integer.parseInt(txtCapacity.getText());
+        int currentNumber = Integer.parseInt(txtCurrentCases.getText());
+        if (currentNumber > capacity) {
+            JOptionPane.showMessageDialog(this, "Current number of cases is not greater than capacity!");
+        } else {
+            TreatmentSiteModify treatmentSiteModify = new TreatmentSiteModify();
+            int result = treatmentSiteModify.updateTreatmentSite(name, capacity, currentNumber);
+            
+            if (result != 0) {
+                loadData();
+                JOptionPane.showMessageDialog(this, "Update treatment site successfully!");
+            }
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -256,6 +285,23 @@ public class TreatmentSiteList extends javax.swing.JFrame {
             txtName.setText("");
         }
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void tableTreatmentSiteListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableTreatmentSiteListMouseClicked
+        DefaultTableModel recordTable = (DefaultTableModel)tableTreatmentSiteList.getModel();
+        int selectedRows = tableTreatmentSiteList.getSelectedRow();
+        txtName.setEditable(false);
+        
+        txtName.setText(recordTable.getValueAt(selectedRows, 1).toString());
+        txtCapacity.setText(recordTable.getValueAt(selectedRows, 2).toString());
+        txtCurrentCases.setText(recordTable.getValueAt(selectedRows, 3).toString());
+    }//GEN-LAST:event_tableTreatmentSiteListMouseClicked
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        txtName.setText("");
+        txtCapacity.setText("");
+        txtCurrentCases.setText("");
+        txtName.setEditable(true);
+    }//GEN-LAST:event_btnRefreshActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,6 +341,7 @@ public class TreatmentSiteList extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
