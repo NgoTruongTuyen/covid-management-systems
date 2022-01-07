@@ -81,6 +81,7 @@ public class TreatmentSiteList extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         btnRefresh = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -106,7 +107,7 @@ public class TreatmentSiteList extends javax.swing.JFrame {
                 btnUpdateActionPerformed(evt);
             }
         });
-        jPanel3.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 520, 210, 60));
+        jPanel3.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 520, 210, 60));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -176,7 +177,7 @@ public class TreatmentSiteList extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
-        jPanel3.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 520, 210, 60));
+        jPanel3.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 520, 210, 60));
 
         btnAdd.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnAdd.setText("Add");
@@ -185,7 +186,7 @@ public class TreatmentSiteList extends javax.swing.JFrame {
                 btnAddActionPerformed(evt);
             }
         });
-        jPanel3.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 520, 210, 60));
+        jPanel3.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 520, 210, 60));
 
         btnRefresh.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnRefresh.setText("Refresh");
@@ -194,7 +195,16 @@ public class TreatmentSiteList extends javax.swing.JFrame {
                 btnRefreshActionPerformed(evt);
             }
         });
-        jPanel3.add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 520, 210, 60));
+        jPanel3.add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 520, 210, 60));
+
+        btnDelete.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 520, 210, 60));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 1520, 610));
 
@@ -246,7 +256,6 @@ public class TreatmentSiteList extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        txtName.setEditable(false);
         String name = txtName.getText();
         int capacity = Integer.parseInt(txtCapacity.getText());
         int currentNumber = Integer.parseInt(txtCurrentCases.getText());
@@ -306,6 +315,25 @@ public class TreatmentSiteList extends javax.swing.JFrame {
         txtName.setEditable(true);
     }//GEN-LAST:event_btnRefreshActionPerformed
 
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        String name = txtName.getText();
+        
+        TreatmentSiteModify treatmentSiteModify = new TreatmentSiteModify();
+        int result = treatmentSiteModify.deleteTreatmentSite(name);
+
+        if (result != 0) {
+            loadData();
+            JOptionPane.showMessageDialog(this, "Delete treatment site successfully!");
+        } else {
+            loadData();
+            txtName.setText("");
+            txtCapacity.setText("");
+            txtCurrentCases.setText("");
+            txtName.setEditable(true);
+            JOptionPane.showMessageDialog(this, "There was a problem. Please try again later.!");
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -344,6 +372,7 @@ public class TreatmentSiteList extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;

@@ -174,4 +174,28 @@ public class TreatmentSiteModify {
         
         return result;
     }
+    
+    public int deleteTreatmentSite(String name) {
+        int result = 0;
+        String sqlDelete = "delete from TreatmentSite where tsName = ?";
+        
+        
+        try {
+            conn = DriverManager.getConnection(DB_URL,USER, PASS);
+            pstmt = conn.prepareStatement(sqlDelete);
+            pstmt.setString(1, name);
+
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+        }
+        finally{
+            try {
+                conn.close();
+                pstmt.close();
+            } catch (SQLException e) {
+            }
+        }
+        
+        return result;
+    }
 }
