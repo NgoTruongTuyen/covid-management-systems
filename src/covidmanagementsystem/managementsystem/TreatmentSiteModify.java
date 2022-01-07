@@ -13,11 +13,13 @@ import java.util.logging.Logger;
  *
  * @author 123
  */
-public class TreatmentSiteModify
-{  static  String DB_URL = "jdbc:mysql://ba789yyeviyfpuqmprn9-mysql.services.clever-cloud.com/ba789yyeviyfpuqmprn9";
-  static String USER = "uuaeqsyvhif6hnzh";
-  static  String PASS = "87pjEZXsG2Wgsu5eDQNB";
-  
+public class TreatmentSiteModify {   
+    static  String DB_URL = "jdbc:mysql://ba789yyeviyfpuqmprn9-mysql.services.clever-cloud.com/ba789yyeviyfpuqmprn9";
+    static String USER = "uuaeqsyvhif6hnzh";
+    static  String PASS = "87pjEZXsG2Wgsu5eDQNB";
+    private Connection conn = null;
+    private PreparedStatement pstmt = null;
+    private ResultSet rs = null;
   
   public static List<TreatmentSite> findAll(){
         List<TreatmentSite> TreatmentSiteList = new ArrayList<>();
@@ -46,13 +48,13 @@ public class TreatmentSiteModify
         } catch (SQLException ex) {
             Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
         }
-      if(conn != null){
+        if(conn != null){
             try {
                 conn.close();
             } catch (SQLException ex) {
                 Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
             }
-      } 
+        } 
         return TreatmentSiteList;
     }
   
@@ -86,5 +88,65 @@ public class TreatmentSiteModify
             }
       } 
         return TreatmentSiteNameList;
+    }
+   
+   Boolean existedName(String name) {
+         String sqlSelect = "select * from TreatmentSite where tsName = ?";
+        
+        try {
+            conn = DriverManager.getConnection(DB_URL,USER, PASS);
+            pstmt = conn.prepareStatement(sqlSelect);
+            pstmt.setString(1, name);
+            
+            rs = pstmt.executeQuery();
+            
+            if (rs.next()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+            
+        } catch (SQLException e) {
+        }
+        finally{
+            try {
+                conn.close();
+                pstmt.close();
+                rs.close();
+            } catch (SQLException e) {
+            }
+        }
+        
+        return true;
+    }
+   
+    public int addTreatmentSite(TreatmentSite treatmentSite) {
+        int result = 0;
+        if (!existedName(treatmentSite.getName())) {
+            String sqlInsert = "insert into TreatmentSite(tsName, capacity, currentNumber) values (?, ?, ?)";
+            
+
+            try {
+                conn = DriverManager.getConnection(DB_URL,USER, PASS);
+                pstmt = conn.prepareStatement(sqlInsert);
+                pstmt.setString(1, treatmentSite.getName());
+                pstmt.setInt(2, treatmentSite.getCapacity());
+                pstmt.setInt(3, treatmentSite.getCurrentNumber());
+
+                result = pstmt.executeUpdate();
+            } catch (SQLException e) {
+            }
+            finally{
+                try {
+                    conn.close();
+                    pstmt.close();
+                    rs.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+        
+        return result;
     }
 }
