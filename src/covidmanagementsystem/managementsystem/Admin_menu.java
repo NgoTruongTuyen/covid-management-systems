@@ -105,7 +105,9 @@ public class Admin_menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViewManagerListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewManagerListActionPerformed
-        // TODO add your handling code here:
+        ManagerList managerList = new ManagerList();
+        this.hide();
+        managerList.setVisible(true);
     }//GEN-LAST:event_btnViewManagerListActionPerformed
 
     /**
