@@ -170,7 +170,6 @@ public class ManagerListModify {
             try {
                 conn.close();
                 pstmt.close();
-                rs.close();
             } catch (SQLException e) {
             }
         }

@@ -292,7 +292,21 @@ public class ManagerList extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBlockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBlockActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel recordTable = (DefaultTableModel)tblManager.getModel();
+        int selectedRows = tblManager.getSelectedRow();
+        
+        String username = recordTable.getValueAt(selectedRows, 1).toString();
+        ManagerListModify managerListModify = new ManagerListModify();
+        
+        int result = managerListModify.lockManager(username);
+        
+        if (result == 0) {
+            JOptionPane.showMessageDialog(this, "There was a problem. Please try again later.");
+        } else {
+            loadData();
+            JOptionPane.showMessageDialog(this, "Lock account successfully!");  
+        }
+        
     }//GEN-LAST:event_btnBlockActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
