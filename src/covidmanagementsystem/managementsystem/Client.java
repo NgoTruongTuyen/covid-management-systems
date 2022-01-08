@@ -65,9 +65,9 @@ public class Client implements Runnable {
         
     }
 
-    public static void main(String[] args) throws Exception {
-        new Client("1003123-50000");
-    }
+//    public static void main(String[] args) throws Exception {
+//        new Client("1003123-50000");
+//    }
 
     @Override
     public void run() {

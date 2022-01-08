@@ -4,6 +4,11 @@
  */
 package covidmanagementsystem.managementsystem;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author MTBH
@@ -13,14 +18,14 @@ public class UserPay extends javax.swing.JFrame {
     /**
      * Creates new form UserPay
      */
-    String username;
+    String idCard;
     public UserPay() {
-        this.username = "1003123";
+        this.idCard = "1003123";
         initComponents();
-        viewDept(username);
+        viewDept(idCard);
     }
-    private void viewDept(String username){
-        int dept = NecessitiesModify.getDept("1003123");
+    private void viewDept(String idCard){
+        int dept = NecessitiesModify.getDept(idCard);
         jtfDept.setText(String.valueOf(dept));
     }
     /**
@@ -127,14 +132,39 @@ public class UserPay extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancel1ActionPerformed
-        UserInfo connectInfo = new UserInfo(username);
+        UserInfo connectInfo = new UserInfo(idCard);
         connectInfo.setVisible(true); 
         this.dispose();
     }//GEN-LAST:event_btnCancel1ActionPerformed
 
     private void btnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayActionPerformed
-        PaymentSystem system = new PaymentSystem();
-        Client client = new Client(jtfMoney.getText());
+        int debt = Integer.parseInt(jtfDept.getText());
+        int money = Integer.parseInt(jtfMoney.getText());
+        int minimumAmount = (debt * 10) / 100;
+        
+        if (money > debt) {
+            JOptionPane.showMessageDialog(this, "Please pay the money which is less than your debt!");
+            jtfMoney.setText("");
+        } else if (money < minimumAmount) {
+            JOptionPane.showMessageDialog(this, "Please pay the money which is greater than or equal to " + minimumAmount + "(10% of your debt)!");
+            jtfMoney.setText("");
+        } else {
+            try {
+                String content = idCard + "-" + jtfMoney.getText();
+                Client client = new Client(content);
+            } catch (IOException ex) {
+                Logger.getLogger(UserPay.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            UserModify user = new UserModify();
+            int newDebt = Integer.parseInt(jtfDept.getText()) - Integer.parseInt(jtfMoney.getText());
+            user.updateDebt(idCard, newDebt);
+
+            JOptionPane.showMessageDialog(this, "Pay debt successfully");
+            jtfMoney.setText("");
+            this.viewDept(idCard);
+        }
+        
     }//GEN-LAST:event_btnPayActionPerformed
 
     /**

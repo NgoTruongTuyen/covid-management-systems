@@ -431,4 +431,34 @@ public class UserModify {
       } 
        return List;
     }
+    
+    public int updateDebt(String idCard, int newDebt) {
+        String sqlUpdate = "update User set dept = ? where idCard = ?";
+        int result = 0;
+        
+        Connection conn = null;
+        ResultSet rs = null;
+        PreparedStatement pstmt = null;
+        
+        try {
+            conn = DriverManager.getConnection(DB_URL,USER, PASS);
+            pstmt = conn.prepareStatement(sqlUpdate);
+            pstmt.setInt(1, newDebt);
+            pstmt.setString(2, idCard);
+            
+            
+            result = pstmt.executeUpdate();
+           
+        } catch (SQLException e) {
+        }
+        finally{
+            try {
+                conn.close();
+                pstmt.close();
+            } catch (SQLException e) {
+            }
+        }
+        
+        return result;
+    }
 }
