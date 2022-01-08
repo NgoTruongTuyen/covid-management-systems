@@ -1,6 +1,7 @@
 
 package covidmanagementsystem.managementsystem;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -449,6 +450,35 @@ public class UserModify {
             
             result = pstmt.executeUpdate();
            
+        } catch (SQLException e) {
+        }
+        finally{
+            try {
+                conn.close();
+                pstmt.close();
+            } catch (SQLException e) {
+            }
+        }
+        
+        return result;
+    }
+
+    public int savePaymentHistory(String idCard, int money, String date) {
+        int result = 0;
+        Connection conn = null;
+        ResultSet rs = null;
+        PreparedStatement pstmt = null;
+          
+        String sqlInsert = "insert into PayHistory(id, money, date) values (?, ?, ?)";
+        
+        try {
+            conn = DriverManager.getConnection(DB_URL,USER, PASS);
+            pstmt = conn.prepareStatement(sqlInsert);
+            pstmt.setString(1, idCard);
+            pstmt.setInt(2, money);
+            pstmt.setString(3, date);
+
+            result = pstmt.executeUpdate();
         } catch (SQLException e) {
         }
         finally{

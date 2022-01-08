@@ -5,6 +5,7 @@
 package covidmanagementsystem.managementsystem;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -19,6 +20,12 @@ public class UserPay extends javax.swing.JFrame {
      * Creates new form UserPay
      */
     String idCard;
+    public UserPay() {
+        this.idCard = "1003123";
+        initComponents();
+        viewDept(idCard);
+    }
+    
     public UserPay(String idCard) {
         this.idCard = idCard;
         initComponents();
@@ -159,6 +166,10 @@ public class UserPay extends javax.swing.JFrame {
             UserModify user = new UserModify();
             int newDebt = Integer.parseInt(jtfDept.getText()) - Integer.parseInt(jtfMoney.getText());
             user.updateDebt(idCard, newDebt);
+            
+            LocalDate localDate = LocalDate.now();
+            String date = localDate.toString();
+            user.savePaymentHistory(idCard, money, date);
 
             JOptionPane.showMessageDialog(this, "Pay debt successfully");
             jtfMoney.setText("");
