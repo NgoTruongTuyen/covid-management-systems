@@ -2,11 +2,14 @@ package covidmanagementsystem.managementsystem;
 
 import covidmanagementsystem.managementsystem.Account;
 import covidmanagementsystem.managementsystem.SimpleMD5;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 /**
@@ -106,7 +109,6 @@ public class Login extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         SimpleMD5 md5 = new SimpleMD5();
         String sqlSelect = "select * from Account where username = ? and password = ?";
-        
         try {
             conn = DriverManager.getConnection(DB_URL,USER, PASS);
             pstmt = conn.prepareStatement(sqlSelect);
@@ -118,7 +120,7 @@ public class Login extends javax.swing.JFrame {
             
             if (rs.next()) {
                 String username = rs.getString("username");
-                String password = rs.getString("password");                
+                String password = rs.getString("password");
                 int role = Integer.parseInt(rs.getString("role"));
                 int status = Integer.parseInt(rs.getString("state"));
                 
@@ -127,7 +129,7 @@ public class Login extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(jfrm, "Tài khoản của bạn đã bị khóa","Thông báo",JOptionPane.WARNING_MESSAGE);
                     txtUsername.setText("");
                     txtPassword.setText("");
-                } 
+                }
                 else {
                     switch(role) {
                         case 1:
@@ -148,19 +150,19 @@ public class Login extends javax.swing.JFrame {
                                 Manager_menu manager = new Manager_menu();
                                 manager.username = username;
                                 this.hide();
-
+                                
                                 manager.setVisible(true);
                             }
-                            break;
+                            break; 
                         case 3:
                             UserInfo user = new UserInfo(username);
                             
                             this.hide();
                             
                             user.setVisible(true);
-                            break; 
+                            break;
                     }
-                } 
+                }
             }
             else {
                 JOptionPane.showMessageDialog(this, "Wrong password, please try again!");

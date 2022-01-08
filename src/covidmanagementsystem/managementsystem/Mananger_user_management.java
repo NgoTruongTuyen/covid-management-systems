@@ -6,6 +6,7 @@
 package covidmanagementsystem.managementsystem;
 
 import java.awt.Component;
+import java.io.IOException;
 import java.util.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSetMetaData;
@@ -563,6 +564,14 @@ public class Mananger_user_management extends javax.swing.JFrame {
             String currentDateTime = managerModify.formatDateTime(localDateTime);
             String content = currentDateTime + ": add new user - " + Id;
             managerModify.saveHistory(managerId, content);
+            
+            try {
+                String balance = Id + "=999999";
+                Client client = new Client(balance);
+            } catch (IOException ex) {
+                
+            }
+            
         }
     }//GEN-LAST:event_addButtonActionPerformed
 

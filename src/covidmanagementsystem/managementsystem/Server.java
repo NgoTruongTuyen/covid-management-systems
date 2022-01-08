@@ -41,11 +41,20 @@ public class Server {
 
     public synchronized void sendChatMessageToAll(String msg) throws IOException {
         System.out.println(msg);
-        String[] parts = msg.split("-", 2);
-        String id = parts[0];
-        int balance = Integer.parseInt(parts[1]);
         PaymentService payment = new PaymentService();
-        payment.pay(id, balance);
+        if (msg.contains("=")) {
+            String[] parts = msg.split("=", 2);
+            String id = parts[0];
+            int balance = Integer.parseInt(parts[1]);
+            payment.createAccount(id, balance);
+            
+        } else {
+            String[] parts = msg.split("-", 2);
+            String id = parts[0];
+            int balance = Integer.parseInt(parts[1]);
+            payment.pay(id, balance);
+        }
+
 
         
 //        for (Iterator<Socket> it = clientList.iterator(); it.hasNext();) {

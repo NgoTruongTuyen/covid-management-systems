@@ -109,6 +109,33 @@ public class PaymentService {
         return accounts;
     }
     
+    public int createAccount(String id, int balance) {
+        int result = 0;
+       
+        String sqlInsert = "insert into PaymentAccount(id, balance) values (?, ?)";
+
+        try {
+            conn = DriverManager.getConnection(DB_URL,USER, PASS);
+            pstmt = conn.prepareStatement(sqlInsert);
+            pstmt.setString(1, id);
+            pstmt.setInt(2, balance);
+
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+        }
+        finally{
+            try {
+                conn.close();
+                pstmt.close();
+                rs.close();
+            } catch (SQLException e) {
+            }
+        }
+        
+        
+        return result;
+    }
+    
 //    public static void main(String args[]) {
 //        PaymentService payment = new PaymentService();
 //        
