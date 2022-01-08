@@ -19,8 +19,8 @@ public class UserPay extends javax.swing.JFrame {
      * Creates new form UserPay
      */
     String idCard;
-    public UserPay() {
-        this.idCard = "1003123";
+    public UserPay(String idCard) {
+        this.idCard = idCard;
         initComponents();
         viewDept(idCard);
     }

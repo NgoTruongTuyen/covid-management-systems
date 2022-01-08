@@ -375,8 +375,8 @@ public class UserModify {
             ResultSet result = statement.executeQuery(req);
             while(result.next()){
                 PaymentHistory newPay=new PaymentHistory(result.getString("id"),
-                result.getInt("balance"),
-                result.getString("day"));
+                result.getInt("money"),
+                result.getString("date"));
                 
                 List.add(newPay);
                 

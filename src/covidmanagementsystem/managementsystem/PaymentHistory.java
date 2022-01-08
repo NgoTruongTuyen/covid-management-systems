@@ -3,31 +3,36 @@ package covidmanagementsystem.managementsystem;
 
 class PaymentHistory {
     private String id;
-    private int balance;
+    private int money;
     private String date;
     
-    PaymentHistory(String id, int balance, String date){
+    PaymentHistory(String id, int money, String date){
         this.id = id;
-        this.balance = balance;
+        this.money = money;
         this.date = date;              
     }
-    String getId(){
+
+    public String getId() {
         return id;
     }
-    int getBalance(){
-        return balance;
-    }
-    String getDate(){
-        return date;
-    }
-    
-    void setId(String id){
+
+    public void setId(String id) {
         this.id = id;
     }
-    void setBalance(int balance){
-        this.balance = balance;
+
+    public int getMoney() {
+        return money;
     }
-    void setDate(String date){
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
         this.date = date;
     }
 }

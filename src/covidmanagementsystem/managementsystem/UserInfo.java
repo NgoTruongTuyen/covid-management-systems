@@ -69,11 +69,14 @@ public class UserInfo extends javax.swing.JFrame {
         
         DefaultTableModel table = (DefaultTableModel) jtPayment.getModel();
         table.setRowCount(0);
-        
+        int count = 1;
         for(PaymentHistory temp : a){
-            table.addRow(new Object[]{temp.getBalance(),temp.getDate()});
+            table.addRow(new Object[]{count, temp.getMoney(),temp.getDate()});
+            count++;
         }
     }
+    
+    //private savePayHistory(String username, int )
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -384,7 +387,7 @@ public class UserInfo extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Balance", "Date"
+                "No.", "Amount of money", "Date"
             }
         ));
         jScrollPane2.setViewportView(jtPayment);
