@@ -17,27 +17,23 @@ public class Manager {
     private String username;
     private int role;
     private int state;
-    private List<String> activities;
 
     public Manager() {
         this.username = null;
         this.role = -1;
         this.state = 0;
-        this.activities = null;
     }
     
     public Manager(String username, int role, int state) {
         this.username = username;
         this.role = role;
         this.state = state;
-        this.activities = null;
     }
     
     public Manager(String username, int role, int state, List<String> activities) {
         this.username = username;
         this.role = role;
         this.state = state;
-        this.activities = activities;
     }
 
     public String getUsername() {
@@ -62,13 +58,5 @@ public class Manager {
 
     public void setStatus(int state) {
         this.state = state;
-    }
-
-    public List<String> getActivities() {
-        return activities;
-    }
-
-    public void setActivities(List<String> activities) {
-        this.activities = activities;
     }
 }

@@ -17,7 +17,7 @@ public class UserInfo extends javax.swing.JFrame {
 
     String username;
     public UserInfo(String user) {
-        username = "user1";
+        username = user;
         initComponents();
         showUser(username);
         showPurchaseHistory(username);

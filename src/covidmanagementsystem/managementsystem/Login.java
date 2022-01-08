@@ -132,7 +132,6 @@ public class Login extends javax.swing.JFrame {
                     switch(role) {
                         case 1:
                             Admin_menu admin = new Admin_menu();
-                            admin.username = username;
                             
                             this.hide();
                             admin.setVisible(true);
@@ -154,11 +153,11 @@ public class Login extends javax.swing.JFrame {
                             }
                             break;
                         case 3:
-                            
+                            UserInfo user = new UserInfo(username);
                             
                             this.hide();
                             
-                            
+                            user.setVisible(true);
                             break; 
                     }
                 } 

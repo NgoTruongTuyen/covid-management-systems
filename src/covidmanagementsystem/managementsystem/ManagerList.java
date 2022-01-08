@@ -38,7 +38,7 @@ public class ManagerList extends javax.swing.JFrame {
     }
     
     void loadData() {
-        ManagerListModify managerListModify = new ManagerListModify();
+        ManagerModify managerListModify = new ManagerModify();
         List<Manager> managers = managerListModify.findAllManagers();
         
   
@@ -296,7 +296,7 @@ public class ManagerList extends javax.swing.JFrame {
         int selectedRows = tblManager.getSelectedRow();
         
         String username = recordTable.getValueAt(selectedRows, 1).toString();
-        ManagerListModify managerListModify = new ManagerListModify();
+        ManagerModify managerListModify = new ManagerModify();
         
         int result = managerListModify.lockManager(username);
         
@@ -310,7 +310,7 @@ public class ManagerList extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBlockActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        ManagerListModify managerListModify = new ManagerListModify();
+        ManagerModify managerListModify = new ManagerModify();
         Manager manager = managerListModify.findManager(txtSearchUsername.getText());
         
         if (manager.getUsername() == null) {
@@ -341,7 +341,17 @@ public class ManagerList extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnViewActivitiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActivitiesActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel recordTable = (DefaultTableModel)tblManager.getModel();
+        int selectedRows = tblManager.getSelectedRow();
+        
+        String username = recordTable.getValueAt(selectedRows, 1).toString();
+        
+        ManagerActivities activities = new ManagerActivities();
+        activities.managerId = username;
+        activities.loadActivities();
+        
+        this.hide();
+        activities.setVisible(true);
     }//GEN-LAST:event_btnViewActivitiesActionPerformed
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
@@ -360,7 +370,7 @@ public class ManagerList extends javax.swing.JFrame {
         int role = 2, state = 1;
         Manager manager = new Manager(username, role, state);
         
-        ManagerListModify managerListModify = new ManagerListModify();
+        ManagerModify managerListModify = new ManagerModify();
         
         int result = managerListModify.addManager(manager, password);
         
@@ -380,7 +390,7 @@ public class ManagerList extends javax.swing.JFrame {
         int selectedRows = tblManager.getSelectedRow();
         
         String username = recordTable.getValueAt(selectedRows, 1).toString();
-        ManagerListModify managerListModify = new ManagerListModify();
+        ManagerModify managerListModify = new ManagerModify();
         
         int result = managerListModify.unlockManager(username);
         

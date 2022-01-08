@@ -7,17 +7,31 @@
  */
 package covidmanagementsystem.managementsystem;
 
+import java.util.List;
+
 /**
  *
  * @author zerotus
  */
 public class ManagerActivities extends javax.swing.JFrame {
-
     /**
      * Creates new form ManagerActivities
      */
+    String managerId;
+    
     public ManagerActivities() {
         initComponents();
+    }
+    
+    public void loadActivities() {
+        ManagerModify managerModify = new ManagerModify();
+        List<String> activities = managerModify.getActivities(managerId);
+        
+        int nums = activities.size();
+        for (int i = 0; i < nums; i++) {
+            txtAActivities.append(activities.get(i));
+            txtAActivities.append("\n");
+        }
     }
 
     /**
@@ -33,7 +47,7 @@ public class ManagerActivities extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtAActivities = new javax.swing.JTextArea();
         btnBack = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -56,11 +70,11 @@ public class ManagerActivities extends javax.swing.JFrame {
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtAActivities.setEditable(false);
+        txtAActivities.setColumns(20);
+        txtAActivities.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        txtAActivities.setRows(5);
+        jScrollPane1.setViewportView(txtAActivities);
 
         jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1460, 440));
 
@@ -115,7 +129,10 @@ public class ManagerActivities extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
+        Admin_menu admin = new Admin_menu();
+        this.hide();
+
+        admin.setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     /**
@@ -163,6 +180,6 @@ public class ManagerActivities extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea txtAActivities;
     // End of variables declaration//GEN-END:variables
 }

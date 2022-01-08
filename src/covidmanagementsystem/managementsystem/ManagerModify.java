@@ -14,6 +14,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -23,7 +25,7 @@ import javax.swing.JOptionPane;
  *
  * @author zerotus
  */
-public class ManagerListModify {
+public class ManagerModify {
     static String DB_URL = "jdbc:mysql://ba789yyeviyfpuqmprn9-mysql.services.clever-cloud.com/ba789yyeviyfpuqmprn9";
     static String USER = "uuaeqsyvhif6hnzh";
     static String PASS = "87pjEZXsG2Wgsu5eDQNB";
@@ -201,5 +203,61 @@ public class ManagerListModify {
         }
         
         return result;
+    }
+    
+    public int saveHistory(String id, String content) {
+        int result = 0;
+        
+        String sqlInsert = "insert into ManagerActivities(managerId, activity) values (?, ?)";
+        
+
+        try {
+            conn = DriverManager.getConnection(DB_URL,USER, PASS);
+            pstmt = conn.prepareStatement(sqlInsert);
+            pstmt.setString(1, id);
+            pstmt.setString(2, content);
+
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+        }
+        finally{
+            try {
+                conn.close();
+                pstmt.close();
+            } catch (SQLException e) {
+            }
+        }
+        
+        return result;
+    }
+    
+    public String formatDateTime(LocalDateTime myDateObj ) {
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String formattedDate = myDateObj.format(myFormatObj);
+        
+        return formattedDate;
+    }
+    
+    public List<String> getActivities(String managerId) {
+        List<String> activities = new ArrayList();
+        
+        String sqlSelect = "select * from ManagerActivities where managerId = ?";
+        int nums;
+        try{
+            conn = DriverManager.getConnection(DB_URL,USER, PASS);
+            pstmt = conn.prepareStatement(sqlSelect);
+            pstmt.setString(1, managerId);
+            rs = pstmt.executeQuery();
+            
+            
+            while (rs.next()) {
+                String content = rs.getString("activity");
+                activities.add(content);
+            }
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Could not be read!");
+        }
+        
+        return activities;
     }
 }

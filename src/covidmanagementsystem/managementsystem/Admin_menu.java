@@ -12,7 +12,6 @@ package covidmanagementsystem.managementsystem;
  * @author zerotus
  */
 public class Admin_menu extends javax.swing.JFrame {
-    String username;
     /**
      * Creates new form Admin
      */

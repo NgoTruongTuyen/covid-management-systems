@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSetMetaData;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -22,16 +23,17 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author 123
  */
-
-
 public class Mananger_user_management extends javax.swing.JFrame {
-     List<User> UserList = new ArrayList<>();
-     List<String> TreatmentSiteNameList = new ArrayList<>();
-     List<TreatmentSite> TreatmentSiteList=new ArrayList<>();
-     List<String> CityList=new ArrayList<>();
-     String currentStatus="";
-     String currentTreatmentSite="";
-     String currentContactList="";
+
+    List<User> UserList = new ArrayList<>();
+    List<String> TreatmentSiteNameList = new ArrayList<>();
+    List<TreatmentSite> TreatmentSiteList = new ArrayList<>();
+    List<String> CityList = new ArrayList<>();
+    String currentStatus = "";
+    String currentTreatmentSite = "";
+    String currentContactList = "";
+    String managerId;
+
     /**
      * Creates new form Manager_user_management
      */
@@ -40,77 +42,68 @@ public class Mananger_user_management extends javax.swing.JFrame {
         updateDB();
     }
 
-     public void updateDB() 
-     {
-        try{
-            
-            UserList=UserModify.findAll();
-            TreatmentSiteNameList=TreatmentSiteModify.findAllTreatmentSiteName();
-            TreatmentSiteList=TreatmentSiteModify.findAll();
-            CityList=AddressModify.findAllCity();
+    public void updateDB() {
+        try {
+
+            UserList = UserModify.findAll();
+            TreatmentSiteNameList = TreatmentSiteModify.findAllTreatmentSiteName();
+            TreatmentSiteList = TreatmentSiteModify.findAll();
+            CityList = AddressModify.findAllCity();
 
             DefaultTableModel recordTable = (DefaultTableModel) TableModel.getModel();
             recordTable.setRowCount(0);
-            
-            UserList.forEach((user)->{
-                String status="Đã hồi phục";
-                if(user.getState()!=-1)
-                {
-                    status="F"+user.getState();
+
+            UserList.forEach((user) -> {
+                String status = "Đã hồi phục";
+                if (user.getState() != -1) {
+                    status = "F" + user.getState();
                 }
-                recordTable.addRow(new Object[] {user.getID(),user.getName(),user.getDOB(),user.getAddress(),status,user.getTreatmentSiteName(),user.getRelated()});
+                recordTable.addRow(new Object[]{user.getID(), user.getName(), user.getDOB(), user.getAddress(), status, user.getTreatmentSiteName(), user.getRelated()});
             });
-          
+
             jComboBoxTreatmentSiteInput.removeAllItems();
-            TreatmentSiteNameList.forEach((siteName)->{
+            TreatmentSiteNameList.forEach((siteName) -> {
                 jComboBoxTreatmentSiteInput.addItem(siteName);
             });
-            
-             jComboBoxCityInput.removeAllItems();
-            CityList.forEach((cityName)->{
+
+            jComboBoxCityInput.removeAllItems();
+            CityList.forEach((cityName) -> {
                 jComboBoxCityInput.addItem(cityName);
             });
-            
+
             jComboBoxDistrictInput.setEnabled(false);
             jComboBoxVillageInput.setEnabled(false);
             idInputTxt.setEditable(false);
 //            jComboBoxTreatmentSiteInput.setSelectedItem(TreatmentSiteNameList);
-           
-        } catch(Exception ex){
+
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
-     public void checkCapacity(String siteName)
-     {
-           for(TreatmentSite site:TreatmentSiteList)
-       {
-           if (site.getName().equals(siteName))
-                   {
-                       if((site.getCurrentNumber()+1)>site.getCapacity())
-                               {
-                                   JOptionPane.showMessageDialog(new JFrame(), "This treatment site is full of user!!");
-                               }
-                   }
-       }
-     }
-     public boolean checkId(String id)
-     {
-          for(User user:UserList)
-       {
-           if(user.getID().equals(id))
-                   {
-                       JOptionPane.showMessageDialog(new JFrame(), "This ID card has already exist!!");
-                       return false;
-                   }
-                  
-       }
-         return true;
-     }
-    
+
+    public void checkCapacity(String siteName) {
+        for (TreatmentSite site : TreatmentSiteList) {
+            if (site.getName().equals(siteName)) {
+                if ((site.getCurrentNumber() + 1) > site.getCapacity()) {
+                    JOptionPane.showMessageDialog(new JFrame(), "This treatment site is full of user!!");
+                }
+            }
+        }
+    }
+
+    public boolean checkId(String id) {
+        for (User user : UserList) {
+            if (user.getID().equals(id)) {
+                JOptionPane.showMessageDialog(new JFrame(), "This ID card has already exist!!");
+                return false;
+            }
+
+        }
+        return true;
+    }
+
     /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
+     * This method is called from within the constructor to initialize the form. WARNING: Do NOT modify this code. The content of this method is always regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -395,7 +388,7 @@ public class Mananger_user_management extends javax.swing.JFrame {
     }//GEN-LAST:event_fullNameInputTxtActionPerformed
 
     private void contactInputTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactInputTxtActionPerformed
-       
+
     }//GEN-LAST:event_contactInputTxtActionPerformed
 
     private void idInputTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idInputTxtActionPerformed
@@ -403,57 +396,70 @@ public class Mananger_user_management extends javax.swing.JFrame {
     }//GEN-LAST:event_idInputTxtActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        String Id=idInputTxt.getText();
+        String Id = idInputTxt.getText();
         String fullname = fullNameInputTxt.getText();
         String dob = dobInputTxt1.getText();
-        String address=(String)jComboBoxVillageInput.getSelectedItem()+","+(String)jComboBoxDistrictInput.getSelectedItem()+","+(String)jComboBoxCityInput.getSelectedItem();
-        String strStatus=(String)jComboBoxStatus.getSelectedItem();
-        int status=-1;
-       if(!strStatus.equals("Đã hồi phục"))
-       {
-         status = Integer.parseInt(strStatus.substring(strStatus.length() - 1));
-       }
-        String treatmentSite=(String)jComboBoxTreatmentSiteInput.getSelectedItem();
-        String related=(String)contactInputTxt.getText();
-        User newUser = new User(Id, fullname, dob, address, status,treatmentSite,related);
-        
-         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            Date date = new Date();
-//        System.out.println(dateFormat.format(date));
-        if(!currentStatus.equals(strStatus))
-        {
-            ManagementHistory newRecord1=new ManagementHistory(Id,"Cập nhật : Từ"+currentStatus+"trở thành "+ strStatus,dateFormat.format(date));
-            ManagementHistoryModify.insert(newRecord1);
+        String address = (String) jComboBoxVillageInput.getSelectedItem() + "," + (String) jComboBoxDistrictInput.getSelectedItem() + "," + (String) jComboBoxCityInput.getSelectedItem();
+        String strStatus = (String) jComboBoxStatus.getSelectedItem();
+        int status = -1;
+        if (!strStatus.equals("Đã hồi phục")) {
+            status = Integer.parseInt(strStatus.substring(strStatus.length() - 1));
         }
-        if(!currentTreatmentSite.equals(treatmentSite))
-        {
-           ManagementHistory newRecord2=new ManagementHistory(Id,"Chuyển từ khu cách ly "+currentTreatmentSite+" sang "+ treatmentSite,dateFormat.format(date));
-           ManagementHistoryModify.insert(newRecord2);
+        String treatmentSite = (String) jComboBoxTreatmentSiteInput.getSelectedItem();
+        String related = (String) contactInputTxt.getText();
+        User newUser = new User(Id, fullname, dob, address, status, treatmentSite, related);
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        
+        ManagerModify managerModify = new ManagerModify();
+        LocalDateTime localDateTime;
+        String currentDateTime;
+        String content;
+//        System.out.println(dateFormat.format(date));
+        if (!currentStatus.equals(strStatus)) {
+            ManagementHistory newRecord1 = new ManagementHistory(Id, "Cập nhật : Từ" + currentStatus + "trở thành " + strStatus, dateFormat.format(date));
+            ManagementHistoryModify.insert(newRecord1);
+            
+            localDateTime = LocalDateTime.now();
+            currentDateTime = managerModify.formatDateTime(localDateTime);
+            content = currentDateTime + ": " + Id + " - update state from " + currentStatus + "to " + strStatus;
+            managerModify.saveHistory(managerId, content);
+        }
+        if (!currentTreatmentSite.equals(treatmentSite)) {
+            ManagementHistory newRecord2 = new ManagementHistory(Id, "Chuyển từ khu cách ly " + currentTreatmentSite + " sang " + treatmentSite, dateFormat.format(date));
+            ManagementHistoryModify.insert(newRecord2);
+            
+            localDateTime = LocalDateTime.now();
+            currentDateTime = managerModify.formatDateTime(localDateTime);
+            content = currentDateTime + ": " + Id + " - move treatmentsite from " + currentTreatmentSite + "to " + treatmentSite;
+            managerModify.saveHistory(managerId, content);
 
         }
-        if(!currentContactList.equals(related))
-        {
-        ManagementHistory newRecord3=new ManagementHistory(Id,"Cập nhật danh sách tiếp xúc: "+ related,dateFormat.format(date));
-        ManagementHistoryModify.insert(newRecord3);
+        if (!currentContactList.equals(related)) {
+            ManagementHistory newRecord3 = new ManagementHistory(Id, "Cập nhật danh sách tiếp xúc: " + related, dateFormat.format(date));
+            ManagementHistoryModify.insert(newRecord3);
+            
+            localDateTime = LocalDateTime.now();
+            currentDateTime = managerModify.formatDateTime(localDateTime);
+            content = currentDateTime + ": " + Id + " - update related person " + related;
+            managerModify.saveHistory(managerId, content);
         }
-        
-        
-       
-        
+
         UserModify.update(newUser);
         updateDB();
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-       String input = JOptionPane.showInputDialog(this, "Enter full name to search");
-        if(input != null && input.length() > 0) {
-         UserList = UserModify.findByFullname(input);
-            
+        String input = JOptionPane.showInputDialog(this, "Enter full name to search");
+        if (input != null && input.length() > 0) {
+            UserList = UserModify.findByFullname(input);
+
             DefaultTableModel recordTable = (DefaultTableModel) TableModel.getModel();
             recordTable.setRowCount(0);
-        
+
             UserList.forEach((user) -> {
-                recordTable.addRow(new Object[] {user.getID(),user.getName(),user.getDOB(),user.getAddress(),"F"+user.getState(),user.getTreatmentSiteName(),user.getRelated()});
+                recordTable.addRow(new Object[]{user.getID(), user.getName(), user.getDOB(), user.getAddress(), "F" + user.getState(), user.getTreatmentSiteName(), user.getRelated()});
             });
         } else {
             updateDB();
@@ -461,108 +467,118 @@ public class Mananger_user_management extends javax.swing.JFrame {
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void viewContactButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewContactButtonActionPerformed
-        Manger_contact_list_and_treament_history contectManagement=new Manger_contact_list_and_treament_history();
-        contectManagement.setVisible(true); 
+        Manger_contact_list_and_treament_history contectManagement = new Manger_contact_list_and_treament_history();
+        contectManagement.setVisible(true);
     }//GEN-LAST:event_viewContactButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-      // TODO add your handling code here:
+        // TODO add your handling code here:
         int selectedIndex = TableModel.getSelectedRow();
-        if(selectedIndex >= 0) {
+        if (selectedIndex >= 0) {
             User std = UserList.get(selectedIndex);
-            
+
             int option = JOptionPane.showConfirmDialog(this, "Do you want to delete this item?");
             System.out.println("option : " + option);
-            
-            if(option == 0) {
+
+            if (option == 0) {
                 UserModify.delete(std.getID());
                 updateDB();
+                
+                ManagerModify managerModify = new ManagerModify();
+                LocalDateTime localDateTime = LocalDateTime.now();
+                String currentDateTime = managerModify.formatDateTime(localDateTime);
+                String content = currentDateTime + ": delete user - " + std.getID();
+                managerModify.saveHistory(managerId, content);
             }
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void jComboBoxDistrictInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDistrictInputActionPerformed
         jComboBoxVillageInput.setEnabled(true);
-        String districtName = (String)jComboBoxDistrictInput.getSelectedItem();
-        
-        List<String> villageList=new ArrayList<>();
-           villageList=AddressModify.findAllVillage(districtName);
-              jComboBoxVillageInput.removeAllItems();
-            villageList.forEach((villageName)->{
-                jComboBoxVillageInput.addItem(villageName);
-            });
+        String districtName = (String) jComboBoxDistrictInput.getSelectedItem();
+
+        List<String> villageList = new ArrayList<>();
+        villageList = AddressModify.findAllVillage(districtName);
+        jComboBoxVillageInput.removeAllItems();
+        villageList.forEach((villageName) -> {
+            jComboBoxVillageInput.addItem(villageName);
+        });
     }//GEN-LAST:event_jComboBoxDistrictInputActionPerformed
 
     private void jComboBoxCityInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCityInputActionPerformed
 //        System.out.println((String)jComboBoxCityInput.getSelectedItem());
         jComboBoxDistrictInput.setEnabled(true);
-       String cityName =(String)jComboBoxCityInput.getSelectedItem();
-       
-        List<String> districtList=new ArrayList<>();
-           districtList=AddressModify.findAllDistrict(cityName);
+        String cityName = (String) jComboBoxCityInput.getSelectedItem();
+
+        List<String> districtList = new ArrayList<>();
+        districtList = AddressModify.findAllDistrict(cityName);
 //           System.out.println(districtList);
-              jComboBoxDistrictInput.removeAllItems();
-            districtList.forEach((districtName)->{
-                jComboBoxDistrictInput.addItem(districtName);
-            });
+        jComboBoxDistrictInput.removeAllItems();
+        districtList.forEach((districtName) -> {
+            jComboBoxDistrictInput.addItem(districtName);
+        });
     }//GEN-LAST:event_jComboBoxCityInputActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        String Id=idInputTxt.getText();
-        boolean isValiad=checkId(Id);
-        if(isValiad){
-        String fullname = fullNameInputTxt.getText();
-        String dob = dobInputTxt1.getText();
-        String address=(String)jComboBoxVillageInput.getSelectedItem()+","+(String)jComboBoxDistrictInput.getSelectedItem()+","+(String)jComboBoxCityInput.getSelectedItem();
-        String strStatus=(String)jComboBoxStatus.getSelectedItem();
-        
-        int status=-1;
-       if(!strStatus.equals("Đã hồi phục"))
-       {
-         status = Integer.parseInt(strStatus.substring(strStatus.length() - 1));
-       }
-       
-        String treatmentSite=(String)jComboBoxTreatmentSiteInput.getSelectedItem();
-        checkCapacity(treatmentSite);
-        
-        String related=(String)contactInputTxt.getText();
-        User newUser = new User(Id, fullname, dob, address, status,treatmentSite,related);
-        
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
+        String Id = idInputTxt.getText();
+        boolean isValiad = checkId(Id);
+        if (isValiad) {
+            String fullname = fullNameInputTxt.getText();
+            String dob = dobInputTxt1.getText();
+            String address = (String) jComboBoxVillageInput.getSelectedItem() + "," + (String) jComboBoxDistrictInput.getSelectedItem() + "," + (String) jComboBoxCityInput.getSelectedItem();
+            String strStatus = (String) jComboBoxStatus.getSelectedItem();
+
+            int status = -1;
+            if (!strStatus.equals("Đã hồi phục")) {
+                status = Integer.parseInt(strStatus.substring(strStatus.length() - 1));
+            }
+
+            String treatmentSite = (String) jComboBoxTreatmentSiteInput.getSelectedItem();
+            checkCapacity(treatmentSite);
+
+            String related = (String) contactInputTxt.getText();
+            User newUser = new User(Id, fullname, dob, address, status, treatmentSite, related);
+
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date();
 //        System.out.println(dateFormat.format(date));
 
-        ManagementHistory newRecord1=new ManagementHistory(Id,"Trở thành "+ strStatus,dateFormat.format(date));
-        ManagementHistory newRecord2=new ManagementHistory(Id,"Được đưa vào khu cách ly "+ treatmentSite,dateFormat.format(date));
-        ManagementHistory newRecord3=new ManagementHistory(Id,"Danh sách tiếp xúc: "+ related,dateFormat.format(date));
-        
-        ManagementHistoryModify.insert(newRecord1);
-        ManagementHistoryModify.insert(newRecord2);
-        ManagementHistoryModify.insert(newRecord3);
-       
-        UserModify.insert(newUser);
-        updateDB();
+            ManagementHistory newRecord1 = new ManagementHistory(Id, "Trở thành " + strStatus, dateFormat.format(date));
+            ManagementHistory newRecord2 = new ManagementHistory(Id, "Được đưa vào khu cách ly " + treatmentSite, dateFormat.format(date));
+            ManagementHistory newRecord3 = new ManagementHistory(Id, "Danh sách tiếp xúc: " + related, dateFormat.format(date));
+
+            ManagementHistoryModify.insert(newRecord1);
+            ManagementHistoryModify.insert(newRecord2);
+            ManagementHistoryModify.insert(newRecord3);
+
+            UserModify.insert(newUser);
+            updateDB();
+            
+            ManagerModify managerModify = new ManagerModify();
+            LocalDateTime localDateTime = LocalDateTime.now();
+            String currentDateTime = managerModify.formatDateTime(localDateTime);
+            String content = currentDateTime + ": add new user - " + Id;
+            managerModify.saveHistory(managerId, content);
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void TableModelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableModelMouseClicked
-       
-        
-        DefaultTableModel recordTable = (DefaultTableModel)TableModel.getModel();
+
+        DefaultTableModel recordTable = (DefaultTableModel) TableModel.getModel();
         int selectedRows = TableModel.getSelectedRow();
-        
-        currentStatus=new String(recordTable.getValueAt(selectedRows, 4).toString());
-        currentTreatmentSite=new String(recordTable.getValueAt(selectedRows, 5).toString());
-       
+
+        currentStatus = new String(recordTable.getValueAt(selectedRows, 4).toString());
+        currentTreatmentSite = new String(recordTable.getValueAt(selectedRows, 5).toString());
+
         idInputTxt.setText(recordTable.getValueAt(selectedRows, 0).toString());
-        
+
         fullNameInputTxt.setText(recordTable.getValueAt(selectedRows, 1).toString());
         dobInputTxt1.setText(recordTable.getValueAt(selectedRows, 2).toString());
-        
+
         String[] address = recordTable.getValueAt(selectedRows, 3).toString().split(",");
         System.out.println(address);
         jComboBoxCityInput.setSelectedItem(address[2]);
@@ -570,15 +586,13 @@ public class Mananger_user_management extends javax.swing.JFrame {
         jComboBoxVillageInput.setSelectedItem(address[0]);
         jComboBoxStatus.setSelectedItem(recordTable.getValueAt(selectedRows, 4).toString());
         jComboBoxTreatmentSiteInput.setSelectedItem(recordTable.getValueAt(selectedRows, 5).toString());
-        if(recordTable.getValueAt(selectedRows, 6)!=null)
-        {
-        currentContactList=new String(recordTable.getValueAt(selectedRows, 6).toString());
-        contactInputTxt.setText(recordTable.getValueAt(selectedRows, 6).toString());
+        if (recordTable.getValueAt(selectedRows, 6) != null) {
+            currentContactList = new String(recordTable.getValueAt(selectedRows, 6).toString());
+            contactInputTxt.setText(recordTable.getValueAt(selectedRows, 6).toString());
+        } else {
+            contactInputTxt.setText("");
         }
-        else{
-         contactInputTxt.setText("");
-        }
-        
+
     }//GEN-LAST:event_TableModelMouseClicked
 
     private void dobInputTxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dobInputTxt1ActionPerformed
@@ -586,24 +600,23 @@ public class Mananger_user_management extends javax.swing.JFrame {
     }//GEN-LAST:event_dobInputTxt1ActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
-     
+
         idInputTxt.setText("");
         idInputTxt.setEditable(true);
         fullNameInputTxt.setText("");
         dobInputTxt1.setText("");
-      
+
 //        searchIdtxt.setText("");
         contactInputTxt.setText("");
-        
+
 //        DefaultTableModel RecordTable = (DefaultTableModel) TableModel.getModel();
 //        RecordTable.setRowCount(0);
-        
 
     }//GEN-LAST:event_refreshButtonActionPerformed
 
     private void jComboBoxTreatmentSiteInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTreatmentSiteInputActionPerformed
-       
-        
+
+
     }//GEN-LAST:event_jComboBoxTreatmentSiteInputActionPerformed
 
     /**

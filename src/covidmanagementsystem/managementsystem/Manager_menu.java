@@ -89,12 +89,17 @@ public class Manager_menu extends javax.swing.JFrame {
 
     private void necessitiesManagementBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_necessitiesManagementBtnActionPerformed
         Manager_necessities_management necessitiesManagement=new Manager_necessities_management();
+        necessitiesManagement.managerId = username;
+        
         necessitiesManagement.setVisible(true); 
     }//GEN-LAST:event_necessitiesManagementBtnActionPerformed
 
     private void userManagementBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userManagementBtnActionPerformed
-        Mananger_user_management userManagement=new Mananger_user_management();
+        Mananger_user_management userManagement = new Mananger_user_management();
+        userManagement.managerId = username;
+        
         userManagement.setVisible(true); 
+        
     }//GEN-LAST:event_userManagementBtnActionPerformed
 
     private void statisticBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statisticBtnActionPerformed
