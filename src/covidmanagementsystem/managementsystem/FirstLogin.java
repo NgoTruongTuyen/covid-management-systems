@@ -101,7 +101,6 @@ public class FirstLogin extends javax.swing.JFrame {
             try {
                 conn.close();
                 pstmt.close();
-                rs.close();
             } catch (SQLException e) {
             }
         }

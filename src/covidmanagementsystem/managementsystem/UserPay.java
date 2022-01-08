@@ -14,13 +14,13 @@ public class UserPay extends javax.swing.JFrame {
      * Creates new form UserPay
      */
     String username;
-    public UserPay(String username) {
-        this.username = username;
+    public UserPay() {
+        this.username = "1003123";
         initComponents();
         viewDept(username);
     }
     private void viewDept(String username){
-        int dept = NecessitiesModify.getDept(username);
+        int dept = NecessitiesModify.getDept("1003123");
         jtfDept.setText(String.valueOf(dept));
     }
     /**
@@ -46,9 +46,9 @@ public class UserPay extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jtfDept = new javax.swing.JTextField();
-        jtfBalance = new javax.swing.JPasswordField();
         btnPay = new javax.swing.JButton();
         btnCancel1 = new javax.swing.JButton();
+        jtfMoney = new javax.swing.JTextField();
 
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -80,23 +80,33 @@ public class UserPay extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel1.setText("Pay Dept");
+        jLabel1.setText("Pay Debt");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 70));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Dept");
+        jLabel4.setText("Debt");
+        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 60, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Balance ");
+        jLabel5.setText("Money");
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, -1, -1));
 
         jtfDept.setEditable(false);
+        jPanel4.add(jtfDept, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 240, 30));
 
         btnPay.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnPay.setText("Pay");
+        btnPay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPayActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnPay, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 200, 120, 50));
 
         btnCancel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnCancel1.setText("Cancel");
@@ -105,49 +115,12 @@ public class UserPay extends javax.swing.JFrame {
                 btnCancel1ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(144, 144, 144)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtfDept, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(74, 74, 74)
-                            .addComponent(btnCancel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jtfBalance))))
-                .addGap(32, 32, 32))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfDept, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(38, 38, 38)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfBalance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(78, 78, 78)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
+        jPanel4.add(btnCancel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, 120, 50));
+        jPanel4.add(jtfMoney, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 240, 30));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 600, 330));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 400));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 330));
 
         pack();
         setLocationRelativeTo(null);
@@ -158,6 +131,11 @@ public class UserPay extends javax.swing.JFrame {
         connectInfo.setVisible(true); 
         this.dispose();
     }//GEN-LAST:event_btnCancel1ActionPerformed
+
+    private void btnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayActionPerformed
+        PaymentSystem system = new PaymentSystem();
+        Client client = new Client(jtfMoney.getText());
+    }//GEN-LAST:event_btnPayActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,11 +165,11 @@ public class UserPay extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-////            public void run() {
-////                new UserPay().setVisible(true);
-////            }
-//        });
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+               new UserPay().setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -208,8 +186,8 @@ public class UserPay extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPasswordField jtfBalance;
     private javax.swing.JTextField jtfDept;
+    private javax.swing.JTextField jtfMoney;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
