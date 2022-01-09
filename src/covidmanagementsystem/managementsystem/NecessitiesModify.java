@@ -276,11 +276,23 @@ public interface NecessitiesModify {
                 Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (Integer.parseInt(amount) - am >= 0) {
-            return true;
-        } else {
-            return false;
+        if(am != 0){
+             if (Integer.parseInt(amount) - am >= 0 ) {
+                return true;
+            } else {
+             return false;
         }
+        }
+        else{
+            if ( Integer.parseInt(amount) < getLimitNecess(id)){
+                return true;
+            }
+            else{ 
+                return false;
+            }
+            
+        }
+        
     }
 
     public static String getTime(String limitTime) {
@@ -343,6 +355,7 @@ public interface NecessitiesModify {
                 Logger.getLogger(UserModify.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        System.out.println(sum);
         return sum;
 
     }
