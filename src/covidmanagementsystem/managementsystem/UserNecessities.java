@@ -391,7 +391,7 @@ public class UserNecessities extends javax.swing.JFrame {
     jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
     jbInformation.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-    jbInformation.setText("Information");
+    jbInformation.setText("Back");
     jbInformation.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jbInformationActionPerformed(evt);
