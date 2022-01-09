@@ -127,7 +127,7 @@ public class PaymentService {
             try {
                 conn.close();
                 pstmt.close();
-                rs.close();
+              
             } catch (SQLException e) {
             }
         }
