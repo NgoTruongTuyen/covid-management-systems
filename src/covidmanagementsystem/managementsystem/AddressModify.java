@@ -15,9 +15,9 @@ import java.util.logging.Logger;
  * @author 123
  */
 public class AddressModify {
-  static String DB_URL = "jdbc:mysql://ba789yyeviyfpuqmprn9-mysql.services.clever-cloud.com/ba789yyeviyfpuqmprn9";
-  static String USER = "uuaeqsyvhif6hnzh";
-  static String PASS = "87pjEZXsG2Wgsu5eDQNB";
+  static String DB_URL = "jdbc:mysql://localhost:3306/covid_management_system";
+  static String USER = "root";
+  static String PASS = "";
   
   public static List<String> findAllCity(){
         List<String> cityList = new ArrayList<>();
