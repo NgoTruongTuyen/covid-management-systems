@@ -5,12 +5,13 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 public class UserModify {
-  static  String DB_URL = "jdbc:mysql://localhost:3306/covid_management_system";
+  static String DB_URL = "jdbc:mysql://localhost:3306/ba789yyeviyfpuqmprn9";
   static String USER = "root";
-  static  String PASS = "";
+  static String PASS = "zerotus";
   
     
   public static User viewInformation(String username){
@@ -490,5 +491,31 @@ public class UserModify {
         }
         
         return result;
+    }
+    
+    public String getIdCard(String username) {
+        String sqlSelect = "select * from User where account = ?";
+        String idCard = null;
+        int nums;
+        
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        try{
+            conn = DriverManager.getConnection(DB_URL,USER, PASS);
+            pstmt = conn.prepareStatement(sqlSelect);
+            pstmt.setString(1, username);
+            rs = pstmt.executeQuery();
+            
+            
+            while (rs.next()) {
+                idCard  = rs.getString("idCard");
+            }
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Could not be read!");
+        }
+        
+        return idCard;
     }
 }

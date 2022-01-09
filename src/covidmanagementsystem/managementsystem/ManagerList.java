@@ -23,9 +23,9 @@ import javax.swing.table.DefaultTableModel;
  * @author zerotus
  */
 public class ManagerList extends javax.swing.JFrame {
-    static String DB_URL = "jdbc:mysql://localhost:3306/covid_management_system";
+    static String DB_URL = "jdbc:mysql://localhost:3306/ba789yyeviyfpuqmprn9";
     static String USER = "root";
-    static String PASS = "";
+    static String PASS = "zerotus";
     private Connection conn = null;
     private PreparedStatement pstmt = null;
     private ResultSet rs = null;

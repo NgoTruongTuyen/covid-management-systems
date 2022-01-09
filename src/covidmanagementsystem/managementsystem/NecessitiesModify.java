@@ -10,9 +10,9 @@ import java.time.LocalDateTime;
 
 public interface NecessitiesModify {
 
-    static String DB_URL = "jdbc:mysql://localhost:3306/covid_management_system";
+    static String DB_URL = "jdbc:mysql://localhost:3306/ba789yyeviyfpuqmprn9";
     static String USER = "root";
-    static String PASS = "";
+    static String PASS = "zerotus";
 
     public static List<Necessities> viewNecessities() {
         List<Necessities> nec = new ArrayList<>();
@@ -423,14 +423,14 @@ public interface NecessitiesModify {
         return price;
     }
 
-    public static int getDept(String idCard) {
+    public static int getDept(String username) {
         Connection conn = null;
         ResultSet rs = null;
         int price = 0;
         try {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            String tmp = "'" + idCard + "'";
-            String req = "select * from User where idCard =" + tmp;
+            String tmp = "'" + username + "'";
+            String req = "select * from User where account =" + tmp;
 
             Statement statement = conn.createStatement();
             ResultSet result = statement.executeQuery(req);

@@ -129,10 +129,10 @@ public class ManagerActivities extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        Admin_menu admin = new Admin_menu();
+        ManagerList managers = new ManagerList();
         this.hide();
 
-        admin.setVisible(true);
+        managers.setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     /**

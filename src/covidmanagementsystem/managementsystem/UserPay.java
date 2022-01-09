@@ -19,20 +19,20 @@ public class UserPay extends javax.swing.JFrame {
     /**
      * Creates new form UserPay
      */
-    String idCard;
+    String username;
     public UserPay() {
-        this.idCard = "1003123";
+        this.username = "user2";
         initComponents();
-        viewDept(idCard);
+        viewDept(username);
     }
     
-    public UserPay(String idCard) {
-        this.idCard = idCard;
+    public UserPay(String username) {
+        this.username = username;
         initComponents();
-        viewDept(idCard);
+        viewDept(username);
     }
-    private void viewDept(String idCard){
-        int dept = NecessitiesModify.getDept(idCard);
+    private void viewDept(String username){
+        int dept = NecessitiesModify.getDept(username);
         jtfDept.setText(String.valueOf(dept));
     }
     /**
@@ -139,7 +139,7 @@ public class UserPay extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancel1ActionPerformed
-        UserInfo connectInfo = new UserInfo(idCard);
+        UserInfo connectInfo = new UserInfo(username);
         connectInfo.setVisible(true); 
         this.dispose();
     }//GEN-LAST:event_btnCancel1ActionPerformed
@@ -156,6 +156,8 @@ public class UserPay extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please pay the money which is greater than or equal to " + minimumAmount + "(10% of your debt)!");
             jtfMoney.setText("");
         } else {
+            UserModify user = new UserModify();
+            String idCard = user.getIdCard(username);
             try {
                 String content = idCard + "-" + jtfMoney.getText();
                 Client client = new Client(content);
@@ -163,7 +165,7 @@ public class UserPay extends javax.swing.JFrame {
                 Logger.getLogger(UserPay.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            UserModify user = new UserModify();
+            
             int newDebt = Integer.parseInt(jtfDept.getText()) - Integer.parseInt(jtfMoney.getText());
             user.updateDebt(idCard, newDebt);
             
@@ -173,7 +175,7 @@ public class UserPay extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(this, "Pay debt successfully");
             jtfMoney.setText("");
-            this.viewDept(idCard);
+            this.viewDept(username);
         }
         
     }//GEN-LAST:event_btnPayActionPerformed

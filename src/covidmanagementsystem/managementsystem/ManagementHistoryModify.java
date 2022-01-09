@@ -24,9 +24,9 @@ import java.util.logging.Logger;
  * @author 123
  */
 public class ManagementHistoryModify {
-  static  String DB_URL = "jdbc:mysql://localhost:3306/covid_management_system";
+  static String DB_URL = "jdbc:mysql://localhost:3306/ba789yyeviyfpuqmprn9";
   static String USER = "root";
-  static  String PASS = "";
+  static String PASS = "zerotus";
    public static List<ManagementHistory> findById(String id){
         List<ManagementHistory> ManagementList = new ArrayList<>();
 

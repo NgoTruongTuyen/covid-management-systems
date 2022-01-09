@@ -3,34 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/Admin_menu.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/Manager_necessities_management.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/ManagerList.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/User.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/Statistics.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/UserModify.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/ManagerActivities.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/Necessities.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/SimpleMD5.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/FirstLogin.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/PaymentHistory.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/TreatmentSiteList.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/Server.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/Account.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/NecessitiesModify.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/AddressModify.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/UserPay.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/ManagementHistoryModify.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/Mananger_user_management.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/Login.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/UserNecessities.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/Manager_menu.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/Bill.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/UserInfo.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/Manger_contact_list_and_treament_history.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/TreatmentSiteModify.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/StatisticsModify.java</file>
-            <file>file:/C:/Users/123/OneDrive%20-%20VNU-HCMUS/Java/covid-management-systems/src/covidmanagementsystem/managementsystem/PaymentService.java</file>
+            <file>file:/D:/Java%20Programming/Final-project/covid-management-systems/src/covidmanagementsystem/managementsystem/Server.java</file>
+            <file>file:/D:/Java%20Programming/Final-project/covid-management-systems/src/covidmanagementsystem/managementsystem/Mananger_user_management.java</file>
+            <file>file:/D:/Java%20Programming/Final-project/covid-management-systems/src/covidmanagementsystem/managementsystem/UserNecessities.java</file>
+            <file>file:/D:/Java%20Programming/Final-project/covid-management-systems/src/covidmanagementsystem/managementsystem/PaymentManagementSystem.java</file>
+            <file>file:/D:/Java%20Programming/Final-project/covid-management-systems/src/covidmanagementsystem/managementsystem/NecessitiesModify.java</file>
+            <file>file:/D:/Java%20Programming/Final-project/covid-management-systems/src/covidmanagementsystem/managementsystem/ManagerModify.java</file>
+            <file>file:/D:/Java%20Programming/Final-project/covid-management-systems/src/covidmanagementsystem/managementsystem/ManagerList.java</file>
+            <file>file:/D:/Java%20Programming/Final-project/covid-management-systems/src/covidmanagementsystem/managementsystem/Admin_menu.java</file>
+            <file>file:/D:/Java%20Programming/Final-project/covid-management-systems/src/covidmanagementsystem/managementsystem/UserInfo.java</file>
+            <file>file:/D:/Java%20Programming/Final-project/covid-management-systems/src/covidmanagementsystem/managementsystem/ChatClientHandler.java</file>
+            <file>file:/D:/Java%20Programming/Final-project/covid-management-systems/src/covidmanagementsystem/managementsystem/ManagerActivities.java</file>
+            <file>file:/D:/Java%20Programming/Final-project/covid-management-systems/src/covidmanagementsystem/managementsystem/AddressModify.java</file>
+            <file>file:/D:/Java%20Programming/Final-project/covid-management-systems/src/covidmanagementsystem/managementsystem/Account.java</file>
+            <file>file:/D:/Java%20Programming/Final-project/covid-management-systems/src/covidmanagementsystem/managementsystem/Login.java</file>
+            <file>file:/D:/Java%20Programming/Final-project/covid-management-systems/src/covidmanagementsystem/managementsystem/FirstLogin.java</file>
+            <file>file:/D:/Java%20Programming/Final-project/covid-management-systems/src/covidmanagementsystem/managementsystem/PaymentService.java</file>
+            <file>file:/D:/Java%20Programming/Final-project/covid-management-systems/src/covidmanagementsystem/managementsystem/Client.java</file>
+            <file>file:/D:/Java%20Programming/Final-project/covid-management-systems/src/covidmanagementsystem/managementsystem/SimpleMD5.java</file>
         </group>
     </open-files>
 </project-private>
